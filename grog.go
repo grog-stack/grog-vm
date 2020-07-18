@@ -15,19 +15,23 @@ type Machine struct {
 }
 
 /* Instruction codes. Each code is one byte.
-MSB: most significant byte
-LSB: less significant byte
+MSN: most significant nibble
+LSN: less significant nibble
 */
 const (
 	// Stop
 	STOP = 0x00
-	// Load next byte from memory to register in LSB. LSB is the index of the register.
+	// Load next byte from memory to register. LSN is the index of the register.
 	LMR byte = 0x10
-	// Store register in LSB to memory address in next address
+	// Store register in LSB to memory address in next address.
 	SRM byte = 0x20
-	// Add next byte to register in LSB
+	// Increment register in LSN.
+	INC byte = 0x30
+	// Decrement register in LSN.
+	DEC byte = 0x40
+	// Add next byte to register in LSN.
 	ADD byte = 0xa0
-	// Subtract next byte to register in LSB
+	// Subtract next byte to register in LSN.s
 	SUB byte = 0xb0
 )
 
@@ -52,6 +56,10 @@ func (instruction *Instruction) execute(machine *Machine) int {
 		return loadMemoryIntoRegister(machine, instruction)
 	} else if instruction.matches(SRM) {
 		return storeRegisterIntoMemory(machine, instruction)
+	} else if instruction.matches(INC) {
+		return incrementRegister(machine, instruction)
+	} else if instruction.matches(DEC) {
+		return decrementRegister(machine, instruction)
 	} else if instruction.matches(ADD) {
 		return addMemoryToRegister(machine, instruction)
 	} else if instruction.matches(SUB) {
@@ -73,6 +81,18 @@ func storeRegisterIntoMemory(m *Machine, i *Instruction) int {
 	address := m.ReadAddress(m.ProgramCounter + 1)
 	m.Memory[address] = m.Registers[registerIndex].Value
 	return 3
+}
+
+func incrementRegister(m *Machine, i *Instruction) int {
+	registerIndex := i.extractRegister()
+	m.Registers[registerIndex].Value++
+	return 1
+}
+
+func decrementRegister(m *Machine, i *Instruction) int {
+	registerIndex := i.extractRegister()
+	m.Registers[registerIndex].Value--
+	return 1
 }
 
 func addMemoryToRegister(m *Machine, i *Instruction) int {
