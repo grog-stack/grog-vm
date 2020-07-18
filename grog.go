@@ -55,6 +55,7 @@ func (instruction *Instruction) execute(machine *Machine) int {
 	} else if instruction.matches(ADD) {
 		return addMemoryToRegister(machine, instruction)
 	} else if instruction.matches(SUB) {
+		return subtractMemoryFromRegister(machine, instruction)
 	}
 	fmt.Printf("Invalid instruction code: %X. Halting.", instruction.code)
 	machine.Stop()
