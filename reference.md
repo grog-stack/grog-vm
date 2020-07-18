@@ -1,7 +1,7 @@
 
 # Architecture
 
-A Grog Virtual Machine has theses componentes:
+A Grog Virtual Machine has these componentes:
 
 * 16 registers, identified with a hexadecimal symbol, from `0` to `F`. Each register stores 1 byte.
 * A 32 bits memory address space. Each memory location stores 1 byte.
