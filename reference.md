@@ -42,10 +42,10 @@ LMR means "Load next byte in Memory into Register ?". There're a total of 16 opc
 
 Examples: 
 
-* `0x10` means _Load next byte in memory into register 0_. 
-* `0x11` means _Load next byte in memory into register 1_. 
+* `0x10` means Load next byte in memory into register 0. 
+* `0x11` means Load next byte in memory into register 1. 
 * ...
-* `0x1F` means _Load next byte in memory into register F_. 
+* `0x1F` means Load next byte in memory into register F. 
 
 ## SRM (0x2?)
 
@@ -54,10 +54,10 @@ There's a total of 16 opcodes in  this family. Each opcode codifies the target r
 
 Examples: 
 
-* `0x20 0x0001`: _Store register 0 in memory location `0x0001`_. 
-* `0x21 0x0001`: _Store register 1 in memory location `0x0001`_.  
+* `0x20 0x0001`: Store register 0 in memory location `0x0001`. 
+* `0x21 0x0001`: Store register 1 in memory location `0x0001`.  
 * ...
-* `0x2F 0x0001`: _Store register F in memory location `0x0001`_.  
+* `0x2F 0x0001`: Store register F in memory location `0x0001`.  
 
 ## INC (0x3?)
 
@@ -66,10 +66,10 @@ __INC__crement register __?__. There's a total of 16 opcodes in this family. Eac
 
 Examples:
 
-* `0x30`: _Increment register 0_. 
-* `0x31`: _Increment register 1_. 
+* `0x30`: Increment register 0. 
+* `0x31`: Increment register 1. 
 * ...
-* `0x3F`: _Increment register F_. 
+* `0x3F`: Increment register F. 
 
 ## DEC (0x4?)
 
@@ -78,10 +78,10 @@ __DEC__crement register __?__. There's a total of 16 opcodes in this family. Eac
 
 Examples:
 
-* `0x40`: _Decrement register 0_. 
-* `0x41`: _Decrement register 1_. 
+* `0x40`: Decrement register 0. 
+* `0x41`: Decrement register 1. 
 * ...
-* `0x4F`: _Decrement register F_. 
+* `0x4F`: Decrement register F. 
 
 ## ADD (0xA?)
 
@@ -90,10 +90,10 @@ __ADD__ value in next memory location to register __?__. There's a total of 16
 
 Examples:
 
-* `0xA0 0x05`: _Add `0x05` to register 0_. 
-* `0xA1 0x05`: _Add `0x05` to register 1_. 
+* `0xA0 0x05`: Add `0x05` to register 0. 
+* `0xA1 0x05`: Add `0x05` to register 1. 
 * ...
-* `0xAF 0x05`: _Add `0x05` to register F_. 
+* `0xAF 0x05`: Add `0x05` to register F. 
 
 ## SUB (0xB?)
 
@@ -102,7 +102,7 @@ __SUB__tract value in next memory location to register __?__. There's a total of
 
 Examples:
 
-* `0xB0 0x05`: _Subtract `0x05` to register 0_. 
-* `0xB1 0x05`: _Subtract `0x05` to register 1_. 
+* `0xB0 0x05`: Subtract `0x05` to register 0. 
+* `0xB1 0x05`: Subtract `0x05` to register 1. 
 * ...
-* `0xBF 0x05`: _Subtract `0x05` to register F_. 
+* `0xBF 0x05`: Subtract `0x05` to register F. 
