@@ -10,7 +10,7 @@ type Machine struct {
 	Name           string
 	Registers      [16]Register
 	Memory         []byte
-	ProgramCounter uint32
+	ProgramCounter uint16
 	running        bool
 }
 
@@ -38,7 +38,7 @@ const (
 var registerNames = [...]string{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"}
 
 type Instruction struct {
-	address uint32
+	address uint16
 	code    byte
 }
 
@@ -132,7 +132,7 @@ func (m *Machine) currentInstruction() Instruction {
 }
 
 func (m *Machine) execute(instruction Instruction) {
-	m.ProgramCounter += uint32(instruction.execute(m))
+	m.ProgramCounter += uint16(instruction.execute(m))
 }
 
 func (m *Machine) load(memory []byte) {
@@ -141,13 +141,13 @@ func (m *Machine) load(memory []byte) {
 	}
 }
 
-func (m *Machine) memorySize() uint32 {
-	return uint32(len(m.Memory))
+func (m *Machine) memorySize() uint16 {
+	return uint16(len(m.Memory))
 }
 
-func (m *Machine) ReadAddress(address uint32) uint32 {
-	lsb := uint32(m.Memory[address])
-	msb := uint32(m.Memory[address+1])
+func (m *Machine) ReadAddress(address uint16) uint16 {
+	lsb := uint16(m.Memory[address])
+	msb := uint16(m.Memory[address+1])
 	return msb<<8 + lsb
 }
 
