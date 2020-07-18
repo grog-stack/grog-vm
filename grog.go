@@ -49,26 +49,41 @@ func (instruction *Instruction) execute(machine *Machine) int {
 		machine.Stop()
 		return 0
 	} else if instruction.matches(LMR) {
-		registerIndex := instruction.extractRegister()
-		machine.Registers[registerIndex].Value = machine.Memory[machine.ProgramCounter+1]
-		return 2
+		return loadMemoryIntoRegister(machine, instruction)
 	} else if instruction.matches(SRM) {
-		registerIndex := instruction.extractRegister()
-		address := machine.ReadAddress(machine.ProgramCounter + 1)
-		machine.Memory[address] = machine.Registers[registerIndex].Value
-		return 3
+		return storeRegisterIntoMemory(machine, instruction)
 	} else if instruction.matches(ADD) {
-		registerIndex := instruction.extractRegister()
-		machine.Registers[registerIndex].Value += machine.Memory[machine.ProgramCounter+1]
-		return 2
+		return addMemoryToRegister(machine, instruction)
 	} else if instruction.matches(SUB) {
-		registerIndex := instruction.extractRegister()
-		machine.Registers[registerIndex].Value -= machine.Memory[machine.ProgramCounter+1]
-		return 2
 	}
 	fmt.Printf("Invalid instruction code: %X. Halting.", instruction.code)
 	machine.Stop()
 	return 0
+}
+
+func loadMemoryIntoRegister(m *Machine, i *Instruction) int {
+	registerIndex := i.extractRegister()
+	m.Registers[registerIndex].Value = m.Memory[m.ProgramCounter+1]
+	return 2
+}
+
+func storeRegisterIntoMemory(m *Machine, i *Instruction) int {
+	registerIndex := i.extractRegister()
+	address := m.ReadAddress(m.ProgramCounter + 1)
+	m.Memory[address] = m.Registers[registerIndex].Value
+	return 3
+}
+
+func addMemoryToRegister(m *Machine, i *Instruction) int {
+	registerIndex := i.extractRegister()
+	m.Registers[registerIndex].Value += m.Memory[m.ProgramCounter+1]
+	return 2
+}
+
+func subtractMemoryFromRegister(m *Machine, i *Instruction) int {
+	registerIndex := i.extractRegister()
+	m.Registers[registerIndex].Value -= m.Memory[m.ProgramCounter+1]
+	return 2
 }
 
 func (instruction *Instruction) extractRegister() byte {
