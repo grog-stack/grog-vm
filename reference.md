@@ -38,9 +38,71 @@ Stops the machine and exits.
 
 ## LMR (0x1?)
 
-LMR means "Load next byte in Memory into Register ?". There're a total of 16 opcodes in this family. Each opcode codifies the target register using the opcode's LSN. Examples: 
+LMR means "Load next byte in Memory into Register ?". There're a total of 16 opcodes in this family. Each opcode codifies the target register using the opcode's LSN. 
+
+Examples: 
 
 * `0x10` means _Load next byte in memory into register 0_. 
 * `0x11` means _Load next byte in memory into register 1_. 
 * ...
 * `0x1F` means _Load next byte in memory into register F_. 
+
+## SRM (0x2?)
+
+__S__tore __R__egister __?__ in __M__emory location address in the next two bytes.
+There's a total of 16 opcodes in  this family. Each opcode codifies the target register using the opcode's LSN. 
+
+Examples: 
+
+* `0x20 0x0001`: _Store register 0 in memory location `0x0001`_. 
+* `0x21 0x0001`: _Store register 1 in memory location `0x0001`_.  
+* ...
+* `0x2F 0x0001`: _Store register F in memory location `0x0001`_.  
+
+## INC (0x3?)
+
+__INC__crement register __?__. There's a total of 16 opcodes in this family. Each
+ opcode codifies the target register using the opcode's LSN. 
+
+Examples:
+
+* `0x30`: _Increment register 0_. 
+* `0x31`: _Increment register 1_. 
+* ...
+* `0x3F`: _Increment register F_. 
+
+## DEC (0x4?)
+
+__DEC__crement register __?__. There's a total of 16 opcodes in this family. Each
+ opcode codifies the target register using the opcode's LSN. 
+
+Examples:
+
+* `0x40`: _Decrement register 0_. 
+* `0x41`: _Decrement register 1_. 
+* ...
+* `0x4F`: _Decrement register F_. 
+
+## ADD (0xA?)
+
+__ADD__ value in next memory location to register __?__. There's a total of 16
+ opcodes in this family. Each opcode codifies the target register using the opcode's LSN. 
+
+Examples:
+
+* `0xA0 0x05`: _Add `0x05` to register 0_. 
+* `0xA1 0x05`: _Add `0x05` to register 1_. 
+* ...
+* `0xAF 0x05`: _Add `0x05` to register F_. 
+
+## SUB (0xB?)
+
+__SUB__tract value in next memory location to register __?__. There's a total of 16
+ opcodes in this family. Each opcode codifies the target register using the opcode's LSN. 
+
+Examples:
+
+* `0xB0 0x05`: _Subtract `0x05` to register 0_. 
+* `0xB1 0x05`: _Subtract `0x05` to register 1_. 
+* ...
+* `0xBF 0x05`: _Subtract `0x05` to register F_. 
