@@ -11,7 +11,12 @@ type Machine struct {
 	Registers      [16]Register
 	Memory         []byte
 	ProgramCounter uint16
+	Flags          Flags
 	running        bool
+}
+
+type Flags struct {
+	Zero bool
 }
 
 /* Instruction codes. Each code is one byte.
@@ -79,39 +84,44 @@ func jumpToAbsoluteAddress(m *Machine, i *Instruction) int {
 }
 
 func loadMemoryIntoRegister(m *Machine, i *Instruction) int {
-	registerIndex := i.extractRegister()
-	m.Registers[registerIndex].Value = m.Memory[m.ProgramCounter+1]
+	register := m.Registers[i.extractRegister()]
+	register.Value = m.Memory[m.ProgramCounter+1]
+	m.lastOpWasZero(register.Value == 0x00)
 	return 2
 }
 
 func storeRegisterIntoMemory(m *Machine, i *Instruction) int {
-	registerIndex := i.extractRegister()
+	register := m.Registers[i.extractRegister()]
 	address := m.ReadAddress(m.ProgramCounter + 1)
-	m.Memory[address] = m.Registers[registerIndex].Value
+	m.Memory[address] = register.Value
 	return 3
 }
 
 func incrementRegister(m *Machine, i *Instruction) int {
-	registerIndex := i.extractRegister()
-	m.Registers[registerIndex].Value++
+	register := m.Registers[i.extractRegister()]
+	register.Value++
+	m.lastOpWasZero(register.Value == 0x00)
 	return 1
 }
 
 func decrementRegister(m *Machine, i *Instruction) int {
-	registerIndex := i.extractRegister()
-	m.Registers[registerIndex].Value--
+	register := m.Registers[i.extractRegister()]
+	register.Value--
+	m.lastOpWasZero(register.Value == 0x00)
 	return 1
 }
 
 func addMemoryToRegister(m *Machine, i *Instruction) int {
-	registerIndex := i.extractRegister()
-	m.Registers[registerIndex].Value += m.Memory[m.ProgramCounter+1]
+	register := m.Registers[i.extractRegister()]
+	register.Value += m.Memory[m.ProgramCounter+1]
+	m.lastOpWasZero(register.Value == 0x00)
 	return 2
 }
 
 func subtractMemoryFromRegister(m *Machine, i *Instruction) int {
-	registerIndex := i.extractRegister()
-	m.Registers[registerIndex].Value -= m.Memory[m.ProgramCounter+1]
+	register := m.Registers[i.extractRegister()]
+	register.Value -= m.Memory[m.ProgramCounter+1]
+	m.lastOpWasZero(register.Value == 0x00)
 	return 2
 }
 
@@ -167,9 +177,14 @@ func (m *Machine) Stop() {
 	m.running = false
 }
 
+func (m *Machine) lastOpWasZero(wasZero bool) {
+	m.Flags.Zero = wasZero
+}
+
 func (m *Machine) DumpStatus() {
 	fmt.Println("Status:")
 	m.DumpRegisters()
+	m.DumpFlags()
 	m.DumpMemory()
 }
 
@@ -187,6 +202,10 @@ func (m *Machine) DumpMemory() {
 		fmt.Printf("%X ", value)
 	}
 	fmt.Println()
+}
+
+func (m *Machine) DumpFlags() {
+	fmt.Printf("\tFlags: Zero=%t\n", m.Flags.Zero)
 }
 
 func newMachine(name string, memorySize int) Machine {
