@@ -32,6 +32,8 @@ First, some terminology.
 * LSB: Least Significant Byte.
 * MSB: Most Significant Byte.
 
+All memory addresses and values are [big-endian](https://en.wikipedia.org/wiki/Endianness).
+
 ## STOP (0x00)
 
 Stops the machine and exits.
@@ -106,3 +108,11 @@ Examples:
 * `0xB1 0x05`: Subtract `0x05` to register 1. 
 * ...
 * `0xBF 0x05`: Subtract `0x05` to register F. 
+
+# JUMP (`0xF1`)
+
+__JUMP__ to the absolute address specified in the next two bytes.
+
+Example:
+
+* `0xF1 0x0F 0x00`: Jumps to the address `0x000F`.
