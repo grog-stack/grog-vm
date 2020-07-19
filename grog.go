@@ -33,6 +33,8 @@ const (
 	ADD byte = 0xa0
 	// Subtract next byte to register in LSN.s
 	SUB byte = 0xb0
+	// Set program counter to next memory address
+	JUMP byte = 0xF1
 )
 
 type Instruction struct {
@@ -50,6 +52,8 @@ func (instruction *Instruction) execute(machine *Machine) int {
 	if instruction.code == STOP {
 		machine.Stop()
 		return 0
+	} else if instruction.code == JUMP {
+		return jumpToAbsoluteAddress(machine, instruction)
 	} else if instruction.matches(LMR) {
 		return loadMemoryIntoRegister(machine, instruction)
 	} else if instruction.matches(SRM) {
@@ -66,6 +70,12 @@ func (instruction *Instruction) execute(machine *Machine) int {
 	fmt.Printf("Invalid instruction code: %X. Halting.", instruction.code)
 	machine.Stop()
 	return 0
+}
+
+func jumpToAbsoluteAddress(m *Machine, i *Instruction) int {
+	address := m.ReadAddress(m.ProgramCounter + 1)
+	m.Jump(address)
+	return 3
 }
 
 func loadMemoryIntoRegister(m *Machine, i *Instruction) int {
@@ -147,6 +157,10 @@ func (m *Machine) ReadAddress(address uint16) uint16 {
 	lsb := uint16(m.Memory[address])
 	msb := uint16(m.Memory[address+1])
 	return msb<<8 + lsb
+}
+
+func (m *Machine) Jump(address uint16) {
+	m.ProgramCounter = address
 }
 
 func (m *Machine) Stop() {
