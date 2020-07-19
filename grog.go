@@ -35,8 +35,6 @@ const (
 	SUB byte = 0xb0
 )
 
-var registerNames = [...]string{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"}
-
 type Instruction struct {
 	address uint16
 	code    byte
@@ -186,6 +184,7 @@ func newMachine(name string, memorySize int) Machine {
 }
 
 func registers() [16]Register {
+	var registerNames = [...]string{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"}
 	registers := [16]Register{}
 	for i := 0; i < 16; i++ {
 		registers[i] = newRegister(registerNames[i])
