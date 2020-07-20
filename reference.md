@@ -134,3 +134,20 @@ __JUMP__ to the absolute address specified in the next two bytes.
 Example:
 
 * `0xF1 0x0F 0x00`: Jumps to the address `0x000F`.
+
+# JUMPZ (`0xF2`)
+
+If the `Zero` flag is set, jump to the absolute address specified in the next two bytes.
+
+Example:
+
+* `0xF2 0x0F 0x00`: Jumps to the address `0x000F` if `Zero` is set.
+
+
+# JUMPNZ (`0xF3`)
+
+If the `Zero` flag is _not_ set, jump to the absolute address specified in the next two bytes.
+
+Example:
+
+* `0xF3 0x0F 0x00`: Jumps to the address `0x000F` if `Zero` is not set.

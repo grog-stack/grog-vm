@@ -24,22 +24,16 @@ MSN: most significant nibble
 LSN: less significant nibble
 */
 const (
-	// Stop
-	STOP = 0x00
-	// Load next byte from memory to register. LSN is the index of the register.
-	LMR byte = 0x10
-	// Store register in LSB to memory address in next address.
-	SRM byte = 0x20
-	// Increment register in LSN.
-	INC byte = 0x30
-	// Decrement register in LSN.
-	DEC byte = 0x40
-	// Add next byte to register in LSN.
-	ADD byte = 0xa0
-	// Subtract next byte to register in LSN.s
-	SUB byte = 0xb0
-	// Set program counter to next memory address
-	JUMP byte = 0xF1
+	STOP        = 0x00 // Stop
+	LMR    byte = 0x10 // Load next byte from memory to register. LSN is the index of the register.
+	SRM    byte = 0x20 // Store register in LSB to memory address in next address.
+	INC    byte = 0x30 // Increment register in LSN.
+	DEC    byte = 0x40 // Decrement register in LSN.
+	ADD    byte = 0xa0 // Add next byte to register in LSN.
+	SUB    byte = 0xb0 // Subtract next byte to register in LSN.s
+	JUMP   byte = 0xf1 // Unconditional jump
+	JUMPZ  byte = 0xf2 // Jump if Zero is set
+	JUMPNZ byte = 0xf3 // Jump if Zero is not set
 )
 
 type Instruction struct {
@@ -59,6 +53,10 @@ func (instruction *Instruction) execute(machine *Machine) int {
 		return 0
 	} else if instruction.code == JUMP {
 		return jumpToAbsoluteAddress(machine, instruction)
+	} else if instruction.code == JUMPZ {
+		return jumpToAbsoluteAddressIfZero(machine, instruction)
+	} else if instruction.code == JUMPNZ {
+		return jumpToAbsoluteAddressIfNotZero(machine, instruction)
 	} else if instruction.matches(LMR) {
 		return loadMemoryIntoRegister(machine, instruction)
 	} else if instruction.matches(SRM) {
@@ -80,53 +78,71 @@ func (instruction *Instruction) execute(machine *Machine) int {
 func jumpToAbsoluteAddress(m *Machine, i *Instruction) int {
 	address := m.ReadAddress(m.ProgramCounter + 1)
 	m.Jump(address)
+	return 0
+}
+
+func jumpToAbsoluteAddressIfZero(m *Machine, i *Instruction) int {
+	return jumpToAbsoluteAddressIfTrue(m, i, m.Flags.Zero)
+}
+
+func jumpToAbsoluteAddressIfNotZero(m *Machine, i *Instruction) int {
+	return jumpToAbsoluteAddressIfTrue(m, i, !m.Flags.Zero)
+}
+
+func jumpToAbsoluteAddressIfTrue(m *Machine, i *Instruction, test bool) int {
+	if test {
+		address := m.ReadAddress(m.ProgramCounter + 1)
+		m.Jump(address)
+		return 0
+	}
 	return 3
 }
 
 func loadMemoryIntoRegister(m *Machine, i *Instruction) int {
-	register := m.Registers[i.extractRegister()]
-	register.Value = m.Memory[m.ProgramCounter+1]
+	register := &m.Registers[i.extractRegister()]
+	value := m.Memory[m.ProgramCounter+1]
+	register.Value = value
 	m.lastOpWasZero(register.Value == 0x00)
 	return 2
 }
 
 func storeRegisterIntoMemory(m *Machine, i *Instruction) int {
-	register := m.Registers[i.extractRegister()]
+	register := &m.Registers[i.extractRegister()]
 	address := m.ReadAddress(m.ProgramCounter + 1)
 	m.Memory[address] = register.Value
 	return 3
 }
 
 func incrementRegister(m *Machine, i *Instruction) int {
-	register := m.Registers[i.extractRegister()]
+	register := &m.Registers[i.extractRegister()]
 	register.Value++
 	m.lastOpWasZero(register.Value == 0x00)
 	return 1
 }
 
 func decrementRegister(m *Machine, i *Instruction) int {
-	register := m.Registers[i.extractRegister()]
+	register := &m.Registers[i.extractRegister()]
 	register.Value--
 	m.lastOpWasZero(register.Value == 0x00)
 	return 1
 }
 
 func addMemoryToRegister(m *Machine, i *Instruction) int {
-	register := m.Registers[i.extractRegister()]
+	register := &m.Registers[i.extractRegister()]
 	register.Value += m.Memory[m.ProgramCounter+1]
 	m.lastOpWasZero(register.Value == 0x00)
 	return 2
 }
 
 func subtractMemoryFromRegister(m *Machine, i *Instruction) int {
-	register := m.Registers[i.extractRegister()]
+	register := &m.Registers[i.extractRegister()]
 	register.Value -= m.Memory[m.ProgramCounter+1]
 	m.lastOpWasZero(register.Value == 0x00)
 	return 2
 }
 
 func (instruction *Instruction) extractRegister() byte {
-	return instruction.code & 0x0F
+	return instruction.code & byte(0x0F)
 }
 
 func (m *Machine) Explain() {
@@ -161,6 +177,10 @@ func (m *Machine) load(memory []byte) {
 
 func (m *Machine) memorySize() uint16 {
 	return uint16(len(m.Memory))
+}
+
+func (m *Machine) register(register byte) *Register {
+	return &m.Registers[register]
 }
 
 func (m *Machine) ReadAddress(address uint16) uint16 {
