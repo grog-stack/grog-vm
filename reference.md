@@ -56,9 +56,9 @@ All memory addresses and values are [big-endian](https://en.wikipedia.org/wiki/E
 
 Stops the machine and exits.
 
-## LMR (0x1?)
+## LOAD_M_R (0x1?)
 
-LMR means "Load next byte in Memory into Register ?". There're a total of 16 opcodes in this family. Each opcode codifies the target register using the opcode's LSN. 
+Load next byte in Memory into Register specified by the LSN.
 
 Examples: 
 
@@ -67,10 +67,9 @@ Examples:
 * ...
 * `0x1F` means Load next byte in memory into register F. 
 
-## SRM (0x2?)
+## STORE_M_R (0x2?)
 
-__S__tore __R__egister __?__ in __M__emory location address in the next two bytes.
-There's a total of 16 opcodes in  this family. Each opcode codifies the target register using the opcode's LSN. 
+Store register specified by the LSN into memory address specified next.
 
 Examples: 
 
@@ -79,10 +78,9 @@ Examples:
 * ...
 * `0x2F 0x0001`: Store register F in memory location `0x0001`.  
 
-## INC (0x3?)
+## INC_R (0x3?)
 
-__INC__crement register __?__. There's a total of 16 opcodes in this family. Each
- opcode codifies the target register using the opcode's LSN. 
+Increment register specified by the LSN.
 
 Examples:
 
@@ -91,10 +89,9 @@ Examples:
 * ...
 * `0x3F`: Increment register F. 
 
-## DEC (0x4?)
+## DEC_R (0x4?)
 
-__DEC__crement register __?__. There's a total of 16 opcodes in this family. Each
- opcode codifies the target register using the opcode's LSN. 
+Decrement the register specified by the LSN.
 
 Examples:
 
@@ -103,39 +100,37 @@ Examples:
 * ...
 * `0x4F`: Decrement register F. 
 
-## ADD (0xA?)
+## ADD_M_R (0x5?)
 
-__ADD__ value in next memory location to register __?__. There's a total of 16
- opcodes in this family. Each opcode codifies the target register using the opcode's LSN. 
-
-Examples:
-
-* `0xA0 0x05`: Add `0x05` to register 0. 
-* `0xA1 0x05`: Add `0x05` to register 1. 
-* ...
-* `0xAF 0x05`: Add `0x05` to register F. 
-
-## SUB (0xB?)
-
-__SUB__tract value in next memory location to register __?__. There's a total of 16
- opcodes in this family. Each opcode codifies the target register using the opcode's LSN. 
+Add the byte in thennext memory location to the register specified by the LSN.
 
 Examples:
 
-* `0xB0 0x05`: Subtract `0x05` to register 0. 
-* `0xB1 0x05`: Subtract `0x05` to register 1. 
+* `0x50 0x05`: Add `0x05` to register 0. 
+* `0x51 0x05`: Add `0x05` to register 1. 
 * ...
-* `0xBF 0x05`: Subtract `0x05` to register F. 
+* `0x5F 0x05`: Add `0x05` to register F. 
+
+## SUB_M_R (0x6?)
+
+Subtract the value in the next memory location to the register specified by the LSN.
+
+Examples:
+
+* `0x60 0x05`: Subtract `0x05` to register 0. 
+* `0x61 0x05`: Subtract `0x05` to register 1. 
+* ...
+* `0x6F 0x05`: Subtract `0x05` to register F. 
 
 # JUMP (`0xF1`)
 
-__JUMP__ to the absolute address specified in the next two bytes.
+Unconditionally jump to the absolute address specified in the next two bytes.
 
 Example:
 
 * `0xF1 0x0F 0x00`: Jumps to the address `0x000F`.
 
-# JUMPZ (`0xF2`)
+# JUMP_Z (`0xF2`)
 
 If the `Zero` flag is set, jump to the absolute address specified in the next two bytes.
 
@@ -144,7 +139,7 @@ Example:
 * `0xF2 0x0F 0x00`: Jumps to the address `0x000F` if `Zero` is set.
 
 
-# JUMPNZ (`0xF3`)
+# JUMP_N_Z (`0xF3`)
 
 If the `Zero` flag is _not_ set, jump to the absolute address specified in the next two bytes.
 

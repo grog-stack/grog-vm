@@ -24,16 +24,16 @@ MSN: most significant nibble
 LSN: less significant nibble
 */
 const (
-	STOP        = 0x00 // Stop
-	LMR    byte = 0x10 // Load next byte from memory to register. LSN is the index of the register.
-	SRM    byte = 0x20 // Store register in LSB to memory address in next address.
-	INC    byte = 0x30 // Increment register in LSN.
-	DEC    byte = 0x40 // Decrement register in LSN.
-	ADD    byte = 0xa0 // Add next byte to register in LSN.
-	SUB    byte = 0xb0 // Subtract next byte to register in LSN.s
-	JUMP   byte = 0xf1 // Unconditional jump
-	JUMPZ  byte = 0xf2 // Jump if Zero is set
-	JUMPNZ byte = 0xf3 // Jump if Zero is not set
+	STOP           = 0x00 // Stop
+	LOAD_M_R  byte = 0x10 // Load next byte from memory to register. LSN is the index of the register.
+	STORE_R_M byte = 0x20 // Store register in LSB to memory address in next address.
+	INC_R     byte = 0x30 // Increment register in LSN.
+	DEC_R     byte = 0x40 // Decrement register in LSN.
+	ADD_M_R   byte = 0x50 // Add next byte to register in LSN.
+	SUB_M_R   byte = 0x60 // Subtract next byte to register in LSN.
+	JUMP      byte = 0xf1 // Unconditional jump
+	JUMP_Z    byte = 0xf2 // Jump if Zero is set
+	JUMP_N_Z  byte = 0xf3 // Jump if Zero is not set
 )
 
 type Instruction struct {
@@ -53,21 +53,21 @@ func (instruction *Instruction) execute(machine *Machine) int {
 		return 0
 	} else if instruction.code == JUMP {
 		return jumpToAbsoluteAddress(machine, instruction)
-	} else if instruction.code == JUMPZ {
+	} else if instruction.code == JUMP_Z {
 		return jumpToAbsoluteAddressIfZero(machine, instruction)
-	} else if instruction.code == JUMPNZ {
+	} else if instruction.code == JUMP_N_Z {
 		return jumpToAbsoluteAddressIfNotZero(machine, instruction)
-	} else if instruction.matches(LMR) {
+	} else if instruction.matches(LOAD_M_R) {
 		return loadMemoryIntoRegister(machine, instruction)
-	} else if instruction.matches(SRM) {
+	} else if instruction.matches(STORE_R_M) {
 		return storeRegisterIntoMemory(machine, instruction)
-	} else if instruction.matches(INC) {
+	} else if instruction.matches(INC_R) {
 		return incrementRegister(machine, instruction)
-	} else if instruction.matches(DEC) {
+	} else if instruction.matches(DEC_R) {
 		return decrementRegister(machine, instruction)
-	} else if instruction.matches(ADD) {
+	} else if instruction.matches(ADD_M_R) {
 		return addMemoryToRegister(machine, instruction)
-	} else if instruction.matches(SUB) {
+	} else if instruction.matches(SUB_M_R) {
 		return subtractMemoryFromRegister(machine, instruction)
 	}
 	fmt.Printf("Invalid instruction code: %X. Halting.", instruction.code)
