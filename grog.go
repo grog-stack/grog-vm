@@ -31,6 +31,12 @@ const (
 	DEC_R     byte = 0x40 // Decrement register in LSN.
 	ADD_M_R   byte = 0x50 // Add next byte to register in LSN.
 	SUB_M_R   byte = 0x60 // Subtract next byte to register in LSN.
+	MUL_M_R   byte = 0x70 // Multiply next byte to register in LSN.
+	DIV_M_R   byte = 0x80 // Divide next byte to register in LSN.
+	AND_M_R   byte = 0x90 // Logical AND between next memory byte and register un LSN. Store result in the same register.
+	OR_M_R    byte = 0xA0 // Logical OR between next memory byte and register un LSN. Store result in the same register.
+	XOR_M_R   byte = 0xB0 // Logical XOR between next memory byte and register un LSN. Store result in the same register.
+	NOT_R     byte = 0xC0 // Logical NOT of register in LSN.
 	JUMP      byte = 0xf1 // Unconditional jump
 	JUMP_Z    byte = 0xf2 // Jump if Zero is set
 	JUMP_N_Z  byte = 0xf3 // Jump if Zero is not set
@@ -69,6 +75,18 @@ func (instruction *Instruction) execute(machine *Machine) int {
 		return addMemoryToRegister(machine, instruction)
 	} else if instruction.matches(SUB_M_R) {
 		return subtractMemoryFromRegister(machine, instruction)
+	} else if instruction.matches(MUL_M_R) {
+		return multiplyMemoryFromRegister(machine, instruction)
+	} else if instruction.matches(DIV_M_R) {
+		return divideMemoryFromRegister(machine, instruction)
+	} else if instruction.matches(AND_M_R) {
+		return andBetweenMemoryAndRegister(machine, instruction)
+	} else if instruction.matches(OR_M_R) {
+		return orBetweenMemoryAndRegister(machine, instruction)
+	} else if instruction.matches(XOR_M_R) {
+		return xorBetweenMemoryAndRegister(machine, instruction)
+	} else if instruction.matches(NOT_R) {
+		return notRegister(machine, instruction)
 	}
 	fmt.Printf("Invalid instruction code: %X. Halting.", instruction.code)
 	machine.Stop()
@@ -137,6 +155,48 @@ func addMemoryToRegister(m *Machine, i *Instruction) int {
 func subtractMemoryFromRegister(m *Machine, i *Instruction) int {
 	register := &m.Registers[i.extractRegister()]
 	register.Value -= m.Memory[m.ProgramCounter+1]
+	m.lastOpWasZero(register.Value == 0x00)
+	return 2
+}
+
+func multiplyMemoryFromRegister(m *Machine, i *Instruction) int {
+	register := &m.Registers[i.extractRegister()]
+	register.Value *= m.Memory[m.ProgramCounter+1]
+	m.lastOpWasZero(register.Value == 0x00)
+	return 2
+}
+
+func divideMemoryFromRegister(m *Machine, i *Instruction) int {
+	register := &m.Registers[i.extractRegister()]
+	register.Value /= m.Memory[m.ProgramCounter+1]
+	m.lastOpWasZero(register.Value == 0x00)
+	return 2
+}
+
+func andBetweenMemoryAndRegister(m *Machine, i *Instruction) int {
+	register := &m.Registers[i.extractRegister()]
+	register.Value = register.Value & m.Memory[m.ProgramCounter+1]
+	m.lastOpWasZero(register.Value == 0x00)
+	return 2
+}
+
+func orBetweenMemoryAndRegister(m *Machine, i *Instruction) int {
+	register := &m.Registers[i.extractRegister()]
+	register.Value = register.Value | m.Memory[m.ProgramCounter+1]
+	m.lastOpWasZero(register.Value == 0x00)
+	return 2
+}
+
+func xorBetweenMemoryAndRegister(m *Machine, i *Instruction) int {
+	register := &m.Registers[i.extractRegister()]
+	register.Value = register.Value ^ m.Memory[m.ProgramCounter+1]
+	m.lastOpWasZero(register.Value == 0x00)
+	return 2
+}
+
+func notRegister(m *Machine, i *Instruction) int {
+	register := &m.Registers[i.extractRegister()]
+	register.Value = ^m.Memory[m.ProgramCounter+1]
 	m.lastOpWasZero(register.Value == 0x00)
 	return 2
 }

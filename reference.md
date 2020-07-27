@@ -122,6 +122,33 @@ Examples:
 * ...
 * `0x6F 0x05`: Subtract `0x05` to register F. 
 
+## MUL_M_R (0x7?)
+
+Multiply the value in the next memory location to the register specified by the LSN.
+
+## DIV_M_R (0x8?)
+
+Divide the value in the next memory location to the register specified by the LSN.
+
+## AND_M_R (0x9?)
+
+Bitwise AND between the next memory location to the register specified by the LSN. Stores
+the result in the same register.
+
+## OR_M_R (0xA?)
+
+Bitwise AND between the next memory location to the register specified by the LSN. Stores
+the result in the same register.
+
+## XOR_M_R (0xB?)
+
+Bitwise XOR between the next memory location to the register specified by the LSN. Stores
+the result in the same register.
+
+## NOT_M_R (0xC?)
+
+Bitwise NOT on the register specified by the LSN. Stores the result in the same register.
+
 # JUMP (`0xF1`)
 
 Unconditionally jump to the absolute address specified in the next two bytes.
