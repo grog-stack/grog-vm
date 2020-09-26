@@ -1,3 +1,12 @@
+/*
+Glosary:
+- MSN: most significant nibble. In 0xf0, MSN is f.
+- LSN: less significant nibble. In 0x0f, LSN is f.
+- MSB: most significant byte. In 0xff00, MSB is ff.
+- MSB: less significant byte. In 0x00ff, LSN is ff.
+- Word: Two bytes, little endian. In 0xffaa, MSB is 0xff and LSB is 0xaa.
+*/
+
 package main
 
 import (
@@ -19,27 +28,99 @@ type Flags struct {
 	Zero bool
 }
 
-/* Instruction codes. Each code is one byte.
-MSN: most significant nibble
-LSN: less significant nibble
+/* Instruction codes. Each code is one byte. Instructions from 0x01 to 0x7F are for transferring
+information to and from registers, memory, and devices. Instructions fro 0x80 to 0xFF are for
+arithmetic, jumps, function calls.
 */
+
+/* Miscellaneous. */
+
 const (
-	STOP           = 0x00 // Stop
-	LOAD_M_R  byte = 0x10 // Load next byte from memory to register. LSN is the index of the register.
-	STORE_R_M byte = 0x20 // Store register in LSB to memory address in next address.
-	INC_R     byte = 0x30 // Increment register in LSN.
-	DEC_R     byte = 0x40 // Decrement register in LSN.
-	ADD_M_R   byte = 0x50 // Add next byte to register in LSN.
-	SUB_M_R   byte = 0x60 // Subtract next byte to register in LSN.
-	MUL_M_R   byte = 0x70 // Multiply next byte to register in LSN.
-	DIV_M_R   byte = 0x80 // Divide next byte to register in LSN.
-	AND_M_R   byte = 0x90 // Logical AND between next memory byte and register un LSN. Store result in the same register.
-	OR_M_R    byte = 0xA0 // Logical OR between next memory byte and register un LSN. Store result in the same register.
-	XOR_M_R   byte = 0xB0 // Logical XOR between next memory byte and register un LSN. Store result in the same register.
-	NOT_R     byte = 0xC0 // Logical NOT of register in LSN.
-	JUMP      byte = 0xf1 // Unconditional jump
-	JUMP_Z    byte = 0xf2 // Jump if Zero is set
-	JUMP_N_Z  byte = 0xf3 // Jump if Zero is not set
+	STOP = 0x00 // Halts the machine. No further instructions will be executed.
+)
+
+/*
+Transfer instructions have a source and a destination. In the following table, each row is a source, each
+column is a destination.
+
+When the source and target of the operation are the same type (for instance, register and register),
+we call it COPY. When the target is a register, we call it LOAD. When the target is a memory location,
+ we call it STORE.
+
+The following table shows all allowed combinations. (Rows are sources, columns are destinations.)
+
+         | byte | register | address | pointer |
+byte     |    - | LOAD     | STORE   | STORE   |
+register |    - | COPY     | STORE   | STORE   |
+address  |    - | LOAD     | COPY    | COPY    |
+pointer  |    - | LOAD     | COPY    | COPY    |
+*/
+
+const (
+	LOAD_BYTE              = 0x01
+	LOAD_ADDRESS           = 0x02
+	LOAD_OFFSET            = 0x03
+	LOAD_POINTER           = 0x04
+	STORE_BYTE_ADDRESS     = 0x05
+	STORE_BYTE_OFFSET      = 0x06
+	STORE_BYTE_POINTER     = 0x07
+	STORE_REGISTER_ADDRESS = 0x08
+	STORE_REGISTER_OFFSET  = 0x09
+	STORE_REGISTER_POINTER = 0x0A
+	COPY_REGISTER          = 0x0B
+	COPY_ADDRESS_ADDRESS   = 0x0C
+	COPY_ADDRESS_OFFSET    = 0x0D
+	COPY_ADDRESS_POINTER   = 0x0E
+	COPY_OFFSET_ADDRESS    = 0x0F
+	COPY_OFFSET_OFFSET     = 0x10
+	COPY_OFFSET_POINTER    = 0x11
+	COPY_POINTER_ADRESS    = 0x12
+	COPY_POINTER_OFFSET    = 0x13
+	COPY_POINTER_POINTER   = 0x14
+)
+
+/* Single operand arithmentic register operations. */
+
+const (
+	INCREMENT byte = 0x80 // Increment register
+	DECREMENT byte = 0x81 // Decrement register
+)
+
+/*
+   Two-operand register arithmetic operations. Each operation has a left and right operand.
+   All operations store the result in the right operand.
+*/
+
+const (
+	ADD      byte = 0x83
+	SUBTRACT byte = 0x84
+	MULTIPLY byte = 0x85
+	DIVIDE   byte = 0x86
+)
+
+/* Boolean operations. All operations store the result in the right operand.*/
+
+const (
+	AND byte = 0x87
+	OR  byte = 0x88
+	XOR byte = 0x89
+	NOT byte = 0x8A
+)
+
+/* Branching instructions */
+const (
+	JUMP_ADDRESS                 byte = 0x90
+	JUMP_OFFSET                  byte = 0x91
+	JUMP_POINTER                 byte = 0x92
+	JUMP_POINTER_OFFSET          byte = 0x93
+	JUMP_ZERO_ADDRESS            byte = 0x94
+	JUMP_ZERO_OFFSET             byte = 0x95
+	JUMP_ZERO_POINTER            byte = 0x96
+	JUMP_ZERO_POINTER_OFFSET     byte = 0x97
+	JUMP_NOT_ZERO_ADDRESS        byte = 0x98
+	JUMP_NOT_ZERO_OFFSET         byte = 0x99
+	JUMP_NOT_ZERO_POINTER        byte = 0x9A
+	JUMP_NOT_ZERO_POINTER_OFFSET byte = 0x9B
 )
 
 type Instruction struct {
@@ -48,7 +129,7 @@ type Instruction struct {
 }
 
 func (instruction *Instruction) matches(code byte) bool {
-	return instruction.code&0xf0 == code
+	return instruction.code&0x0f == code
 }
 
 // Returns program counter intecrement
@@ -57,152 +138,40 @@ func (instruction *Instruction) execute(machine *Machine) int {
 	if instruction.code == STOP {
 		machine.Stop()
 		return 0
-	} else if instruction.code == JUMP {
-		return jumpToAbsoluteAddress(machine, instruction)
-	} else if instruction.code == JUMP_Z {
-		return jumpToAbsoluteAddressIfZero(machine, instruction)
-	} else if instruction.code == JUMP_N_Z {
-		return jumpToAbsoluteAddressIfNotZero(machine, instruction)
-	} else if instruction.matches(LOAD_M_R) {
-		return loadMemoryIntoRegister(machine, instruction)
-	} else if instruction.matches(STORE_R_M) {
-		return storeRegisterIntoMemory(machine, instruction)
-	} else if instruction.matches(INC_R) {
-		return incrementRegister(machine, instruction)
-	} else if instruction.matches(DEC_R) {
-		return decrementRegister(machine, instruction)
-	} else if instruction.matches(ADD_M_R) {
-		return addMemoryToRegister(machine, instruction)
-	} else if instruction.matches(SUB_M_R) {
-		return subtractMemoryFromRegister(machine, instruction)
-	} else if instruction.matches(MUL_M_R) {
-		return multiplyMemoryFromRegister(machine, instruction)
-	} else if instruction.matches(DIV_M_R) {
-		return divideMemoryFromRegister(machine, instruction)
-	} else if instruction.matches(AND_M_R) {
-		return andBetweenMemoryAndRegister(machine, instruction)
-	} else if instruction.matches(OR_M_R) {
-		return orBetweenMemoryAndRegister(machine, instruction)
-	} else if instruction.matches(XOR_M_R) {
-		return xorBetweenMemoryAndRegister(machine, instruction)
-	} else if instruction.matches(NOT_R) {
-		return notRegister(machine, instruction)
+	} else if instruction.code == LOAD_BYTE {
+		value := machine.ReadByteOffset(1)
+		register := machine.ReadByteOffset(2)
+		machine.register(register).Value = value
+		return 3
+	} else if instruction.code == LOAD_ADDRESS {
+		value := machine.ReadByteAddress(machine.ReadNextAddress())
+		register := machine.ReadByteOffset(3)
+		machine.register(register).Value = value
+		return 4
+	} else if instruction.code == LOAD_POINTER {
+		value := machine.ReadBytePointer(machine.ReadNextAddress())
+		register := machine.ReadByteOffset(3)
+		machine.register(register).Value = value
+		return 4
+	} else if instruction.code == STORE_BYTE_ADDRESS {
+		machine.writeAddress(machine.ReadAddressOffset(2), machine.ReadNextByte())
+		return 4
+	} else if instruction.code == STORE_BYTE_OFFSET {
+		machine.writeOffset(machine.ReadAddressOffset(2), machine.ReadNextByte())
+		return 4
+	} else if instruction.code == STORE_BYTE_POINTER {
+		pointer := machine.ReadAddressOffset(2)
+		address := machine.ReadAddress(pointer)
+		machine.writeOffset(address, machine.ReadNextByte())
+		return 4
 	}
 	fmt.Printf("Invalid instruction code: %X. Halting.", instruction.code)
 	machine.Stop()
 	return 0
 }
 
-func jumpToAbsoluteAddress(m *Machine, i *Instruction) int {
-	address := m.ReadAddress(m.ProgramCounter + 1)
-	m.Jump(address)
-	return 0
-}
-
-func jumpToAbsoluteAddressIfZero(m *Machine, i *Instruction) int {
-	return jumpToAbsoluteAddressIfTrue(m, i, m.Flags.Zero)
-}
-
-func jumpToAbsoluteAddressIfNotZero(m *Machine, i *Instruction) int {
-	return jumpToAbsoluteAddressIfTrue(m, i, !m.Flags.Zero)
-}
-
-func jumpToAbsoluteAddressIfTrue(m *Machine, i *Instruction, test bool) int {
-	if test {
-		address := m.ReadAddress(m.ProgramCounter + 1)
-		m.Jump(address)
-		return 0
-	}
-	return 3
-}
-
-func loadMemoryIntoRegister(m *Machine, i *Instruction) int {
-	register := &m.Registers[i.extractRegister()]
-	value := m.Memory[m.ProgramCounter+1]
-	register.Value = value
-	m.lastOpWasZero(register.Value == 0x00)
-	return 2
-}
-
-func storeRegisterIntoMemory(m *Machine, i *Instruction) int {
-	register := &m.Registers[i.extractRegister()]
-	address := m.ReadAddress(m.ProgramCounter + 1)
-	m.Memory[address] = register.Value
-	return 3
-}
-
-func incrementRegister(m *Machine, i *Instruction) int {
-	register := &m.Registers[i.extractRegister()]
-	register.Value++
-	m.lastOpWasZero(register.Value == 0x00)
-	return 1
-}
-
-func decrementRegister(m *Machine, i *Instruction) int {
-	register := &m.Registers[i.extractRegister()]
-	register.Value--
-	m.lastOpWasZero(register.Value == 0x00)
-	return 1
-}
-
-func addMemoryToRegister(m *Machine, i *Instruction) int {
-	register := &m.Registers[i.extractRegister()]
-	register.Value += m.Memory[m.ProgramCounter+1]
-	m.lastOpWasZero(register.Value == 0x00)
-	return 2
-}
-
-func subtractMemoryFromRegister(m *Machine, i *Instruction) int {
-	register := &m.Registers[i.extractRegister()]
-	register.Value -= m.Memory[m.ProgramCounter+1]
-	m.lastOpWasZero(register.Value == 0x00)
-	return 2
-}
-
-func multiplyMemoryFromRegister(m *Machine, i *Instruction) int {
-	register := &m.Registers[i.extractRegister()]
-	register.Value *= m.Memory[m.ProgramCounter+1]
-	m.lastOpWasZero(register.Value == 0x00)
-	return 2
-}
-
-func divideMemoryFromRegister(m *Machine, i *Instruction) int {
-	register := &m.Registers[i.extractRegister()]
-	register.Value /= m.Memory[m.ProgramCounter+1]
-	m.lastOpWasZero(register.Value == 0x00)
-	return 2
-}
-
-func andBetweenMemoryAndRegister(m *Machine, i *Instruction) int {
-	register := &m.Registers[i.extractRegister()]
-	register.Value = register.Value & m.Memory[m.ProgramCounter+1]
-	m.lastOpWasZero(register.Value == 0x00)
-	return 2
-}
-
-func orBetweenMemoryAndRegister(m *Machine, i *Instruction) int {
-	register := &m.Registers[i.extractRegister()]
-	register.Value = register.Value | m.Memory[m.ProgramCounter+1]
-	m.lastOpWasZero(register.Value == 0x00)
-	return 2
-}
-
-func xorBetweenMemoryAndRegister(m *Machine, i *Instruction) int {
-	register := &m.Registers[i.extractRegister()]
-	register.Value = register.Value ^ m.Memory[m.ProgramCounter+1]
-	m.lastOpWasZero(register.Value == 0x00)
-	return 2
-}
-
-func notRegister(m *Machine, i *Instruction) int {
-	register := &m.Registers[i.extractRegister()]
-	register.Value = ^m.Memory[m.ProgramCounter+1]
-	m.lastOpWasZero(register.Value == 0x00)
-	return 2
-}
-
 func (instruction *Instruction) extractRegister() byte {
-	return instruction.code & byte(0x0F)
+	return instruction.code & byte(0xF0)
 }
 
 func (m *Machine) Explain() {
@@ -243,14 +212,46 @@ func (m *Machine) register(register byte) *Register {
 	return &m.Registers[register]
 }
 
+func (m *Machine) ReadNextAddress() uint16 {
+	return m.ReadAddressOffset(1)
+}
+
+func (m *Machine) ReadAddressOffset(offset uint16) uint16 {
+	return m.ReadAddress(m.ProgramCounter + offset)
+}
+
 func (m *Machine) ReadAddress(address uint16) uint16 {
 	lsb := uint16(m.Memory[address])
 	msb := uint16(m.Memory[address+1])
 	return msb<<8 + lsb
 }
 
+func (m *Machine) ReadNextByte() byte {
+	return m.ReadByteOffset(1)
+}
+
+func (m *Machine) ReadByteOffset(offset uint16) byte {
+	return m.Memory[m.ProgramCounter+offset]
+}
+
+func (m *Machine) ReadByteAddress(address uint16) byte {
+	return m.Memory[address]
+}
+
+func (m *Machine) ReadBytePointer(pointer uint16) byte {
+	return m.ReadByteAddress(m.ReadAddress(pointer))
+}
+
 func (m *Machine) Jump(address uint16) {
 	m.ProgramCounter = address
+}
+
+func (m *Machine) writeOffset(offset uint16, value byte) {
+	m.writeAddress(m.ProgramCounter+offset, value)
+}
+
+func (m *Machine) writeAddress(address uint16, value byte) {
+	m.Memory[address] = value
 }
 
 func (m *Machine) Stop() {
