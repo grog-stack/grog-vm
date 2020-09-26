@@ -154,15 +154,35 @@ func (instruction *Instruction) execute(machine *Machine) int {
 		machine.register(register).Value = value
 		return 4
 	} else if instruction.code == STORE_BYTE_ADDRESS {
-		machine.writeAddress(machine.ReadAddressOffset(2), machine.ReadNextByte())
+		machine.writeInAddress(machine.ReadAddressOffset(2), machine.ReadNextByte())
 		return 4
 	} else if instruction.code == STORE_BYTE_OFFSET {
-		machine.writeOffset(machine.ReadAddressOffset(2), machine.ReadNextByte())
+		machine.writeInOffset(machine.ReadAddressOffset(2), machine.ReadNextByte())
 		return 4
 	} else if instruction.code == STORE_BYTE_POINTER {
 		pointer := machine.ReadAddressOffset(2)
 		address := machine.ReadAddress(pointer)
-		machine.writeOffset(address, machine.ReadNextByte())
+		machine.writeInOffset(address, machine.ReadNextByte())
+		return 4
+	} else if instruction.code == STORE_REGISTER_ADDRESS {
+		machine.writeInAddress(
+			machine.ReadAddressOffset(2),
+			machine.Registers[machine.ReadNextByte()].Value,
+		)
+		return 4
+	} else if instruction.code == STORE_REGISTER_OFFSET {
+		machine.writeInOffset(
+			machine.ReadAddressOffset(2),
+			machine.Registers[machine.ReadNextByte()].Value,
+		)
+		return 4
+	} else if instruction.code == STORE_REGISTER_POINTER {
+		pointer := machine.ReadAddressOffset(2)
+		address := machine.ReadAddress(pointer)
+		machine.writeInAddress(
+			address,
+			machine.Registers[machine.ReadNextByte()].Value,
+		)
 		return 4
 	}
 	fmt.Printf("Invalid instruction code: %X. Halting.", instruction.code)
@@ -246,11 +266,11 @@ func (m *Machine) Jump(address uint16) {
 	m.ProgramCounter = address
 }
 
-func (m *Machine) writeOffset(offset uint16, value byte) {
-	m.writeAddress(m.ProgramCounter+offset, value)
+func (m *Machine) writeInOffset(offset uint16, value byte) {
+	m.writeInAddress(m.ProgramCounter+offset, value)
 }
 
-func (m *Machine) writeAddress(address uint16, value byte) {
+func (m *Machine) writeInAddress(address uint16, value byte) {
 	m.Memory[address] = value
 }
 
