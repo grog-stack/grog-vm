@@ -189,6 +189,24 @@ func (instruction *Instruction) execute(machine *Machine) int {
 		destination := &machine.Registers[machine.ReadByteOffset(2)]
 		destination.Value = source.Value
 		return 3
+	} else if instruction.code == COPY_ADDRESS_ADDRESS {
+		machine.writeInAddress(
+			machine.ReadAddressOffset(3),
+			machine.Memory[machine.ReadAddressOffset(1)],
+		)
+		return 5
+	} else if instruction.code == COPY_ADDRESS_OFFSET {
+		machine.writeInOffset(
+			machine.ReadAddressOffset(3),
+			machine.Memory[machine.ReadAddressOffset(1)],
+		)
+		return 5
+	} else if instruction.code == COPY_ADDRESS_POINTER {
+		machine.writeInOffset(
+			machine.ReadAddress(machine.ReadAddressOffset(3)),
+			machine.Memory[machine.ReadAddressOffset(1)],
+		)
+		return 5
 	}
 	fmt.Printf("Invalid instruction code: %X. Halting.", instruction.code)
 	machine.Stop()
