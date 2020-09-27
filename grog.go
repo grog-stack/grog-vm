@@ -184,6 +184,11 @@ func (instruction *Instruction) execute(machine *Machine) int {
 			machine.Registers[machine.ReadNextByte()].Value,
 		)
 		return 4
+	} else if instruction.code == COPY_REGISTER {
+		source := &machine.Registers[machine.ReadByteOffset(1)]
+		destination := &machine.Registers[machine.ReadByteOffset(2)]
+		destination.Value = source.Value
+		return 3
 	}
 	fmt.Printf("Invalid instruction code: %X. Halting.", instruction.code)
 	machine.Stop()
