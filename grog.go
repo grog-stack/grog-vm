@@ -74,7 +74,7 @@ const (
 	COPY_OFFSET_ADDRESS    = 0x0F
 	COPY_OFFSET_OFFSET     = 0x10
 	COPY_OFFSET_POINTER    = 0x11
-	COPY_POINTER_ADRESS    = 0x12
+	COPY_POINTER_ADDRESS   = 0x12
 	COPY_POINTER_OFFSET    = 0x13
 	COPY_POINTER_POINTER   = 0x14
 )
@@ -225,6 +225,30 @@ func (instruction *Instruction) execute(machine *Machine) int {
 			machine.ReadByteOffset(machine.ReadNextAddress()),
 		)
 		return 5
+	} else if instruction.code == COPY_POINTER_ADDRESS {
+		machine.writeInAddress(
+			machine.ReadAddressOffset(3),
+			machine.ReadByteAddress(machine.ReadAddress(machine.ReadAddressOffset(1))),
+		)
+		return 5
+	} else if instruction.code == COPY_POINTER_OFFSET {
+		machine.writeInOffset(
+			machine.ReadAddressOffset(3),
+			machine.ReadByteAddress(machine.ReadAddress(machine.ReadAddressOffset(1))),
+		)
+		return 5
+	} else if instruction.code == COPY_POINTER_POINTER {
+		machine.writeInOffset(
+			machine.ReadAddress(machine.ReadAddressOffset(3)),
+			machine.ReadByteAddress(machine.ReadAddress(machine.ReadAddressOffset(1))),
+		)
+		return 5
+	} else if instruction.code == INCREMENT {
+		(&machine.Registers[machine.ReadByteOffset(1)]).Value++
+		return 2
+	} else if instruction.code == DECREMENT {
+		(&machine.Registers[machine.ReadByteOffset(1)]).Value--
+		return 2
 	}
 	fmt.Printf("Invalid instruction code: %X. Halting.", instruction.code)
 	machine.Stop()
