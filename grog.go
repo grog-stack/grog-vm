@@ -249,6 +249,18 @@ func (instruction *Instruction) execute(machine *Machine) int {
 	} else if instruction.code == DECREMENT {
 		(&machine.Registers[machine.ReadByteOffset(1)]).Value--
 		return 2
+	} else if instruction.code == ADD {
+		left := &machine.Registers[machine.ReadByteOffset(1)]
+		right := &machine.Registers[machine.ReadByteOffset(2)]
+		destination := &machine.Registers[machine.ReadByteOffset(3)]
+		destination.Value = left.Value + right.Value
+		return 3
+	} else if instruction.code == SUBTRACT {
+		left := &machine.Registers[machine.ReadByteOffset(1)]
+		right := &machine.Registers[machine.ReadByteOffset(2)]
+		destination := &machine.Registers[machine.ReadByteOffset(3)]
+		destination.Value = left.Value + right.Value
+		return 3
 	}
 	fmt.Printf("Invalid instruction code: %X. Halting.", instruction.code)
 	machine.Stop()
