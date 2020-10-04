@@ -101,10 +101,10 @@ const (
 /* Boolean operations. All operations store the result in the right operand.*/
 
 const (
-	AND byte = 0x87
-	OR  byte = 0x88
-	XOR byte = 0x89
-	NOT byte = 0x8A
+	AND byte = 0x86
+	OR  byte = 0x87
+	XOR byte = 0x88
+	NOT byte = 0x89
 )
 
 /* Branching instructions */
@@ -273,6 +273,29 @@ func (instruction *Instruction) execute(machine *Machine) int {
 		destination := &machine.Registers[machine.ReadByteOffset(3)]
 		destination.Value = left.Value / right.Value
 		return 4
+	} else if instruction.code == AND {
+		left := &machine.Registers[machine.ReadByteOffset(1)]
+		right := &machine.Registers[machine.ReadByteOffset(2)]
+		destination := &machine.Registers[machine.ReadByteOffset(3)]
+		destination.Value = left.Value & right.Value
+		return 4
+	} else if instruction.code == OR {
+		left := &machine.Registers[machine.ReadByteOffset(1)]
+		right := &machine.Registers[machine.ReadByteOffset(2)]
+		destination := &machine.Registers[machine.ReadByteOffset(3)]
+		destination.Value = left.Value | right.Value
+		return 4
+	} else if instruction.code == XOR {
+		left := &machine.Registers[machine.ReadByteOffset(1)]
+		right := &machine.Registers[machine.ReadByteOffset(2)]
+		destination := &machine.Registers[machine.ReadByteOffset(3)]
+		destination.Value = left.Value ^ right.Value
+		return 4
+	} else if instruction.code == NOT {
+		operand := &machine.Registers[machine.ReadByteOffset(1)]
+		destination := &machine.Registers[machine.ReadByteOffset(2)]
+		destination.Value = ^operand.Value
+		return 3
 	}
 	fmt.Printf("Invalid instruction code: %X. Halting.", instruction.code)
 	machine.Stop()
