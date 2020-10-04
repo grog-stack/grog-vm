@@ -92,10 +92,10 @@ const (
 */
 
 const (
-	ADD      byte = 0x83
-	SUBTRACT byte = 0x84
-	MULTIPLY byte = 0x85
-	DIVIDE   byte = 0x86
+	ADD      byte = 0x82
+	SUBTRACT byte = 0x83
+	MULTIPLY byte = 0x84
+	DIVIDE   byte = 0x85
 )
 
 /* Boolean operations. All operations store the result in the right operand.*/
@@ -254,13 +254,25 @@ func (instruction *Instruction) execute(machine *Machine) int {
 		right := &machine.Registers[machine.ReadByteOffset(2)]
 		destination := &machine.Registers[machine.ReadByteOffset(3)]
 		destination.Value = left.Value + right.Value
-		return 3
+		return 4
 	} else if instruction.code == SUBTRACT {
 		left := &machine.Registers[machine.ReadByteOffset(1)]
 		right := &machine.Registers[machine.ReadByteOffset(2)]
 		destination := &machine.Registers[machine.ReadByteOffset(3)]
-		destination.Value = left.Value + right.Value
-		return 3
+		destination.Value = left.Value - right.Value
+		return 4
+	} else if instruction.code == MULTIPLY {
+		left := &machine.Registers[machine.ReadByteOffset(1)]
+		right := &machine.Registers[machine.ReadByteOffset(2)]
+		destination := &machine.Registers[machine.ReadByteOffset(3)]
+		destination.Value = left.Value * right.Value
+		return 4
+	} else if instruction.code == DIVIDE {
+		left := &machine.Registers[machine.ReadByteOffset(1)]
+		right := &machine.Registers[machine.ReadByteOffset(2)]
+		destination := &machine.Registers[machine.ReadByteOffset(3)]
+		destination.Value = left.Value / right.Value
+		return 4
 	}
 	fmt.Printf("Invalid instruction code: %X. Halting.", instruction.code)
 	machine.Stop()
