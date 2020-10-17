@@ -1,2 +1,4 @@
-grog
+grog-run
+grog-asmc
 **/*.grog
+.vscode/**

@@ -7,12 +7,10 @@ Glosary:
 - Word: Two bytes, little endian. In 0xffaa, MSB is 0xff and LSB is 0xaa.
 */
 
-package main
+package vm
 
 import (
 	"fmt"
-	"io/ioutil"
-	"os"
 )
 
 type Machine struct {
@@ -493,7 +491,7 @@ func (m *Machine) execute(instruction Instruction) {
 	m.ProgramCounter += uint16(instruction.execute(m))
 }
 
-func (m *Machine) load(memory []byte) {
+func (m *Machine) Load(memory []byte) {
 	for address, value := range memory {
 		m.Memory[address] = value
 	}
@@ -595,7 +593,7 @@ func (m *Machine) DumpFlags() {
 	fmt.Printf("\tFlags: Zero=%t\n", m.Flags.Zero)
 }
 
-func newMachine(name string, memorySize int) Machine {
+func NewMachine(name string, memorySize int) Machine {
 	return Machine{
 		Name:      "Grog",
 		Registers: registers(),
@@ -619,26 +617,4 @@ func newRegister(name string) Register {
 type Register struct {
 	Name  string
 	Value byte
-}
-
-func main() {
-	memory := readOrPanic(os.Args[1])
-	machine := newMachine("Grog", len(memory))
-	machine.Explain()
-	machine.load(memory)
-	machine.Run()
-	machine.DumpStatus()
-}
-
-func readOrPanic(filename string) (data []byte) {
-	fmt.Printf("Reading memory from file %s\n", filename)
-	data, err := ioutil.ReadFile(filename)
-	check(err)
-	return
-}
-
-func check(err error) {
-	if err != nil {
-		panic(err)
-	}
 }
