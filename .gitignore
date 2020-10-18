@@ -2,3 +2,4 @@ grog-run
 grog-asmc
 **/*.grog
 .vscode/**
+asm/.antlr
