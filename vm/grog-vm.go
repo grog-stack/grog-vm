@@ -20,10 +20,16 @@ type Machine struct {
 	ProgramCounter uint16
 	Flags          Flags
 	running        bool
+	Devices        [255]Device
 }
 
 type Flags struct {
 	Zero bool
+}
+
+type Device interface {
+	Read() byte
+	Write(value byte)
 }
 
 /* Instruction codes. Each code is one byte. Instructions from 0x01 to 0x7F are for transferring
@@ -128,6 +134,13 @@ const (
 	JUMP_LESS_EQUAL_ADDRESS    byte = 0xA2
 	JUMP_LESS_EQUAL_OFFSET     byte = 0xA3
 	JUMP_LESS_EQUAL_POINTER    byte = 0xA4
+)
+
+// Input, output
+
+const (
+	INPUT_REGISTER  byte = 0xB0
+	OUTPUT_REGISTER byte = 0xC0
 )
 
 type Instruction struct {
@@ -456,6 +469,11 @@ func (instruction *Instruction) execute(machine *Machine) int {
 			return 0
 		}
 		return 5
+	} else if instruction.code == INPUT_REGISTER {
+		device := machine.ReadNextByte()
+		register := machine.ReadByteOffset(2)
+		machine.Registers[register].Value = machine.Devices[device].Read()
+		return 3
 	}
 
 	fmt.Printf("Invalid instruction code: %X. Halting.", instruction.code)
@@ -598,6 +616,7 @@ func NewMachine(name string, memorySize int) Machine {
 		Name:      "Grog",
 		Registers: registers(),
 		Memory:    make([]byte, memorySize),
+		Devices:   makeDevices(),
 	}
 }
 
@@ -612,6 +631,12 @@ func registers() [16]Register {
 
 func newRegister(name string) Register {
 	return Register{name, 0x00}
+}
+
+func makeDevices() [255]Device {
+	devices := [255]Device{}
+	devices[0] = NewKeyboard()
+	return devices
 }
 
 type Register struct {

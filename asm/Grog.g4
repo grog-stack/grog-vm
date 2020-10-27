@@ -11,6 +11,7 @@ instruction
     | unaryBooleanOperation | binaryBooleanOperation
     | copyValue | load | store
     | jump
+    | input | output
     | stop;
 
 load
@@ -85,6 +86,10 @@ jump
       JUMP 
       (Address=ABSOLUTE_ADDRESS | Offset=OFFSET_ADDRESS | Pointer=POINTER_ADDRESS);
 
+input: Destination=REGISTER '<-' Source=DEVICE;
+
+output: Source=REGISTER '->' Destination=DEVICE;
+
 stop
     : STOP
     ;
@@ -120,6 +125,7 @@ HEX_DIGIT: [0-9a-fA-F];
 HEXA_BYTE: HEX_DIGIT HEX_DIGIT; 
 WORD: HEXA_BYTE HEXA_BYTE; 
 REGISTER: 'R' HEX_DIGIT;
+DEVICE: 'D' HEXA_BYTE;
 ABSOLUTE_ADDRESS: '@'WORD;
 OFFSET_ADDRESS: '#'WORD;
 POINTER_ADDRESS: '*'WORD;

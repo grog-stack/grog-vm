@@ -108,6 +108,15 @@ Copy values between registers and memory locations using the `->` operation.
 
 Conditional operators are `=`, `>`,`>=`, `<`,`<=`, and`!=`.
 
+## Input and output
+
+A GrogVM can receive information from, or send information to, the outside world using
+the IN and OUT instructions. There are 256 devices available, each of then addressable with
+a unique code.
+
+    R0 <- D1 // Reads a byte from device 01 into register R1
+    R1 -> D2 // Writes a byte from register R1 to device D2
+
 ### Comments
 
     // Single line comment

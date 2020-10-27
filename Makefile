@@ -10,7 +10,7 @@ grog-run: grog-vm
 	go build -o grog-run ./run
 
 grog-parser:
-	go build ./asm/parser
+	go install ./asm/parser
 
 grog-asm: grog-parser
 	go build -o grog-asmc ./asm

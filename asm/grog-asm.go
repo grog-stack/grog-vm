@@ -256,6 +256,18 @@ func (l *listener) ExitJump(c *parser.JumpContext) {
 	}
 }
 
+func (l *listener) ExitInput(c *parser.InputContext) {
+	register := registerByte(c.Destination.GetText())
+	device := deviceByte(c.Source.GetText())
+	l.Output.Write([]byte{vm.INPUT_REGISTER, device, register})
+}
+
+func (l *listener) ExitOutput(c *parser.OutputContext) {
+	register := registerByte(c.Source.GetText())
+	device := deviceByte(c.Destination.GetText())
+	l.Output.Write([]byte{vm.OUTPUT_REGISTER, register, device})
+}
+
 func (l *listener) ExitStop(c *parser.StopContext) {
 	l.Output.WriteByte(vm.STOP)
 }
@@ -292,6 +304,12 @@ func registerByte(registerName string) byte {
 	register := strings.TrimLeft(registerName, "R")
 	registerBytes, _ := hex.DecodeString("0" + register) // We need to prepend the "0" to complete the byte.
 	return registerBytes[0]
+}
+
+func deviceByte(deviceName string) byte {
+	value := strings.TrimLeft(deviceName, "D")
+	bytes, _ := hex.DecodeString(value)
+	return bytes[0]
 }
 
 func valueByte(value string) byte {
