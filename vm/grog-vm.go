@@ -474,6 +474,11 @@ func (instruction *Instruction) execute(machine *Machine) int {
 		register := machine.ReadByteOffset(2)
 		machine.Registers[register].Value = machine.Devices[device].Read()
 		return 3
+	} else if instruction.code == OUTPUT_REGISTER {
+		register := machine.ReadNextByte()
+		device := machine.ReadByteOffset(2)
+		machine.Devices[device].Write(machine.Registers[register].Value)
+		return 3
 	}
 
 	fmt.Printf("Invalid instruction code: %X. Halting.", instruction.code)
@@ -635,7 +640,7 @@ func newRegister(name string) Register {
 
 func makeDevices() [255]Device {
 	devices := [255]Device{}
-	devices[0] = NewKeyboard()
+	devices[0] = NewFifo(255)
 	return devices
 }
 
