@@ -11,6 +11,7 @@ package vm
 
 import (
 	"fmt"
+	"sync"
 )
 
 type Machine struct {
@@ -21,6 +22,7 @@ type Machine struct {
 	Flags          Flags
 	running        bool
 	Devices        [255]Device
+	mutex          sync.Mutex
 }
 
 type Flags struct {
@@ -41,6 +43,7 @@ arithmetic, jumps, function calls.
 
 const (
 	STOP = 0x00 // Halts the machine. No further instructions will be executed.
+	WAIT = 0x01 // Wait for an interruption. Effectively pauses the machine.
 )
 
 /*
@@ -61,26 +64,26 @@ pointer  |    - | LOAD     | COPY    | COPY    |
 */
 
 const (
-	LOAD_BYTE              = 0x01
-	LOAD_ADDRESS           = 0x02
-	LOAD_OFFSET            = 0x03
-	LOAD_POINTER           = 0x04
-	STORE_BYTE_ADDRESS     = 0x05
-	STORE_BYTE_OFFSET      = 0x06
-	STORE_BYTE_POINTER     = 0x07
-	STORE_REGISTER_ADDRESS = 0x08
-	STORE_REGISTER_OFFSET  = 0x09
-	STORE_REGISTER_POINTER = 0x0A
-	COPY_REGISTER          = 0x0B
-	COPY_ADDRESS_ADDRESS   = 0x0C
-	COPY_ADDRESS_OFFSET    = 0x0D
-	COPY_ADDRESS_POINTER   = 0x0E
-	COPY_OFFSET_ADDRESS    = 0x0F
-	COPY_OFFSET_OFFSET     = 0x10
-	COPY_OFFSET_POINTER    = 0x11
-	COPY_POINTER_ADDRESS   = 0x12
-	COPY_POINTER_OFFSET    = 0x13
-	COPY_POINTER_POINTER   = 0x14
+	LOAD_BYTE              = 0x11
+	LOAD_ADDRESS           = 0x12
+	LOAD_OFFSET            = 0x13
+	LOAD_POINTER           = 0x14
+	STORE_BYTE_ADDRESS     = 0x15
+	STORE_BYTE_OFFSET      = 0x16
+	STORE_BYTE_POINTER     = 0x17
+	STORE_REGISTER_ADDRESS = 0x18
+	STORE_REGISTER_OFFSET  = 0x19
+	STORE_REGISTER_POINTER = 0x1A
+	COPY_REGISTER          = 0x1B
+	COPY_ADDRESS_ADDRESS   = 0x1C
+	COPY_ADDRESS_OFFSET    = 0x1D
+	COPY_ADDRESS_POINTER   = 0x1E
+	COPY_OFFSET_ADDRESS    = 0x1F
+	COPY_OFFSET_OFFSET     = 0x20
+	COPY_OFFSET_POINTER    = 0x21
+	COPY_POINTER_ADDRESS   = 0x22
+	COPY_POINTER_OFFSET    = 0x23
+	COPY_POINTER_POINTER   = 0x24
 )
 
 /* Single operand arithmentic register operations. */
@@ -157,6 +160,10 @@ func (instruction *Instruction) execute(machine *Machine) int {
 	fmt.Printf("Executing instruction %X\n", instruction.code)
 	if instruction.code == STOP {
 		machine.Stop()
+		return 0
+	} else if instruction.code == WAIT {
+		// The instruction locks the machine, and only an interrupt can unlock it.
+		machine.lock()
 		return 0
 	} else if instruction.code == LOAD_BYTE {
 		value := machine.ReadByteOffset(1)
@@ -491,13 +498,25 @@ func (m *Machine) Explain() {
 	fmt.Printf("Program counter: %d\n", m.ProgramCounter)
 }
 
+/* Before executing an instruction, we use sync.Mutex in order to simulate hardware
+interrupts. This works for the time being, but we will to dive deeper... */
 func (m *Machine) Run() {
 	fmt.Println("Running...")
 	m.running = true
 	for m.running {
+		m.lock()
 		m.execute(m.currentInstruction())
+		m.unlock()
 	}
 	fmt.Println("Finished!")
+}
+
+func (m *Machine) lock() {
+	m.mutex.Lock()
+}
+
+func (m *Machine) unlock() {
+	m.mutex.Lock()
 }
 
 func (m *Machine) currentInstruction() Instruction {
@@ -617,6 +636,7 @@ func NewMachine(name string, memorySize int) Machine {
 		Registers: registers(),
 		Memory:    make([]byte, memorySize),
 		Devices:   makeDevices(),
+		mutex:     sync.Mutex{},
 	}
 }
 
@@ -635,7 +655,7 @@ func newRegister(name string) Register {
 
 func makeDevices() [255]Device {
 	devices := [255]Device{}
-	devices[0] = NewKeyboard()
+	devices[0] = NewDisplay(120, 90)
 	return devices
 }
 

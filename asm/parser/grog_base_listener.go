@@ -1,7 +1,6 @@
 // Code generated from Grog.g4 by ANTLR 4.7.2. DO NOT EDIT.
 
 package parser // Grog
-
 import "github.com/antlr/antlr4/runtime/Go/antlr"
 
 // BaseGrogListener is a complete listener for a parse tree produced by GrogParser.
@@ -147,8 +146,26 @@ func (s *BaseGrogListener) EnterJump(ctx *JumpContext) {}
 // ExitJump is called when production jump is exited.
 func (s *BaseGrogListener) ExitJump(ctx *JumpContext) {}
 
+// EnterInput is called when production input is entered.
+func (s *BaseGrogListener) EnterInput(ctx *InputContext) {}
+
+// ExitInput is called when production input is exited.
+func (s *BaseGrogListener) ExitInput(ctx *InputContext) {}
+
+// EnterOutput is called when production output is entered.
+func (s *BaseGrogListener) EnterOutput(ctx *OutputContext) {}
+
+// ExitOutput is called when production output is exited.
+func (s *BaseGrogListener) ExitOutput(ctx *OutputContext) {}
+
 // EnterStop is called when production stop is entered.
 func (s *BaseGrogListener) EnterStop(ctx *StopContext) {}
 
 // ExitStop is called when production stop is exited.
 func (s *BaseGrogListener) ExitStop(ctx *StopContext) {}
+
+// EnterWait is called when production wait is entered.
+func (s *BaseGrogListener) EnterWait(ctx *WaitContext) {}
+
+// ExitWait is called when production wait is exited.
+func (s *BaseGrogListener) ExitWait(ctx *WaitContext) {}

@@ -12,7 +12,8 @@ instruction
     | copyValue | load | store
     | jump
     | input | output
-    | stop;
+    | stop
+    | wait;
 
 load
     : Register=REGISTER '<-' (
@@ -94,6 +95,10 @@ stop
     : STOP
     ;
 
+wait
+    : WAIT
+    ;
+
 WHITESPACE: [ \r\n\t]+ -> skip;
 
 // Tokens
@@ -119,6 +124,7 @@ AND: 'AND';
 XOR: 'XOR';
 OR: 'OR';
 STOP: 'STOP';
+WAIT: 'WAIT';
 JUMP: 'JUMP';
 IF: 'IF';
 HEX_DIGIT: [0-9a-fA-F];
