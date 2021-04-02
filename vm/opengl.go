@@ -28,7 +28,7 @@ const (
 ` + "\x00"
 )
 
-type cell struct {
+type pixel struct {
 	drawable uint32
 
 	alive bool
@@ -37,7 +37,7 @@ type cell struct {
 	y int
 }
 
-func (c *cell) draw() {
+func (c *pixel) draw() {
 	if !c.alive {
 		return
 	}
@@ -101,12 +101,12 @@ func initOpenGL() uint32 {
 	return prog
 }
 
-func draw(cells [][]*cell, window *glfw.Window, program uint32) {
+func draw(pixels [][]*pixel, window *glfw.Window, program uint32) {
 	gl.Clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
 	gl.UseProgram(program)
 
-	for x := range cells {
-		for _, c := range cells[x] {
+	for x := range pixels {
+		for _, c := range pixels[x] {
 			c.draw()
 		}
 	}
@@ -156,7 +156,7 @@ func compileShader(source string, shaderType uint32) (uint32, error) {
 }
 
 // Creates a cell in the given coordinate.
-func newCell(x, y, rows, cols int) *cell {
+func newPixel(x, y, rows, cols int) *pixel {
 	points := make([]float32, len(square), len(square))
 	copy(points, square)
 
@@ -181,7 +181,7 @@ func newCell(x, y, rows, cols int) *cell {
 		}
 	}
 
-	return &cell{
+	return &pixel{
 		drawable: makeVao(points),
 
 		x:     x,

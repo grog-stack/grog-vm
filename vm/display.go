@@ -33,7 +33,7 @@ type Coordinate struct {
 type Display struct {
 	size   Surface
 	cursor Coordinate
-	pixels [][]*cell
+	pixels [][]*pixel
 }
 
 func (display Display) Read() byte {
@@ -73,7 +73,7 @@ func (d *Display) Init() {
 
 	program := initOpenGL()
 
-	d.pixels = makeCells(d.size.cols, d.size.rows)
+	d.pixels = makePixels(d.size.cols, d.size.rows)
 
 	for !window.ShouldClose() {
 		renderStartTime := time.Now()
@@ -82,15 +82,15 @@ func (d *Display) Init() {
 	}
 }
 
-func makeCells(cols int, rows int) [][]*cell {
-	cells := make([][]*cell, rows, cols)
+func makePixels(cols int, rows int) [][]*pixel {
+	pixels := make([][]*pixel, rows, cols)
 	for x := 0; x < rows; x++ {
 		for y := 0; y < cols; y++ {
-			cells[x] = append(cells[x], newCell(x, y, rows, cols))
+			pixels[x] = append(pixels[x], newPixel(x, y, rows, cols))
 		}
 	}
 
-	return cells
+	return pixels
 }
 
 func delay(renderStartTime time.Time) time.Duration {
