@@ -26,9 +26,6 @@ const (
         frag_colour = vec4(1, 1, 1, 1);
     }
 ` + "\x00"
-
-	rows    = 100
-	columns = 100
 )
 
 type cell struct {
@@ -158,19 +155,8 @@ func compileShader(source string, shaderType uint32) (uint32, error) {
 	return shader, nil
 }
 
-func makeCells() [][]*cell {
-	cells := make([][]*cell, rows, rows)
-	for x := 0; x < rows; x++ {
-		for y := 0; y < columns; y++ {
-			cells[x] = append(cells[x], newCell(x, y))
-		}
-	}
-
-	return cells
-}
-
 // Creates a cell in the given coordinate.
-func newCell(x, y int) *cell {
+func newCell(x, y, rows, cols int) *cell {
 	points := make([]float32, len(square), len(square))
 	copy(points, square)
 
@@ -179,7 +165,7 @@ func newCell(x, y int) *cell {
 		var size float32
 		switch i % 3 {
 		case 0:
-			size = 1.0 / float32(columns)
+			size = 1.0 / float32(cols)
 			position = float32(x) * size
 		case 1:
 			size = 1.0 / float32(rows)
