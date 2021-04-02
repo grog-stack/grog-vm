@@ -22,7 +22,7 @@ type Machine struct {
 	Flags          Flags
 	running        bool
 	Devices        [255]Device
-	mutex          sync.Mutex
+	mutex          *sync.Mutex
 }
 
 type Flags struct {
@@ -156,18 +156,20 @@ func (instruction *Instruction) matches(code byte) bool {
 }
 
 // Returns program counter intecrement
-func (instruction *Instruction) execute(machine *Machine) int {
+func (instruction *Instruction) execute(machine *Machine) uint16 {
 	fmt.Printf("Executing instruction %X\n", instruction.code)
 	if instruction.code == STOP {
 		machine.Stop()
 		return 0
 	} else if instruction.code == WAIT {
+		fmt.Println("Waiting for interrupt...")
 		// The instruction locks the machine, and only an interrupt can unlock it.
 		machine.lock()
 		return 0
 	} else if instruction.code == LOAD_BYTE {
 		value := machine.ReadByteOffset(1)
 		register := machine.ReadByteOffset(2)
+		fmt.Printf("Loading %X into register %X\n", value, register)
 		machine.register(register).Value = value
 		return 3
 	} else if instruction.code == LOAD_ADDRESS {
@@ -481,6 +483,13 @@ func (instruction *Instruction) execute(machine *Machine) int {
 		register := machine.ReadByteOffset(2)
 		machine.Registers[register].Value = machine.Devices[device].Read()
 		return 3
+	} else if instruction.code == OUTPUT_REGISTER {
+		register := machine.ReadNextByte()
+		device := machine.ReadByteOffset(2)
+		value := machine.Registers[register].Value
+		fmt.Printf("Sending value %X into device %X\n", value, device)
+		machine.Devices[device].Write(value)
+		return 3
 	}
 
 	fmt.Printf("Invalid instruction code: %X. Halting.", instruction.code)
@@ -498,8 +507,8 @@ func (m *Machine) Explain() {
 	fmt.Printf("Program counter: %d\n", m.ProgramCounter)
 }
 
-/* Before executing an instruction, we use sync.Mutex in order to simulate hardware
-interrupts. This works for the time being, but we will to dive deeper... */
+/* Before executing an instruction, we try to get a lock on the machine, in order to
+simulate hardware interrupts. This works for the time being, but we must dive deeper... */
 func (m *Machine) Run() {
 	fmt.Println("Running...")
 	m.running = true
@@ -516,7 +525,7 @@ func (m *Machine) lock() {
 }
 
 func (m *Machine) unlock() {
-	m.mutex.Lock()
+	m.mutex.Unlock()
 }
 
 func (m *Machine) currentInstruction() Instruction {
@@ -525,7 +534,7 @@ func (m *Machine) currentInstruction() Instruction {
 }
 
 func (m *Machine) execute(instruction Instruction) {
-	m.ProgramCounter += uint16(instruction.execute(m))
+	m.ProgramCounter += instruction.execute(m)
 }
 
 func (m *Machine) Load(memory []byte) {
@@ -636,7 +645,7 @@ func NewMachine(name string, memorySize int) Machine {
 		Registers: registers(),
 		Memory:    make([]byte, memorySize),
 		Devices:   makeDevices(),
-		mutex:     sync.Mutex{},
+		mutex:     &sync.Mutex{},
 	}
 }
 
