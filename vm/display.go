@@ -62,6 +62,8 @@ func (display Display) Write(value byte) {
 }
 
 func NewDisplay(cols int, rows int) *Display {
+	runtime.LockOSThread()
+
 	display := Display{
 		name:       "GrogVM Display",
 		resolution: Surface{cols: 320, rows: 200},
@@ -72,7 +74,6 @@ func NewDisplay(cols int, rows int) *Display {
 }
 
 func (d *Display) Init() {
-	runtime.LockOSThread()
 
 	window := initGlfw(d.resolution, d.name)
 	//defer glfw.Terminate()
