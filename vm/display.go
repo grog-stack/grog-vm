@@ -31,9 +31,11 @@ type Coordinate struct {
 }
 
 type Display struct {
-	size   Surface
-	cursor Coordinate
-	pixels [][]*pixel
+	name       string
+	size       Surface
+	resolution Surface
+	cursor     Coordinate
+	pixels     [][]*pixel
 }
 
 func (display Display) Read() byte {
@@ -60,7 +62,11 @@ func (display Display) Write(value byte) {
 }
 
 func NewDisplay(cols int, rows int) *Display {
-	display := Display{size: Surface{cols: cols, rows: rows}}
+	display := Display{
+		name:       "GrogVM Display",
+		resolution: Surface{cols: 320, rows: 200},
+		size:       Surface{cols: cols, rows: rows},
+	}
 	go display.Init()
 	return &display
 }
@@ -68,7 +74,7 @@ func NewDisplay(cols int, rows int) *Display {
 func (d *Display) Init() {
 	runtime.LockOSThread()
 
-	window := initGlfw()
+	window := initGlfw(d.resolution, d.name)
 	//defer glfw.Terminate()
 
 	program := initOpenGL()

@@ -9,8 +9,6 @@ import (
 )
 
 const (
-	width              = 320
-	height             = 200
 	vertexShaderSource = `
     #version 410
     in vec3 vp;
@@ -56,7 +54,7 @@ var (
 )
 
 // Initializes glfw and returns a Window to use.
-func initGlfw() *glfw.Window {
+func initGlfw(surface Surface, title string) *glfw.Window {
 	if err := glfw.Init(); err != nil {
 		panic(err)
 	}
@@ -67,7 +65,7 @@ func initGlfw() *glfw.Window {
 	glfw.WindowHint(glfw.OpenGLProfile, glfw.OpenGLCoreProfile)
 	glfw.WindowHint(glfw.OpenGLForwardCompatible, glfw.True)
 
-	window, err := glfw.CreateWindow(width, height, "GrogVM Display", nil, nil)
+	window, err := glfw.CreateWindow(surface.cols, surface.rows, title, nil, nil)
 	if err != nil {
 		panic(err)
 	}
