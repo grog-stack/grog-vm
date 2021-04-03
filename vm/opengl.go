@@ -29,12 +29,9 @@ const (
 )
 
 type pixel struct {
-	drawable uint32
-
-	alive bool
-
-	x int
-	y int
+	drawable   uint32
+	alive      bool
+	coordinate Coordinate
 }
 
 func (c *pixel) draw() {
@@ -58,7 +55,7 @@ var (
 	}
 )
 
-// initGlfw initializes glfw and returns a Window to use.
+// Initializes glfw and returns a Window to use.
 func initGlfw() *glfw.Window {
 	if err := glfw.Init(); err != nil {
 		panic(err)
@@ -115,7 +112,7 @@ func draw(pixels [][]*pixel, window *glfw.Window, program uint32) {
 	window.SwapBuffers()
 }
 
-// makeVao initializes and returns a vertex array from the points provided.
+// Initializes and returns a vertex array from the points provided.
 func makeVao(points []float32) uint32 {
 	var vbo uint32
 	gl.GenBuffers(1, &vbo)
@@ -155,8 +152,8 @@ func compileShader(source string, shaderType uint32) (uint32, error) {
 	return shader, nil
 }
 
-// Creates a cell in the given coordinate.
-func newPixel(x, y, rows, cols int) *pixel {
+// Creates a pixel in the given coordinate.
+func newPixel(coordinate Coordinate, surface Surface) *pixel {
 	points := make([]float32, len(square), len(square))
 	copy(points, square)
 
@@ -165,11 +162,11 @@ func newPixel(x, y, rows, cols int) *pixel {
 		var size float32
 		switch i % 3 {
 		case 0:
-			size = 1.0 / float32(cols)
-			position = float32(x) * size
+			size = 1.0 / float32(surface.cols)
+			position = float32(coordinate.x) * size
 		case 1:
-			size = 1.0 / float32(rows)
-			position = float32(y) * size
+			size = 1.0 / float32(surface.rows)
+			position = float32(coordinate.y) * size
 		default:
 			continue
 		}
@@ -182,10 +179,8 @@ func newPixel(x, y, rows, cols int) *pixel {
 	}
 
 	return &pixel{
-		drawable: makeVao(points),
-
-		x:     x,
-		y:     y,
-		alive: false,
+		drawable:   makeVao(points),
+		coordinate: coordinate,
+		alive:      false,
 	}
 }

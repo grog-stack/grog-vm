@@ -26,8 +26,8 @@ type Surface struct {
 }
 
 type Coordinate struct {
-	col int
-	row int
+	x int
+	y int
 }
 
 type Display struct {
@@ -44,16 +44,16 @@ func (display Display) Write(value byte) {
 	switch value {
 	case MOVE_CURSOR_RIGHT:
 		fmt.Println("Move cursor right")
-		display.cursor.col++
+		display.cursor.x++
 	case MOVE_CURSOR_LEFT:
 		fmt.Println("Move cursor left")
-		display.cursor.col--
+		display.cursor.x--
 	case MOVE_CURSOR_DOWN:
 		fmt.Println("Move cursor down")
-		display.cursor.row++
+		display.cursor.y++
 	case MOVE_CURSOR_UP:
 		fmt.Println("Move cursor up")
-		display.cursor.row--
+		display.cursor.y--
 	default:
 		fmt.Printf("Invalid operation: %X\n", value)
 	}
@@ -73,7 +73,7 @@ func (d *Display) Init() {
 
 	program := initOpenGL()
 
-	d.pixels = makePixels(d.size.cols, d.size.rows)
+	d.pixels = makePixels(d.size)
 
 	for !window.ShouldClose() {
 		renderStartTime := time.Now()
@@ -82,14 +82,13 @@ func (d *Display) Init() {
 	}
 }
 
-func makePixels(cols int, rows int) [][]*pixel {
-	pixels := make([][]*pixel, rows, cols)
-	for x := 0; x < rows; x++ {
-		for y := 0; y < cols; y++ {
-			pixels[x] = append(pixels[x], newPixel(x, y, rows, cols))
+func makePixels(surface Surface) [][]*pixel {
+	pixels := make([][]*pixel, surface.rows, surface.cols)
+	for row := 0; row < surface.rows; row++ {
+		for col := 0; col < surface.cols; col++ {
+			pixels[row] = append(pixels[row], newPixel(Coordinate{x: col, y: row}, surface))
 		}
 	}
-
 	return pixels
 }
 
