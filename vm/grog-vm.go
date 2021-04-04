@@ -639,12 +639,12 @@ func (m *Machine) DumpFlags() {
 	fmt.Printf("\tFlags: Zero=%t\n", m.Flags.Zero)
 }
 
-func NewMachine(name string, memorySize int) Machine {
+func NewMachine(name string, memorySize int, display bool) Machine {
 	return Machine{
 		Name:      "Grog",
 		Registers: registers(),
 		Memory:    make([]byte, memorySize),
-		Devices:   makeDevices(),
+		Devices:   makeDevices(display),
 		mutex:     &sync.Mutex{},
 	}
 }
@@ -662,9 +662,11 @@ func newRegister(name string) Register {
 	return Register{name, 0x00}
 }
 
-func makeDevices() [255]Device {
+func makeDevices(display bool) [255]Device {
 	devices := [255]Device{}
-	//devices[0] = NewDisplay(120, 90)
+	if display {
+		devices[0] = NewDisplay(120, 90)
+	}
 	return devices
 }
 
