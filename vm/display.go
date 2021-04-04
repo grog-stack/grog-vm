@@ -80,6 +80,7 @@ func NewDisplay(cols int, rows int) *Display {
 		name:       "GrogVM Display",
 		resolution: Surface{cols: 320, rows: 200},
 		size:       Surface{cols: cols, rows: rows},
+		cursor:     Coordinate{x: 0, y: 0},
 	}
 	go display.Init()
 	return &display
