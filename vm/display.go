@@ -50,16 +50,24 @@ func (display Display) Write(value byte) {
 		display.cursor.y = 0
 	case MOVE_CURSOR_RIGHT:
 		fmt.Println("Move cursor right")
-		display.cursor.x++
+		if display.cursor.x < display.size.cols-1 {
+			display.cursor.x++
+		}
 	case MOVE_CURSOR_LEFT:
 		fmt.Println("Move cursor left")
-		display.cursor.x--
+		if display.cursor.x > 0 {
+			display.cursor.x--
+		}
 	case MOVE_CURSOR_DOWN:
 		fmt.Println("Move cursor down")
-		display.cursor.y++
+		if display.cursor.y < display.size.rows-1 {
+			display.cursor.y++
+		}
 	case MOVE_CURSOR_UP:
 		fmt.Println("Move cursor up")
-		display.cursor.y--
+		if display.cursor.y > 0 {
+			display.cursor.y--
+		}
 	default:
 		fmt.Printf("Invalid operation: %X\n", value)
 	}
