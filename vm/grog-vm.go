@@ -664,7 +664,7 @@ func newRegister(name string) Register {
 
 func makeDevices() [255]Device {
 	devices := [255]Device{}
-	devices[0] = NewDisplay(120, 90)
+	//devices[0] = NewDisplay(120, 90)
 	return devices
 }
 
