@@ -44,6 +44,10 @@ func (display Display) Read() byte {
 
 func (display Display) Write(value byte) {
 	switch value {
+	case RESET_CURSOR:
+		fmt.Println("Resetting cursor")
+		display.cursor.x = 0
+		display.cursor.y = 0
 	case MOVE_CURSOR_RIGHT:
 		fmt.Println("Move cursor right")
 		display.cursor.x++
