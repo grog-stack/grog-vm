@@ -272,6 +272,10 @@ func (l *listener) ExitStop(c *parser.StopContext) {
 	l.Output.WriteByte(vm.STOP)
 }
 
+func (l *listener) ExitWait(c *parser.WaitContext) {
+	l.Output.WriteByte(vm.WAIT)
+}
+
 func absoluteAddressBytes(value string) []byte {
 	return prefixedAddressBytes(value, "@")
 }

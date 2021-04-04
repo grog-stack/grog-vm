@@ -1,7 +1,6 @@
 // Code generated from Grog.g4 by ANTLR 4.7.2. DO NOT EDIT.
 
 package parser // Grog
-
 import "github.com/antlr/antlr4/runtime/Go/antlr"
 
 // GrogListener is a complete listener for a parse tree produced by GrogParser.
@@ -71,8 +70,17 @@ type GrogListener interface {
 	// EnterJump is called when entering the jump production.
 	EnterJump(c *JumpContext)
 
+	// EnterInput is called when entering the input production.
+	EnterInput(c *InputContext)
+
+	// EnterOutput is called when entering the output production.
+	EnterOutput(c *OutputContext)
+
 	// EnterStop is called when entering the stop production.
 	EnterStop(c *StopContext)
+
+	// EnterWait is called when entering the wait production.
+	EnterWait(c *WaitContext)
 
 	// ExitProgram is called when exiting the program production.
 	ExitProgram(c *ProgramContext)
@@ -137,6 +145,15 @@ type GrogListener interface {
 	// ExitJump is called when exiting the jump production.
 	ExitJump(c *JumpContext)
 
+	// ExitInput is called when exiting the input production.
+	ExitInput(c *InputContext)
+
+	// ExitOutput is called when exiting the output production.
+	ExitOutput(c *OutputContext)
+
 	// ExitStop is called when exiting the stop production.
 	ExitStop(c *StopContext)
+
+	// ExitWait is called when exiting the wait production.
+	ExitWait(c *WaitContext)
 }
