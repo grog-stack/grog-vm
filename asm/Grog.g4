@@ -50,10 +50,10 @@ copyRightToLeft
     ;
 
 increment
-    : Register=REGISTER '<-' '++';
+    : INCREMENT Register=REGISTER;
 
 decrement
-    : Register=REGISTER '<-' '--';
+    : DECREMENT Register=REGISTER;
 
 arithmeticOperation
     : Destination=REGISTER '<-' Left=REGISTER 
@@ -107,8 +107,8 @@ COMMENT:   '/*' .*? '*/' -> skip;
 LINE_COMMENT :   '//' ~[\r\n]* -> skip;
 LOAD: 'load';
 STORE: '->';
-INCREMENT: '++';
-DECREMENT: '--';
+INCREMENT: 'increment';
+DECREMENT: 'decrement';
 ADD: '+';
 SUBTRACT: '-';
 DIVIDE: '/';

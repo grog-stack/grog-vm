@@ -1,5 +1,5 @@
 load R1 aa
-R1 <- ++
+increment R1
 load R2 aa
-R2 <- --
+decrement R2
 STOP
