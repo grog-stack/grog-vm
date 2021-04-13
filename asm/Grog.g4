@@ -9,14 +9,16 @@ instruction
     : increment | decrement
     | arithmeticOperation
     | unaryBooleanOperation | binaryBooleanOperation
-    | copyValue | load | store
+    | load
+    | store
+    | copyValue
     | jump
-    | input | output
+    | io
     | stop
     | wait;
 
 load
-    : Register=REGISTER '<-' (
+    : LOAD Register=REGISTER (
         Value=HEXA_BYTE | 
         Address=ABSOLUTE_ADDRESS | 
         Offset=OFFSET_ADDRESS | 
@@ -31,65 +33,82 @@ store
     ;
 
 copyValue
-    : (SourceRegister=REGISTER '->' DestinationRegister=REGISTER) #CopyRegister
-    | (SourceAddress=ABSOLUTE_ADDRESS '->' DestinationAddress=ABSOLUTE_ADDRESS) #CopyAbsoluteToAbsolute
-    | (SourceAddress=ABSOLUTE_ADDRESS '->' DestinationOffset=OFFSET_ADDRESS) #CopyAbsoluteToOffset
-    | (SourceAddress=ABSOLUTE_ADDRESS '->' DestinationPointer=POINTER_ADDRESS) #CopyAbsoluteToPointer
-    | (SourceOffset=OFFSET_ADDRESS '->' DestinationAddress=ABSOLUTE_ADDRESS) #CopyOffsetToAbsolute
-    | (SourceOffset=OFFSET_ADDRESS '->' DestinationOffset=OFFSET_ADDRESS) #CopyOffsetToOffset
-    | (SourceOffset=OFFSET_ADDRESS '->' DestinationPointer=POINTER_ADDRESS) #CopyOffsetToPointer
-    | (SourcePointer=POINTER_ADDRESS '->' DestinationAddress=ABSOLUTE_ADDRESS) #CopyPointerToAbsolute
-    | (SourcePointer=POINTER_ADDRESS '->' DestinationOffset=OFFSET_ADDRESS) #CopyPointerToOffset
-    | (SourcePointer=POINTER_ADDRESS '->' DestinationPointer=POINTER_ADDRESS) #CopyPointerToPointer
+    : copyRegister
+    | copyAbsoluteToAbsolute | copyOffsetToAbsolute | copyPointerToAbsolute
+    | copyAbsoluteToOffset | copyOffsetToOffset | copyPointerToOffset
+    | copyAbsoluteToPointer | copyOffsetToPointer | copyPointerToPointer
     ;
 
-copyRightToLeft
-    : (SourceAddress=ABSOLUTE_ADDRESS | SourceOffset=OFFSET_ADDRESS | SourcePointer=POINTER_ADDRESS) 
-      '<->'
-      (SourceAddress=ABSOLUTE_ADDRESS | SourceOffset=OFFSET_ADDRESS | SourcePointer=POINTER_ADDRESS) 
+copyRegister
+    : COPY DestinationRegister=REGISTER SourceRegister=REGISTER
     ;
+
+copyAbsoluteToAbsolute
+    : COPY Destination=ABSOLUTE_ADDRESS Source=ABSOLUTE_ADDRESS
+    ;
+
+copyOffsetToAbsolute
+    : COPY Destination=ABSOLUTE_ADDRESS Source=OFFSET_ADDRESS
+    ;
+
+copyPointerToAbsolute
+    : COPY Destination=ABSOLUTE_ADDRESS Source=POINTER_ADDRESS
+    ;
+
+copyAbsoluteToOffset
+    : COPY Destination=OFFSET_ADDRESS Source=ABSOLUTE_ADDRESS
+    ;
+
+copyOffsetToOffset
+    : COPY Destination=OFFSET_ADDRESS Source=OFFSET_ADDRESS
+    ;
+
+copyPointerToOffset
+    : COPY Destination=OFFSET_ADDRESS Source=POINTER_ADDRESS
+    ;
+
+copyAbsoluteToPointer
+    : COPY Destination=POINTER_ADDRESS Source=ABSOLUTE_ADDRESS
+    ;
+
+copyOffsetToPointer
+    : COPY Destination=POINTER_ADDRESS Source=OFFSET_ADDRESS
+    ;
+
+copyPointerToPointer
+    : COPY Destination=POINTER_ADDRESS Source=POINTER_ADDRESS
+    ;
+
 
 increment
-    : Register=REGISTER '<-' '++';
+    : INCREMENT Register=REGISTER;
 
 decrement
-    : Register=REGISTER '<-' '--';
+    : DECREMENT Register=REGISTER;
 
 arithmeticOperation
-    : Destination=REGISTER '<-' Left=REGISTER 
-      (Operator=ADD| Operator=SUBTRACT| Operator=MULTIPLY | Operator=DIVIDE)
-      Right=REGISTER
-        ;
+    : (Operator=ADD| Operator=SUBTRACT| Operator=MULTIPLY | Operator=DIVIDE)
+      Destination=REGISTER Source=REGISTER
+    ;
 
 unaryBooleanOperation
-    : Destination=REGISTER '<-' NOT Operand=REGISTER 
+    : NOT Destination=REGISTER
     ;
 
 binaryBooleanOperation
-    : Destination=REGISTER '<-' Left=REGISTER 
-      (Operator=AND| Operator=OR| Operator=XOR)
-      Right=REGISTER
+    : (Operator=AND| Operator=OR| Operator=XOR) Destination=REGISTER Source=REGISTER 
     ;
 
 jump
-    : (
-        IF Left=REGISTER 
-        (
-            Operator=EQUAL 
-            | Operator=NOT_EQUAL 
-            | Operator=GREATER 
-            | Operator=GREATER_OR_EQUAL 
-            | Operator=LESS
-            | Operator=LESS_OR_EQUAL
-        ) 
-        Right=REGISTER
-      )?
-      JUMP 
-      (Address=ABSOLUTE_ADDRESS | Offset=OFFSET_ADDRESS | Pointer=POINTER_ADDRESS);
+    :(Operator=JUMP | Operator=JUMP_IF_EQUAL | Operator=JUMP_IF_NOT_EQUAL
+     | Operator=JUMP_IF_GREATER | Operator=JUMP_IF_NOT_GREATER
+     | Operator=JUMP_IF_GREATER_OR_EQUAL | Operator=JUMP_IF_NOT_GREATER_OR_EQUAL
+     | Operator=JUMP_IF_LESS | Operator=JUMP_IF_NOT_LESS
+     | Operator=JUMP_IF_LESS_OR_EQUAL | Operator=JUMP_IF_NOT_LESS_OR_EQUAL)
+      (Address=ABSOLUTE_ADDRESS | Offset=OFFSET_ADDRESS | Pointer=POINTER_ADDRESS)
+    ;
 
-input: Destination=REGISTER '<-' Source=DEVICE;
-
-output: Source=REGISTER '->' Destination=DEVICE;
+io: (Operation=INPUT | Operation=OUTPUT) Destination=REGISTER Source=DEVICE;
 
 stop
     : STOP
@@ -105,28 +124,34 @@ WHITESPACE: [ \r\n\t]+ -> skip;
 WS:  [ \t\r\n\u000C]+ -> skip;
 COMMENT:   '/*' .*? '*/' -> skip;
 LINE_COMMENT :   '//' ~[\r\n]* -> skip;
-LOAD: '<-';
-STORE: '->';
-INCREMENT: '++';
-DECREMENT: '--';
-ADD: '+';
-SUBTRACT: '-';
-DIVIDE: '/';
-MULTIPLY: '*';
-EQUAL: '=';
-GREATER: '>';
-GREATER_OR_EQUAL: '>=';
-LESS: '<';
-LESS_OR_EQUAL: '<=';
-NOT_EQUAL: '!=';
-NOT: 'NOT';
-AND: 'AND';
-XOR: 'XOR';
-OR: 'OR';
-STOP: 'STOP';
-WAIT: 'WAIT';
-JUMP: 'JUMP';
-IF: 'IF';
+LOAD: 'load';
+MOVE: 'move';
+COPY: 'copy';
+INCREMENT: 'increment';
+DECREMENT: 'decrement';
+ADD: 'add';
+SUBTRACT: 'subtract';
+DIVIDE: 'divide';
+MULTIPLY: 'multiply';
+JUMP: 'jump';
+JUMP_IF_EQUAL: 'je';
+JUMP_IF_NOT_EQUAL: 'jne';
+JUMP_IF_GREATER: 'jg';
+JUMP_IF_NOT_GREATER: 'jng';
+JUMP_IF_GREATER_OR_EQUAL: 'jge';
+JUMP_IF_NOT_GREATER_OR_EQUAL: 'jnge';
+JUMP_IF_LESS: 'jl';
+JUMP_IF_NOT_LESS: 'jnl';
+JUMP_IF_LESS_OR_EQUAL: 'jle';
+JUMP_IF_NOT_LESS_OR_EQUAL: 'jnle';
+NOT: 'not';
+AND: 'and';
+OR: 'or';
+XOR: 'xor';
+INPUT: 'input';
+OUTPUT: 'output';
+STOP: 'stop';
+WAIT: 'wait';
 HEX_DIGIT: [0-9a-fA-F];
 HEXA_BYTE: HEX_DIGIT HEX_DIGIT; 
 WORD: HEXA_BYTE HEXA_BYTE; 

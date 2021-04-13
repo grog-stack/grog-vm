@@ -83,54 +83,65 @@ func (l *listener) ExitStore(c *parser.StoreContext) {
 }
 
 func (l *listener) ExitCopyRegister(c *parser.CopyRegisterContext) {
+	destination := registerByte(c.DestinationRegister.GetText())
+	source := registerByte(c.SourceRegister.GetText())
 	l.Output.WriteByte(vm.COPY_REGISTER)
-	l.Output.WriteByte(registerByte(c.SourceRegister.GetText()))
-	l.Output.WriteByte(registerByte(c.DestinationRegister.GetText()))
+	l.Output.WriteByte(destination)
+	l.Output.WriteByte(source)
 }
+
 func (l *listener) ExitCopyAbsoluteToAbsolute(c *parser.CopyAbsoluteToAbsoluteContext) {
 	l.Output.WriteByte(vm.COPY_ADDRESS_ADDRESS)
-	l.Output.Write(addressBytes(c.SourceAddress.GetText()))
-	l.Output.Write(addressBytes(c.DestinationAddress.GetText()))
+	l.Output.Write(addressBytes(c.Destination.GetText()))
+	l.Output.Write(addressBytes(c.Source.GetText()))
 }
-func (l *listener) ExitCopyAbsoluteToOffset(c *parser.CopyAbsoluteToOffsetContext) {
-	l.Output.WriteByte(vm.COPY_ADDRESS_OFFSET)
-	l.Output.Write(addressBytes(c.SourceAddress.GetText()))
-	l.Output.Write(offsetAddressBytes(c.DestinationOffset.GetText()))
-}
-func (l *listener) ExitCopyAbsoluteToPointer(c *parser.CopyAbsoluteToPointerContext) {
-	l.Output.WriteByte(vm.COPY_ADDRESS_POINTER)
-	l.Output.Write(addressBytes(c.SourceAddress.GetText()))
-	l.Output.Write(pointerAddressBytes(c.DestinationPointer.GetText()))
-}
+
 func (l *listener) ExitCopyOffsetToAbsolute(c *parser.CopyOffsetToAbsoluteContext) {
-	l.Output.WriteByte(vm.COPY_OFFSET_ADDRESS)
-	l.Output.Write(offsetAddressBytes(c.SourceOffset.GetText()))
-	l.Output.Write(addressBytes(c.DestinationAddress.GetText()))
+	l.Output.WriteByte(vm.COPY_ADDRESS_OFFSET)
+	l.Output.Write(addressBytes(c.Destination.GetText()))
+	l.Output.Write(addressBytes(c.Source.GetText()))
 }
-func (l *listener) ExitCopyOffsetToOffset(c *parser.CopyOffsetToOffsetContext) {
-	l.Output.WriteByte(vm.COPY_OFFSET_OFFSET)
-	l.Output.Write(offsetAddressBytes(c.SourceOffset.GetText()))
-	l.Output.Write(offsetAddressBytes(c.DestinationOffset.GetText()))
-}
-func (l *listener) ExitCopyOffsetToPointer(c *parser.CopyOffsetToPointerContext) {
-	l.Output.WriteByte(vm.COPY_OFFSET_POINTER)
-	l.Output.Write(offsetAddressBytes(c.SourceOffset.GetText()))
-	l.Output.Write(pointerAddressBytes(c.DestinationPointer.GetText()))
-}
+
 func (l *listener) ExitCopyPointerToAbsolute(c *parser.CopyPointerToAbsoluteContext) {
 	l.Output.WriteByte(vm.COPY_POINTER_ADDRESS)
-	l.Output.Write(pointerAddressBytes(c.SourcePointer.GetText()))
-	l.Output.Write(addressBytes(c.DestinationAddress.GetText()))
+	l.Output.Write(addressBytes(c.Destination.GetText()))
+	l.Output.Write(addressBytes(c.Source.GetText()))
 }
+
+func (l *listener) ExitCopyAbsoluteToOffset(c *parser.CopyAbsoluteToOffsetContext) {
+	l.Output.WriteByte(vm.COPY_OFFSET_ADDRESS)
+	l.Output.Write(addressBytes(c.Destination.GetText()))
+	l.Output.Write(addressBytes(c.Source.GetText()))
+}
+
+func (l *listener) ExitCopyOffsetToOffset(c *parser.CopyOffsetToOffsetContext) {
+	l.Output.WriteByte(vm.COPY_OFFSET_OFFSET)
+	l.Output.Write(addressBytes(c.Destination.GetText()))
+	l.Output.Write(addressBytes(c.Source.GetText()))
+}
+
 func (l *listener) ExitCopyPointerToOffset(c *parser.CopyPointerToOffsetContext) {
-	l.Output.WriteByte(vm.COPY_POINTER_OFFSET)
-	l.Output.Write(pointerAddressBytes(c.SourcePointer.GetText()))
-	l.Output.Write(offsetAddressBytes(c.DestinationOffset.GetText()))
+	l.Output.WriteByte(vm.COPY_OFFSET_POINTER)
+	l.Output.Write(addressBytes(c.Destination.GetText()))
+	l.Output.Write(addressBytes(c.Source.GetText()))
 }
+
+func (l *listener) ExitCopyAbsoluteToPointer(c *parser.CopyAbsoluteToPointerContext) {
+	l.Output.WriteByte(vm.COPY_OFFSET_ADDRESS)
+	l.Output.Write(addressBytes(c.Destination.GetText()))
+	l.Output.Write(addressBytes(c.Source.GetText()))
+}
+
+func (l *listener) ExitCopyOffsetToPointer(c *parser.CopyOffsetToPointerContext) {
+	l.Output.WriteByte(vm.COPY_POINTER_OFFSET)
+	l.Output.Write(addressBytes(c.Destination.GetText()))
+	l.Output.Write(addressBytes(c.Source.GetText()))
+}
+
 func (l *listener) ExitCopyPointerToPointer(c *parser.CopyPointerToPointerContext) {
 	l.Output.WriteByte(vm.COPY_POINTER_POINTER)
-	l.Output.Write(pointerAddressBytes(c.SourcePointer.GetText()))
-	l.Output.Write(pointerAddressBytes(c.DestinationPointer.GetText()))
+	l.Output.Write(addressBytes(c.Destination.GetText()))
+	l.Output.Write(addressBytes(c.Source.GetText()))
 }
 
 func (l *listener) ExitIncrement(c *parser.IncrementContext) {
@@ -145,127 +156,55 @@ func (l *listener) ExitDecrement(c *parser.DecrementContext) {
 
 func (l *listener) ExitArithmeticOperation(c *parser.ArithmeticOperationContext) {
 	l.Output.WriteByte(arithmeticOperators[c.Operator.GetText()])
-	l.Output.WriteByte(registerByte(c.Left.GetText()))
-	l.Output.WriteByte(registerByte(c.Right.GetText()))
 	l.Output.WriteByte(registerByte(c.Destination.GetText()))
+	l.Output.WriteByte(registerByte(c.Source.GetText()))
 }
 
 func (l *listener) ExitBinaryBooleanOperation(c *parser.BinaryBooleanOperationContext) {
 	l.Output.WriteByte(booleanOperators[c.Operator.GetText()])
-	l.Output.WriteByte(registerByte(c.Left.GetText()))
-	l.Output.WriteByte(registerByte(c.Right.GetText()))
 	l.Output.WriteByte(registerByte(c.Destination.GetText()))
+	l.Output.WriteByte(registerByte(c.Source.GetText()))
 }
 
 func (l *listener) ExitUnaryBooleanOperation(c *parser.UnaryBooleanOperationContext) {
 	l.Output.WriteByte(vm.NOT)
-	l.Output.WriteByte(registerByte(c.Operand.GetText()))
 	l.Output.WriteByte(registerByte(c.Destination.GetText()))
 }
 
 func (l *listener) ExitJump(c *parser.JumpContext) {
-	if c.Left != nil && c.Right != nil {
-		left := registerByte(c.Left.GetText())
-		right := registerByte(c.Right.GetText())
-		var operation byte = 0
-		var destination []byte = nil
-		if c.Address != nil {
-			destination = absoluteAddressBytes(c.Address.GetText())
-		} else if c.Offset != nil {
-			destination = offsetAddressBytes(c.Offset.GetText())
-		} else if c.Pointer != nil {
-			destination = pointerAddressBytes(c.Pointer.GetText())
-		}
-		switch c.Operator.GetText() {
-		case "=":
-			if c.Address != nil {
-				operation = vm.JUMP_EQUAL_ADDRESS
-			} else if c.Offset != nil {
-				operation = vm.JUMP_EQUAL_OFFSET
-			} else if c.Pointer != nil {
-				operation = vm.JUMP_EQUAL_POINTER
-			}
-		case "!=":
-			{
-				if c.Address != nil {
-					operation = vm.JUMP_NOT_EQUAL_ADDRESS
-				} else if c.Offset != nil {
-					operation = vm.JUMP_NOT_EQUAL_OFFSET
-				} else if c.Pointer != nil {
-					operation = vm.JUMP_NOT_EQUAL_POINTER
-				}
-			}
-		case ">":
-			{
-				if c.Address != nil {
-					operation = vm.JUMP_GREATER_ADDRESS
-				} else if c.Offset != nil {
-					operation = vm.JUMP_GREATER_OFFSET
-				} else if c.Pointer != nil {
-					operation = vm.JUMP_GREATER_POINTER
-				}
-			}
-		case ">=":
-			{
-				if c.Address != nil {
-					operation = vm.JUMP_GREATER_EQUAL_ADDRESS
-				} else if c.Offset != nil {
-					operation = vm.JUMP_GREATER_EQUAL_OFFSET
-				} else if c.Pointer != nil {
-					operation = vm.JUMP_GREATER_EQUAL_POINTER
-				}
-			}
-		case "<":
-			{
-				if c.Address != nil {
-					operation = vm.JUMP_LESS_ADDRESS
-				} else if c.Offset != nil {
-					operation = vm.JUMP_LESS_OFFSET
-				} else if c.Pointer != nil {
-					operation = vm.JUMP_LESS_POINTER
-				}
-			}
-		case "<=":
-			{
-				if c.Address != nil {
-					operation = vm.JUMP_LESS_EQUAL_ADDRESS
-				} else if c.Offset != nil {
-					operation = vm.JUMP_LESS_EQUAL_OFFSET
-				} else if c.Pointer != nil {
-					operation = vm.JUMP_LESS_EQUAL_POINTER
-				}
-			}
-		}
-		l.Output.WriteByte(operation)
-		l.Output.WriteByte(left)
-		l.Output.WriteByte(right)
-		l.Output.Write(destination)
-	} else {
-		if c.Address != nil {
-			l.Output.WriteByte(vm.JUMP_ADDRESS)
-			l.Output.Write(addressBytes(c.Address.GetText()))
-		} else if c.Offset != nil {
-			l.Output.WriteByte(vm.JUMP_OFFSET)
-			l.Output.Write(addressBytes(c.Offset.GetText()))
-		} else if c.Pointer != nil {
-			l.Output.WriteByte(vm.JUMP_POINTER)
-			l.Output.Write(addressBytes(c.Pointer.GetText()))
-		} else {
-			panic("Unsupported jump.")
-		}
+	// Since all jump operations codes are sequential, we can calculate the opcodes
+	operation := vm.JUMP_ADDRESS
+	switch c.Operator.GetText() {
+	case "je":
+		operation = vm.JUMP_EQUAL_ADDRESS
+	case "jne":
+		operation = vm.JUMP_NOT_EQUAL_ADDRESS
 	}
+	var destination []byte = nil
+	if c.Address != nil {
+		destination = absoluteAddressBytes(c.Address.GetText())
+	} else if c.Offset != nil {
+		operation = operation + 1
+		destination = offsetAddressBytes(c.Offset.GetText())
+	} else if c.Pointer != nil {
+		operation = operation + 2
+		destination = pointerAddressBytes(c.Pointer.GetText())
+	}
+	l.Output.WriteByte(operation)
+	l.Output.Write(destination)
 }
 
-func (l *listener) ExitInput(c *parser.InputContext) {
+func (l *listener) ExitIo(c *parser.IoContext) {
 	register := registerByte(c.Destination.GetText())
 	device := deviceByte(c.Source.GetText())
-	l.Output.Write([]byte{vm.INPUT_REGISTER, device, register})
-}
-
-func (l *listener) ExitOutput(c *parser.OutputContext) {
-	register := registerByte(c.Source.GetText())
-	device := deviceByte(c.Destination.GetText())
-	l.Output.Write([]byte{vm.OUTPUT_REGISTER, register, device})
+	operation := byte(0)
+	switch c.Operation.GetText() {
+	case "input":
+		operation = vm.INPUT
+	case "output":
+		operation = vm.OUTPUT
+	}
+	l.Output.Write([]byte{operation, device, register})
 }
 
 func (l *listener) ExitStop(c *parser.StopContext) {
@@ -290,18 +229,6 @@ func pointerAddressBytes(value string) []byte {
 
 func prefixedAddressBytes(value string, prefix string) []byte {
 	return addressBytes(strings.Split(value, prefix)[1])
-}
-
-func writeValue(l *listener, value string) {
-	l.Output.WriteByte(valueByte(value))
-}
-
-func writeAddress(l *listener, address string) {
-	l.Output.Write(addressBytes(address))
-}
-
-func registerOpCode(opcodeByte byte, registerValue byte) byte {
-	return opcodeByte | registerValue
 }
 
 func registerByte(registerName string) byte {
