@@ -40,10 +40,10 @@ POINTER_ADDRESS=36
 '->'=8
 'increment'=9
 'decrement'=10
-'+'=11
-'-'=12
-'/'=13
-'*'=14
+'add'=11
+'subtract'=12
+'divide'=13
+'multiply'=14
 '='=15
 '>'=16
 '>='=17

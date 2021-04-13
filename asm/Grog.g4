@@ -56,10 +56,9 @@ decrement
     : DECREMENT Register=REGISTER;
 
 arithmeticOperation
-    : Destination=REGISTER '<-' Left=REGISTER 
-      (Operator=ADD| Operator=SUBTRACT| Operator=MULTIPLY | Operator=DIVIDE)
-      Right=REGISTER
-        ;
+    : (Operator=ADD| Operator=SUBTRACT| Operator=MULTIPLY | Operator=DIVIDE)
+      Destination=REGISTER Source=REGISTER
+    ;
 
 unaryBooleanOperation
     : Destination=REGISTER '<-' NOT Operand=REGISTER 
@@ -109,10 +108,10 @@ LOAD: 'load';
 STORE: '->';
 INCREMENT: 'increment';
 DECREMENT: 'decrement';
-ADD: '+';
-SUBTRACT: '-';
-DIVIDE: '/';
-MULTIPLY: '*';
+ADD: 'add';
+SUBTRACT: 'subtract';
+DIVIDE: 'divide';
+MULTIPLY: 'multiply';
 EQUAL: '=';
 GREATER: '>';
 GREATER_OR_EQUAL: '>=';
