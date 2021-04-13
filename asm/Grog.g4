@@ -16,7 +16,7 @@ instruction
     | wait;
 
 load
-    : Register=REGISTER '<-' (
+    : LOAD Register=REGISTER (
         Value=HEXA_BYTE | 
         Address=ABSOLUTE_ADDRESS | 
         Offset=OFFSET_ADDRESS | 
@@ -105,7 +105,7 @@ WHITESPACE: [ \r\n\t]+ -> skip;
 WS:  [ \t\r\n\u000C]+ -> skip;
 COMMENT:   '/*' .*? '*/' -> skip;
 LINE_COMMENT :   '//' ~[\r\n]* -> skip;
-LOAD: '<-';
+LOAD: 'load';
 STORE: '->';
 INCREMENT: '++';
 DECREMENT: '--';
