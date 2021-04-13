@@ -65,9 +65,7 @@ unaryBooleanOperation
     ;
 
 binaryBooleanOperation
-    : Destination=REGISTER '<-' Left=REGISTER 
-      (Operator=AND| Operator=OR| Operator=XOR)
-      Right=REGISTER
+    : (Operator=AND| Operator=OR| Operator=XOR) Destination=REGISTER Source=REGISTER 
     ;
 
 jump
@@ -119,9 +117,9 @@ LESS: '<';
 LESS_OR_EQUAL: '<=';
 NOT_EQUAL: '!=';
 NOT: 'not';
-AND: 'AND';
-XOR: 'XOR';
-OR: 'OR';
+AND: 'and';
+OR: 'or';
+XOR: 'xor';
 STOP: 'STOP';
 WAIT: 'WAIT';
 JUMP: 'JUMP';

@@ -151,9 +151,8 @@ func (l *listener) ExitArithmeticOperation(c *parser.ArithmeticOperationContext)
 
 func (l *listener) ExitBinaryBooleanOperation(c *parser.BinaryBooleanOperationContext) {
 	l.Output.WriteByte(booleanOperators[c.Operator.GetText()])
-	l.Output.WriteByte(registerByte(c.Left.GetText()))
-	l.Output.WriteByte(registerByte(c.Right.GetText()))
 	l.Output.WriteByte(registerByte(c.Destination.GetText()))
+	l.Output.WriteByte(registerByte(c.Source.GetText()))
 }
 
 func (l *listener) ExitUnaryBooleanOperation(c *parser.UnaryBooleanOperationContext) {
