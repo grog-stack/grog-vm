@@ -158,7 +158,6 @@ func (l *listener) ExitBinaryBooleanOperation(c *parser.BinaryBooleanOperationCo
 
 func (l *listener) ExitUnaryBooleanOperation(c *parser.UnaryBooleanOperationContext) {
 	l.Output.WriteByte(vm.NOT)
-	l.Output.WriteByte(registerByte(c.Operand.GetText()))
 	l.Output.WriteByte(registerByte(c.Destination.GetText()))
 }
 

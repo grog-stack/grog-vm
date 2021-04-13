@@ -61,7 +61,7 @@ arithmeticOperation
     ;
 
 unaryBooleanOperation
-    : Destination=REGISTER '<-' NOT Operand=REGISTER 
+    : NOT Destination=REGISTER
     ;
 
 binaryBooleanOperation
@@ -118,7 +118,7 @@ GREATER_OR_EQUAL: '>=';
 LESS: '<';
 LESS_OR_EQUAL: '<=';
 NOT_EQUAL: '!=';
-NOT: 'NOT';
+NOT: 'not';
 AND: 'AND';
 XOR: 'XOR';
 OR: 'OR';
