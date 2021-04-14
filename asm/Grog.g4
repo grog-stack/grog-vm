@@ -118,10 +118,8 @@ binaryBooleanOperation
 
 jump
     :(Operator=JUMP | Operator=JUMP_IF_EQUAL | Operator=JUMP_IF_NOT_EQUAL
-     | Operator=JUMP_IF_GREATER | Operator=JUMP_IF_NOT_GREATER
-     | Operator=JUMP_IF_GREATER_OR_EQUAL | Operator=JUMP_IF_NOT_GREATER_OR_EQUAL
-     | Operator=JUMP_IF_LESS | Operator=JUMP_IF_NOT_LESS
-     | Operator=JUMP_IF_LESS_OR_EQUAL | Operator=JUMP_IF_NOT_LESS_OR_EQUAL)
+     | Operator=JUMP_IF_GREATER | Operator=JUMP_IF_GREATER_OR_EQUAL
+     | Operator=JUMP_IF_LESS | Operator=JUMP_IF_LESS_OR_EQUAL)
       (Address=ABSOLUTE_ADDRESS | Offset=OFFSET_ADDRESS | Pointer=POINTER_ADDRESS)
     ;
 
