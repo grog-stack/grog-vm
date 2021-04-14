@@ -70,11 +70,8 @@ type GrogListener interface {
 	// EnterJump is called when entering the jump production.
 	EnterJump(c *JumpContext)
 
-	// EnterInput is called when entering the input production.
-	EnterInput(c *InputContext)
-
-	// EnterOutput is called when entering the output production.
-	EnterOutput(c *OutputContext)
+	// EnterIo is called when entering the io production.
+	EnterIo(c *IoContext)
 
 	// EnterStop is called when entering the stop production.
 	EnterStop(c *StopContext)
@@ -145,11 +142,8 @@ type GrogListener interface {
 	// ExitJump is called when exiting the jump production.
 	ExitJump(c *JumpContext)
 
-	// ExitInput is called when exiting the input production.
-	ExitInput(c *InputContext)
-
-	// ExitOutput is called when exiting the output production.
-	ExitOutput(c *OutputContext)
+	// ExitIo is called when exiting the io production.
+	ExitIo(c *IoContext)
 
 	// ExitStop is called when exiting the stop production.
 	ExitStop(c *StopContext)

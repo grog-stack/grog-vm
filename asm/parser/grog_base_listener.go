@@ -146,17 +146,11 @@ func (s *BaseGrogListener) EnterJump(ctx *JumpContext) {}
 // ExitJump is called when production jump is exited.
 func (s *BaseGrogListener) ExitJump(ctx *JumpContext) {}
 
-// EnterInput is called when production input is entered.
-func (s *BaseGrogListener) EnterInput(ctx *InputContext) {}
+// EnterIo is called when production io is entered.
+func (s *BaseGrogListener) EnterIo(ctx *IoContext) {}
 
-// ExitInput is called when production input is exited.
-func (s *BaseGrogListener) ExitInput(ctx *InputContext) {}
-
-// EnterOutput is called when production output is entered.
-func (s *BaseGrogListener) EnterOutput(ctx *OutputContext) {}
-
-// ExitOutput is called when production output is exited.
-func (s *BaseGrogListener) ExitOutput(ctx *OutputContext) {}
+// ExitIo is called when production io is exited.
+func (s *BaseGrogListener) ExitIo(ctx *IoContext) {}
 
 // EnterStop is called when production stop is entered.
 func (s *BaseGrogListener) EnterStop(ctx *StopContext) {}

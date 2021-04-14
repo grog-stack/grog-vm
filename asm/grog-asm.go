@@ -194,16 +194,17 @@ func (l *listener) ExitJump(c *parser.JumpContext) {
 	l.Output.Write(destination)
 }
 
-func (l *listener) ExitInput(c *parser.InputContext) {
+func (l *listener) ExitIo(c *parser.IoContext) {
 	register := registerByte(c.Destination.GetText())
 	device := deviceByte(c.Source.GetText())
-	l.Output.Write([]byte{vm.INPUT_REGISTER, device, register})
-}
-
-func (l *listener) ExitOutput(c *parser.OutputContext) {
-	register := registerByte(c.Source.GetText())
-	device := deviceByte(c.Destination.GetText())
-	l.Output.Write([]byte{vm.OUTPUT_REGISTER, register, device})
+	operation := byte(0)
+	switch c.Operation.GetText() {
+	case "input":
+		operation = vm.INPUT
+	case "output":
+		operation = vm.OUTPUT
+	}
+	l.Output.Write([]byte{operation, device, register})
 }
 
 func (l *listener) ExitStop(c *parser.StopContext) {
@@ -228,18 +229,6 @@ func pointerAddressBytes(value string) []byte {
 
 func prefixedAddressBytes(value string, prefix string) []byte {
 	return addressBytes(strings.Split(value, prefix)[1])
-}
-
-func writeValue(l *listener, value string) {
-	l.Output.WriteByte(valueByte(value))
-}
-
-func writeAddress(l *listener, address string) {
-	l.Output.Write(addressBytes(address))
-}
-
-func registerOpCode(opcodeByte byte, registerValue byte) byte {
-	return opcodeByte | registerValue
 }
 
 func registerByte(registerName string) byte {

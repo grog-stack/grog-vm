@@ -15,112 +15,112 @@ var _ = reflect.Copy
 var _ = strconv.Itoa
 
 var parserATN = []uint16{
-	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 42, 201,
+	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 43, 197,
 	4, 2, 9, 2, 4, 3, 9, 3, 4, 4, 9, 4, 4, 5, 9, 5, 4, 6, 9, 6, 4, 7, 9, 7,
 	4, 8, 9, 8, 4, 9, 9, 9, 4, 10, 9, 10, 4, 11, 9, 11, 4, 12, 9, 12, 4, 13,
 	9, 13, 4, 14, 9, 14, 4, 15, 9, 15, 4, 16, 9, 16, 4, 17, 9, 17, 4, 18, 9,
 	18, 4, 19, 9, 19, 4, 20, 9, 20, 4, 21, 9, 21, 4, 22, 9, 22, 4, 23, 9, 23,
-	4, 24, 9, 24, 4, 25, 9, 25, 4, 26, 9, 26, 3, 2, 6, 2, 54, 10, 2, 13, 2,
-	14, 2, 55, 3, 2, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
-	3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 5, 3, 73, 10, 3, 3, 4, 3, 4, 3, 4, 3, 4,
-	3, 4, 3, 4, 5, 4, 81, 10, 4, 3, 5, 3, 5, 5, 5, 85, 10, 5, 3, 5, 3, 5, 3,
-	5, 3, 5, 5, 5, 91, 10, 5, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3,
-	6, 3, 6, 3, 6, 5, 6, 103, 10, 6, 3, 7, 3, 7, 3, 7, 3, 7, 3, 8, 3, 8, 3,
-	8, 3, 8, 3, 9, 3, 9, 3, 9, 3, 9, 3, 10, 3, 10, 3, 10, 3, 10, 3, 11, 3,
-	11, 3, 11, 3, 11, 3, 12, 3, 12, 3, 12, 3, 12, 3, 13, 3, 13, 3, 13, 3, 13,
-	3, 14, 3, 14, 3, 14, 3, 14, 3, 15, 3, 15, 3, 15, 3, 15, 3, 16, 3, 16, 3,
-	16, 3, 16, 3, 17, 3, 17, 3, 17, 3, 18, 3, 18, 3, 18, 3, 19, 3, 19, 3, 19,
-	3, 19, 5, 19, 155, 10, 19, 3, 19, 3, 19, 3, 19, 3, 20, 3, 20, 3, 20, 3,
-	21, 3, 21, 3, 21, 5, 21, 166, 10, 21, 3, 21, 3, 21, 3, 21, 3, 22, 3, 22,
-	3, 22, 3, 22, 3, 22, 3, 22, 3, 22, 3, 22, 3, 22, 3, 22, 3, 22, 5, 22, 182,
-	10, 22, 3, 22, 3, 22, 3, 22, 5, 22, 187, 10, 22, 3, 23, 3, 23, 3, 23, 3,
-	23, 3, 24, 3, 24, 3, 24, 3, 24, 3, 25, 3, 25, 3, 26, 3, 26, 3, 26, 2, 2,
-	27, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36,
-	38, 40, 42, 44, 46, 48, 50, 2, 2, 2, 220, 2, 53, 3, 2, 2, 2, 4, 72, 3,
-	2, 2, 2, 6, 74, 3, 2, 2, 2, 8, 84, 3, 2, 2, 2, 10, 102, 3, 2, 2, 2, 12,
-	104, 3, 2, 2, 2, 14, 108, 3, 2, 2, 2, 16, 112, 3, 2, 2, 2, 18, 116, 3,
-	2, 2, 2, 20, 120, 3, 2, 2, 2, 22, 124, 3, 2, 2, 2, 24, 128, 3, 2, 2, 2,
-	26, 132, 3, 2, 2, 2, 28, 136, 3, 2, 2, 2, 30, 140, 3, 2, 2, 2, 32, 144,
-	3, 2, 2, 2, 34, 147, 3, 2, 2, 2, 36, 154, 3, 2, 2, 2, 38, 159, 3, 2, 2,
-	2, 40, 165, 3, 2, 2, 2, 42, 181, 3, 2, 2, 2, 44, 188, 3, 2, 2, 2, 46, 192,
-	3, 2, 2, 2, 48, 196, 3, 2, 2, 2, 50, 198, 3, 2, 2, 2, 52, 54, 5, 4, 3,
-	2, 53, 52, 3, 2, 2, 2, 54, 55, 3, 2, 2, 2, 55, 53, 3, 2, 2, 2, 55, 56,
-	3, 2, 2, 2, 56, 57, 3, 2, 2, 2, 57, 58, 7, 2, 2, 3, 58, 3, 3, 2, 2, 2,
-	59, 73, 5, 32, 17, 2, 60, 73, 5, 34, 18, 2, 61, 73, 5, 36, 19, 2, 62, 73,
-	5, 38, 20, 2, 63, 73, 5, 40, 21, 2, 64, 73, 5, 6, 4, 2, 65, 73, 5, 8, 5,
-	2, 66, 73, 5, 10, 6, 2, 67, 73, 5, 42, 22, 2, 68, 73, 5, 44, 23, 2, 69,
-	73, 5, 46, 24, 2, 70, 73, 5, 48, 25, 2, 71, 73, 5, 50, 26, 2, 72, 59, 3,
-	2, 2, 2, 72, 60, 3, 2, 2, 2, 72, 61, 3, 2, 2, 2, 72, 62, 3, 2, 2, 2, 72,
-	63, 3, 2, 2, 2, 72, 64, 3, 2, 2, 2, 72, 65, 3, 2, 2, 2, 72, 66, 3, 2, 2,
-	2, 72, 67, 3, 2, 2, 2, 72, 68, 3, 2, 2, 2, 72, 69, 3, 2, 2, 2, 72, 70,
-	3, 2, 2, 2, 72, 71, 3, 2, 2, 2, 73, 5, 3, 2, 2, 2, 74, 75, 7, 9, 2, 2,
-	75, 80, 7, 38, 2, 2, 76, 81, 7, 36, 2, 2, 77, 81, 7, 40, 2, 2, 78, 81,
-	7, 41, 2, 2, 79, 81, 7, 42, 2, 2, 80, 76, 3, 2, 2, 2, 80, 77, 3, 2, 2,
-	2, 80, 78, 3, 2, 2, 2, 80, 79, 3, 2, 2, 2, 81, 7, 3, 2, 2, 2, 82, 85, 7,
-	38, 2, 2, 83, 85, 7, 36, 2, 2, 84, 82, 3, 2, 2, 2, 84, 83, 3, 2, 2, 2,
-	85, 86, 3, 2, 2, 2, 86, 90, 7, 3, 2, 2, 87, 91, 7, 40, 2, 2, 88, 91, 7,
-	41, 2, 2, 89, 91, 7, 42, 2, 2, 90, 87, 3, 2, 2, 2, 90, 88, 3, 2, 2, 2,
-	90, 89, 3, 2, 2, 2, 91, 9, 3, 2, 2, 2, 92, 103, 5, 12, 7, 2, 93, 103, 5,
-	14, 8, 2, 94, 103, 5, 16, 9, 2, 95, 103, 5, 18, 10, 2, 96, 103, 5, 20,
-	11, 2, 97, 103, 5, 22, 12, 2, 98, 103, 5, 24, 13, 2, 99, 103, 5, 26, 14,
-	2, 100, 103, 5, 28, 15, 2, 101, 103, 5, 30, 16, 2, 102, 92, 3, 2, 2, 2,
-	102, 93, 3, 2, 2, 2, 102, 94, 3, 2, 2, 2, 102, 95, 3, 2, 2, 2, 102, 96,
-	3, 2, 2, 2, 102, 97, 3, 2, 2, 2, 102, 98, 3, 2, 2, 2, 102, 99, 3, 2, 2,
-	2, 102, 100, 3, 2, 2, 2, 102, 101, 3, 2, 2, 2, 103, 11, 3, 2, 2, 2, 104,
-	105, 7, 11, 2, 2, 105, 106, 7, 38, 2, 2, 106, 107, 7, 38, 2, 2, 107, 13,
-	3, 2, 2, 2, 108, 109, 7, 11, 2, 2, 109, 110, 7, 40, 2, 2, 110, 111, 7,
-	40, 2, 2, 111, 15, 3, 2, 2, 2, 112, 113, 7, 11, 2, 2, 113, 114, 7, 40,
-	2, 2, 114, 115, 7, 41, 2, 2, 115, 17, 3, 2, 2, 2, 116, 117, 7, 11, 2, 2,
-	117, 118, 7, 40, 2, 2, 118, 119, 7, 42, 2, 2, 119, 19, 3, 2, 2, 2, 120,
-	121, 7, 11, 2, 2, 121, 122, 7, 41, 2, 2, 122, 123, 7, 40, 2, 2, 123, 21,
-	3, 2, 2, 2, 124, 125, 7, 11, 2, 2, 125, 126, 7, 41, 2, 2, 126, 127, 7,
-	41, 2, 2, 127, 23, 3, 2, 2, 2, 128, 129, 7, 11, 2, 2, 129, 130, 7, 41,
-	2, 2, 130, 131, 7, 42, 2, 2, 131, 25, 3, 2, 2, 2, 132, 133, 7, 11, 2, 2,
-	133, 134, 7, 42, 2, 2, 134, 135, 7, 40, 2, 2, 135, 27, 3, 2, 2, 2, 136,
-	137, 7, 11, 2, 2, 137, 138, 7, 42, 2, 2, 138, 139, 7, 41, 2, 2, 139, 29,
-	3, 2, 2, 2, 140, 141, 7, 11, 2, 2, 141, 142, 7, 42, 2, 2, 142, 143, 7,
-	42, 2, 2, 143, 31, 3, 2, 2, 2, 144, 145, 7, 12, 2, 2, 145, 146, 7, 38,
-	2, 2, 146, 33, 3, 2, 2, 2, 147, 148, 7, 13, 2, 2, 148, 149, 7, 38, 2, 2,
-	149, 35, 3, 2, 2, 2, 150, 155, 7, 14, 2, 2, 151, 155, 7, 15, 2, 2, 152,
-	155, 7, 17, 2, 2, 153, 155, 7, 16, 2, 2, 154, 150, 3, 2, 2, 2, 154, 151,
-	3, 2, 2, 2, 154, 152, 3, 2, 2, 2, 154, 153, 3, 2, 2, 2, 155, 156, 3, 2,
-	2, 2, 156, 157, 7, 38, 2, 2, 157, 158, 7, 38, 2, 2, 158, 37, 3, 2, 2, 2,
-	159, 160, 7, 29, 2, 2, 160, 161, 7, 38, 2, 2, 161, 39, 3, 2, 2, 2, 162,
-	166, 7, 30, 2, 2, 163, 166, 7, 31, 2, 2, 164, 166, 7, 32, 2, 2, 165, 162,
-	3, 2, 2, 2, 165, 163, 3, 2, 2, 2, 165, 164, 3, 2, 2, 2, 166, 167, 3, 2,
-	2, 2, 167, 168, 7, 38, 2, 2, 168, 169, 7, 38, 2, 2, 169, 41, 3, 2, 2, 2,
-	170, 182, 7, 18, 2, 2, 171, 182, 7, 19, 2, 2, 172, 182, 7, 20, 2, 2, 173,
-	182, 7, 21, 2, 2, 174, 182, 7, 22, 2, 2, 175, 182, 7, 23, 2, 2, 176, 182,
-	7, 24, 2, 2, 177, 182, 7, 25, 2, 2, 178, 182, 7, 26, 2, 2, 179, 182, 7,
-	27, 2, 2, 180, 182, 7, 28, 2, 2, 181, 170, 3, 2, 2, 2, 181, 171, 3, 2,
-	2, 2, 181, 172, 3, 2, 2, 2, 181, 173, 3, 2, 2, 2, 181, 174, 3, 2, 2, 2,
-	181, 175, 3, 2, 2, 2, 181, 176, 3, 2, 2, 2, 181, 177, 3, 2, 2, 2, 181,
-	178, 3, 2, 2, 2, 181, 179, 3, 2, 2, 2, 181, 180, 3, 2, 2, 2, 182, 186,
-	3, 2, 2, 2, 183, 187, 7, 40, 2, 2, 184, 187, 7, 41, 2, 2, 185, 187, 7,
-	42, 2, 2, 186, 183, 3, 2, 2, 2, 186, 184, 3, 2, 2, 2, 186, 185, 3, 2, 2,
-	2, 187, 43, 3, 2, 2, 2, 188, 189, 7, 38, 2, 2, 189, 190, 7, 4, 2, 2, 190,
-	191, 7, 39, 2, 2, 191, 45, 3, 2, 2, 2, 192, 193, 7, 38, 2, 2, 193, 194,
-	7, 3, 2, 2, 194, 195, 7, 39, 2, 2, 195, 47, 3, 2, 2, 2, 196, 197, 7, 33,
-	2, 2, 197, 49, 3, 2, 2, 2, 198, 199, 7, 34, 2, 2, 199, 51, 3, 2, 2, 2,
-	12, 55, 72, 80, 84, 90, 102, 154, 165, 181, 186,
+	4, 24, 9, 24, 4, 25, 9, 25, 3, 2, 6, 2, 52, 10, 2, 13, 2, 14, 2, 53, 3,
+	2, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+	3, 3, 3, 5, 3, 70, 10, 3, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 5, 4, 78,
+	10, 4, 3, 5, 3, 5, 5, 5, 82, 10, 5, 3, 5, 3, 5, 3, 5, 3, 5, 5, 5, 88, 10,
+	5, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 5, 6, 100,
+	10, 6, 3, 7, 3, 7, 3, 7, 3, 7, 3, 8, 3, 8, 3, 8, 3, 8, 3, 9, 3, 9, 3, 9,
+	3, 9, 3, 10, 3, 10, 3, 10, 3, 10, 3, 11, 3, 11, 3, 11, 3, 11, 3, 12, 3,
+	12, 3, 12, 3, 12, 3, 13, 3, 13, 3, 13, 3, 13, 3, 14, 3, 14, 3, 14, 3, 14,
+	3, 15, 3, 15, 3, 15, 3, 15, 3, 16, 3, 16, 3, 16, 3, 16, 3, 17, 3, 17, 3,
+	17, 3, 18, 3, 18, 3, 18, 3, 19, 3, 19, 3, 19, 3, 19, 5, 19, 152, 10, 19,
+	3, 19, 3, 19, 3, 19, 3, 20, 3, 20, 3, 20, 3, 21, 3, 21, 3, 21, 5, 21, 163,
+	10, 21, 3, 21, 3, 21, 3, 21, 3, 22, 3, 22, 3, 22, 3, 22, 3, 22, 3, 22,
+	3, 22, 3, 22, 3, 22, 3, 22, 3, 22, 5, 22, 179, 10, 22, 3, 22, 3, 22, 3,
+	22, 5, 22, 184, 10, 22, 3, 23, 3, 23, 5, 23, 188, 10, 23, 3, 23, 3, 23,
+	3, 23, 3, 24, 3, 24, 3, 25, 3, 25, 3, 25, 2, 2, 26, 2, 4, 6, 8, 10, 12,
+	14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48,
+	2, 2, 2, 217, 2, 51, 3, 2, 2, 2, 4, 69, 3, 2, 2, 2, 6, 71, 3, 2, 2, 2,
+	8, 81, 3, 2, 2, 2, 10, 99, 3, 2, 2, 2, 12, 101, 3, 2, 2, 2, 14, 105, 3,
+	2, 2, 2, 16, 109, 3, 2, 2, 2, 18, 113, 3, 2, 2, 2, 20, 117, 3, 2, 2, 2,
+	22, 121, 3, 2, 2, 2, 24, 125, 3, 2, 2, 2, 26, 129, 3, 2, 2, 2, 28, 133,
+	3, 2, 2, 2, 30, 137, 3, 2, 2, 2, 32, 141, 3, 2, 2, 2, 34, 144, 3, 2, 2,
+	2, 36, 151, 3, 2, 2, 2, 38, 156, 3, 2, 2, 2, 40, 162, 3, 2, 2, 2, 42, 178,
+	3, 2, 2, 2, 44, 187, 3, 2, 2, 2, 46, 192, 3, 2, 2, 2, 48, 194, 3, 2, 2,
+	2, 50, 52, 5, 4, 3, 2, 51, 50, 3, 2, 2, 2, 52, 53, 3, 2, 2, 2, 53, 51,
+	3, 2, 2, 2, 53, 54, 3, 2, 2, 2, 54, 55, 3, 2, 2, 2, 55, 56, 7, 2, 2, 3,
+	56, 3, 3, 2, 2, 2, 57, 70, 5, 32, 17, 2, 58, 70, 5, 34, 18, 2, 59, 70,
+	5, 36, 19, 2, 60, 70, 5, 38, 20, 2, 61, 70, 5, 40, 21, 2, 62, 70, 5, 6,
+	4, 2, 63, 70, 5, 8, 5, 2, 64, 70, 5, 10, 6, 2, 65, 70, 5, 42, 22, 2, 66,
+	70, 5, 44, 23, 2, 67, 70, 5, 46, 24, 2, 68, 70, 5, 48, 25, 2, 69, 57, 3,
+	2, 2, 2, 69, 58, 3, 2, 2, 2, 69, 59, 3, 2, 2, 2, 69, 60, 3, 2, 2, 2, 69,
+	61, 3, 2, 2, 2, 69, 62, 3, 2, 2, 2, 69, 63, 3, 2, 2, 2, 69, 64, 3, 2, 2,
+	2, 69, 65, 3, 2, 2, 2, 69, 66, 3, 2, 2, 2, 69, 67, 3, 2, 2, 2, 69, 68,
+	3, 2, 2, 2, 70, 5, 3, 2, 2, 2, 71, 72, 7, 8, 2, 2, 72, 77, 7, 39, 2, 2,
+	73, 78, 7, 37, 2, 2, 74, 78, 7, 41, 2, 2, 75, 78, 7, 42, 2, 2, 76, 78,
+	7, 43, 2, 2, 77, 73, 3, 2, 2, 2, 77, 74, 3, 2, 2, 2, 77, 75, 3, 2, 2, 2,
+	77, 76, 3, 2, 2, 2, 78, 7, 3, 2, 2, 2, 79, 82, 7, 39, 2, 2, 80, 82, 7,
+	37, 2, 2, 81, 79, 3, 2, 2, 2, 81, 80, 3, 2, 2, 2, 82, 83, 3, 2, 2, 2, 83,
+	87, 7, 3, 2, 2, 84, 88, 7, 41, 2, 2, 85, 88, 7, 42, 2, 2, 86, 88, 7, 43,
+	2, 2, 87, 84, 3, 2, 2, 2, 87, 85, 3, 2, 2, 2, 87, 86, 3, 2, 2, 2, 88, 9,
+	3, 2, 2, 2, 89, 100, 5, 12, 7, 2, 90, 100, 5, 14, 8, 2, 91, 100, 5, 16,
+	9, 2, 92, 100, 5, 18, 10, 2, 93, 100, 5, 20, 11, 2, 94, 100, 5, 22, 12,
+	2, 95, 100, 5, 24, 13, 2, 96, 100, 5, 26, 14, 2, 97, 100, 5, 28, 15, 2,
+	98, 100, 5, 30, 16, 2, 99, 89, 3, 2, 2, 2, 99, 90, 3, 2, 2, 2, 99, 91,
+	3, 2, 2, 2, 99, 92, 3, 2, 2, 2, 99, 93, 3, 2, 2, 2, 99, 94, 3, 2, 2, 2,
+	99, 95, 3, 2, 2, 2, 99, 96, 3, 2, 2, 2, 99, 97, 3, 2, 2, 2, 99, 98, 3,
+	2, 2, 2, 100, 11, 3, 2, 2, 2, 101, 102, 7, 10, 2, 2, 102, 103, 7, 39, 2,
+	2, 103, 104, 7, 39, 2, 2, 104, 13, 3, 2, 2, 2, 105, 106, 7, 10, 2, 2, 106,
+	107, 7, 41, 2, 2, 107, 108, 7, 41, 2, 2, 108, 15, 3, 2, 2, 2, 109, 110,
+	7, 10, 2, 2, 110, 111, 7, 41, 2, 2, 111, 112, 7, 42, 2, 2, 112, 17, 3,
+	2, 2, 2, 113, 114, 7, 10, 2, 2, 114, 115, 7, 41, 2, 2, 115, 116, 7, 43,
+	2, 2, 116, 19, 3, 2, 2, 2, 117, 118, 7, 10, 2, 2, 118, 119, 7, 42, 2, 2,
+	119, 120, 7, 41, 2, 2, 120, 21, 3, 2, 2, 2, 121, 122, 7, 10, 2, 2, 122,
+	123, 7, 42, 2, 2, 123, 124, 7, 42, 2, 2, 124, 23, 3, 2, 2, 2, 125, 126,
+	7, 10, 2, 2, 126, 127, 7, 42, 2, 2, 127, 128, 7, 43, 2, 2, 128, 25, 3,
+	2, 2, 2, 129, 130, 7, 10, 2, 2, 130, 131, 7, 43, 2, 2, 131, 132, 7, 41,
+	2, 2, 132, 27, 3, 2, 2, 2, 133, 134, 7, 10, 2, 2, 134, 135, 7, 43, 2, 2,
+	135, 136, 7, 42, 2, 2, 136, 29, 3, 2, 2, 2, 137, 138, 7, 10, 2, 2, 138,
+	139, 7, 43, 2, 2, 139, 140, 7, 43, 2, 2, 140, 31, 3, 2, 2, 2, 141, 142,
+	7, 11, 2, 2, 142, 143, 7, 39, 2, 2, 143, 33, 3, 2, 2, 2, 144, 145, 7, 12,
+	2, 2, 145, 146, 7, 39, 2, 2, 146, 35, 3, 2, 2, 2, 147, 152, 7, 13, 2, 2,
+	148, 152, 7, 14, 2, 2, 149, 152, 7, 16, 2, 2, 150, 152, 7, 15, 2, 2, 151,
+	147, 3, 2, 2, 2, 151, 148, 3, 2, 2, 2, 151, 149, 3, 2, 2, 2, 151, 150,
+	3, 2, 2, 2, 152, 153, 3, 2, 2, 2, 153, 154, 7, 39, 2, 2, 154, 155, 7, 39,
+	2, 2, 155, 37, 3, 2, 2, 2, 156, 157, 7, 28, 2, 2, 157, 158, 7, 39, 2, 2,
+	158, 39, 3, 2, 2, 2, 159, 163, 7, 29, 2, 2, 160, 163, 7, 30, 2, 2, 161,
+	163, 7, 31, 2, 2, 162, 159, 3, 2, 2, 2, 162, 160, 3, 2, 2, 2, 162, 161,
+	3, 2, 2, 2, 163, 164, 3, 2, 2, 2, 164, 165, 7, 39, 2, 2, 165, 166, 7, 39,
+	2, 2, 166, 41, 3, 2, 2, 2, 167, 179, 7, 17, 2, 2, 168, 179, 7, 18, 2, 2,
+	169, 179, 7, 19, 2, 2, 170, 179, 7, 20, 2, 2, 171, 179, 7, 21, 2, 2, 172,
+	179, 7, 22, 2, 2, 173, 179, 7, 23, 2, 2, 174, 179, 7, 24, 2, 2, 175, 179,
+	7, 25, 2, 2, 176, 179, 7, 26, 2, 2, 177, 179, 7, 27, 2, 2, 178, 167, 3,
+	2, 2, 2, 178, 168, 3, 2, 2, 2, 178, 169, 3, 2, 2, 2, 178, 170, 3, 2, 2,
+	2, 178, 171, 3, 2, 2, 2, 178, 172, 3, 2, 2, 2, 178, 173, 3, 2, 2, 2, 178,
+	174, 3, 2, 2, 2, 178, 175, 3, 2, 2, 2, 178, 176, 3, 2, 2, 2, 178, 177,
+	3, 2, 2, 2, 179, 183, 3, 2, 2, 2, 180, 184, 7, 41, 2, 2, 181, 184, 7, 42,
+	2, 2, 182, 184, 7, 43, 2, 2, 183, 180, 3, 2, 2, 2, 183, 181, 3, 2, 2, 2,
+	183, 182, 3, 2, 2, 2, 184, 43, 3, 2, 2, 2, 185, 188, 7, 32, 2, 2, 186,
+	188, 7, 33, 2, 2, 187, 185, 3, 2, 2, 2, 187, 186, 3, 2, 2, 2, 188, 189,
+	3, 2, 2, 2, 189, 190, 7, 39, 2, 2, 190, 191, 7, 40, 2, 2, 191, 45, 3, 2,
+	2, 2, 192, 193, 7, 34, 2, 2, 193, 47, 3, 2, 2, 2, 194, 195, 7, 35, 2, 2,
+	195, 49, 3, 2, 2, 2, 13, 53, 69, 77, 81, 87, 99, 151, 162, 178, 183, 187,
 }
 var deserializer = antlr.NewATNDeserializer(nil)
 var deserializedATN = deserializer.DeserializeFromUInt16(parserATN)
 
 var literalNames = []string{
-	"", "'->'", "'<-'", "", "", "", "", "'load'", "'move'", "'copy'", "'increment'",
+	"", "'->'", "", "", "", "", "'load'", "'move'", "'copy'", "'increment'",
 	"'decrement'", "'add'", "'subtract'", "'divide'", "'multiply'", "'jump'",
 	"'je'", "'jne'", "'jg'", "'jng'", "'jge'", "'jnge'", "'jl'", "'jnl'", "'jle'",
-	"'jnle'", "'not'", "'and'", "'or'", "'xor'", "'stop'", "'wait'",
+	"'jnle'", "'not'", "'and'", "'or'", "'xor'", "'input'", "'output'", "'stop'",
+	"'wait'",
 }
 var symbolicNames = []string{
-	"", "", "", "WHITESPACE", "WS", "COMMENT", "LINE_COMMENT", "LOAD", "MOVE",
+	"", "", "WHITESPACE", "WS", "COMMENT", "LINE_COMMENT", "LOAD", "MOVE",
 	"COPY", "INCREMENT", "DECREMENT", "ADD", "SUBTRACT", "DIVIDE", "MULTIPLY",
 	"JUMP", "JUMP_IF_EQUAL", "JUMP_IF_NOT_EQUAL", "JUMP_IF_GREATER", "JUMP_IF_NOT_GREATER",
 	"JUMP_IF_GREATER_OR_EQUAL", "JUMP_IF_NOT_GREATER_OR_EQUAL", "JUMP_IF_LESS",
 	"JUMP_IF_NOT_LESS", "JUMP_IF_LESS_OR_EQUAL", "JUMP_IF_NOT_LESS_OR_EQUAL",
-	"NOT", "AND", "OR", "XOR", "STOP", "WAIT", "HEX_DIGIT", "HEXA_BYTE", "WORD",
-	"REGISTER", "DEVICE", "ABSOLUTE_ADDRESS", "OFFSET_ADDRESS", "POINTER_ADDRESS",
+	"NOT", "AND", "OR", "XOR", "INPUT", "OUTPUT", "STOP", "WAIT", "HEX_DIGIT",
+	"HEXA_BYTE", "WORD", "REGISTER", "DEVICE", "ABSOLUTE_ADDRESS", "OFFSET_ADDRESS",
+	"POINTER_ADDRESS",
 }
 
 var ruleNames = []string{
@@ -129,7 +129,7 @@ var ruleNames = []string{
 	"copyAbsoluteToOffset", "copyOffsetToOffset", "copyPointerToOffset", "copyAbsoluteToPointer",
 	"copyOffsetToPointer", "copyPointerToPointer", "increment", "decrement",
 	"arithmeticOperation", "unaryBooleanOperation", "binaryBooleanOperation",
-	"jump", "input", "output", "stop", "wait",
+	"jump", "io", "stop", "wait",
 }
 var decisionToDFA = make([]*antlr.DFA, len(deserializedATN.DecisionToState))
 
@@ -161,45 +161,46 @@ func NewGrogParser(input antlr.TokenStream) *GrogParser {
 const (
 	GrogParserEOF                          = antlr.TokenEOF
 	GrogParserT__0                         = 1
-	GrogParserT__1                         = 2
-	GrogParserWHITESPACE                   = 3
-	GrogParserWS                           = 4
-	GrogParserCOMMENT                      = 5
-	GrogParserLINE_COMMENT                 = 6
-	GrogParserLOAD                         = 7
-	GrogParserMOVE                         = 8
-	GrogParserCOPY                         = 9
-	GrogParserINCREMENT                    = 10
-	GrogParserDECREMENT                    = 11
-	GrogParserADD                          = 12
-	GrogParserSUBTRACT                     = 13
-	GrogParserDIVIDE                       = 14
-	GrogParserMULTIPLY                     = 15
-	GrogParserJUMP                         = 16
-	GrogParserJUMP_IF_EQUAL                = 17
-	GrogParserJUMP_IF_NOT_EQUAL            = 18
-	GrogParserJUMP_IF_GREATER              = 19
-	GrogParserJUMP_IF_NOT_GREATER          = 20
-	GrogParserJUMP_IF_GREATER_OR_EQUAL     = 21
-	GrogParserJUMP_IF_NOT_GREATER_OR_EQUAL = 22
-	GrogParserJUMP_IF_LESS                 = 23
-	GrogParserJUMP_IF_NOT_LESS             = 24
-	GrogParserJUMP_IF_LESS_OR_EQUAL        = 25
-	GrogParserJUMP_IF_NOT_LESS_OR_EQUAL    = 26
-	GrogParserNOT                          = 27
-	GrogParserAND                          = 28
-	GrogParserOR                           = 29
-	GrogParserXOR                          = 30
-	GrogParserSTOP                         = 31
-	GrogParserWAIT                         = 32
-	GrogParserHEX_DIGIT                    = 33
-	GrogParserHEXA_BYTE                    = 34
-	GrogParserWORD                         = 35
-	GrogParserREGISTER                     = 36
-	GrogParserDEVICE                       = 37
-	GrogParserABSOLUTE_ADDRESS             = 38
-	GrogParserOFFSET_ADDRESS               = 39
-	GrogParserPOINTER_ADDRESS              = 40
+	GrogParserWHITESPACE                   = 2
+	GrogParserWS                           = 3
+	GrogParserCOMMENT                      = 4
+	GrogParserLINE_COMMENT                 = 5
+	GrogParserLOAD                         = 6
+	GrogParserMOVE                         = 7
+	GrogParserCOPY                         = 8
+	GrogParserINCREMENT                    = 9
+	GrogParserDECREMENT                    = 10
+	GrogParserADD                          = 11
+	GrogParserSUBTRACT                     = 12
+	GrogParserDIVIDE                       = 13
+	GrogParserMULTIPLY                     = 14
+	GrogParserJUMP                         = 15
+	GrogParserJUMP_IF_EQUAL                = 16
+	GrogParserJUMP_IF_NOT_EQUAL            = 17
+	GrogParserJUMP_IF_GREATER              = 18
+	GrogParserJUMP_IF_NOT_GREATER          = 19
+	GrogParserJUMP_IF_GREATER_OR_EQUAL     = 20
+	GrogParserJUMP_IF_NOT_GREATER_OR_EQUAL = 21
+	GrogParserJUMP_IF_LESS                 = 22
+	GrogParserJUMP_IF_NOT_LESS             = 23
+	GrogParserJUMP_IF_LESS_OR_EQUAL        = 24
+	GrogParserJUMP_IF_NOT_LESS_OR_EQUAL    = 25
+	GrogParserNOT                          = 26
+	GrogParserAND                          = 27
+	GrogParserOR                           = 28
+	GrogParserXOR                          = 29
+	GrogParserINPUT                        = 30
+	GrogParserOUTPUT                       = 31
+	GrogParserSTOP                         = 32
+	GrogParserWAIT                         = 33
+	GrogParserHEX_DIGIT                    = 34
+	GrogParserHEXA_BYTE                    = 35
+	GrogParserWORD                         = 36
+	GrogParserREGISTER                     = 37
+	GrogParserDEVICE                       = 38
+	GrogParserABSOLUTE_ADDRESS             = 39
+	GrogParserOFFSET_ADDRESS               = 40
+	GrogParserPOINTER_ADDRESS              = 41
 )
 
 // GrogParser rules.
@@ -225,10 +226,9 @@ const (
 	GrogParserRULE_unaryBooleanOperation  = 18
 	GrogParserRULE_binaryBooleanOperation = 19
 	GrogParserRULE_jump                   = 20
-	GrogParserRULE_input                  = 21
-	GrogParserRULE_output                 = 22
-	GrogParserRULE_stop                   = 23
-	GrogParserRULE_wait                   = 24
+	GrogParserRULE_io                     = 21
+	GrogParserRULE_stop                   = 22
+	GrogParserRULE_wait                   = 23
 )
 
 // IProgramContext is an interface to support dynamic dispatch.
@@ -338,22 +338,22 @@ func (p *GrogParser) Program() (localctx IProgramContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(51)
+	p.SetState(49)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for ok := true; ok; ok = (((_la-7)&-(0x1f+1)) == 0 && ((1<<uint((_la-7)))&((1<<(GrogParserLOAD-7))|(1<<(GrogParserCOPY-7))|(1<<(GrogParserINCREMENT-7))|(1<<(GrogParserDECREMENT-7))|(1<<(GrogParserADD-7))|(1<<(GrogParserSUBTRACT-7))|(1<<(GrogParserDIVIDE-7))|(1<<(GrogParserMULTIPLY-7))|(1<<(GrogParserJUMP-7))|(1<<(GrogParserJUMP_IF_EQUAL-7))|(1<<(GrogParserJUMP_IF_NOT_EQUAL-7))|(1<<(GrogParserJUMP_IF_GREATER-7))|(1<<(GrogParserJUMP_IF_NOT_GREATER-7))|(1<<(GrogParserJUMP_IF_GREATER_OR_EQUAL-7))|(1<<(GrogParserJUMP_IF_NOT_GREATER_OR_EQUAL-7))|(1<<(GrogParserJUMP_IF_LESS-7))|(1<<(GrogParserJUMP_IF_NOT_LESS-7))|(1<<(GrogParserJUMP_IF_LESS_OR_EQUAL-7))|(1<<(GrogParserJUMP_IF_NOT_LESS_OR_EQUAL-7))|(1<<(GrogParserNOT-7))|(1<<(GrogParserAND-7))|(1<<(GrogParserOR-7))|(1<<(GrogParserXOR-7))|(1<<(GrogParserSTOP-7))|(1<<(GrogParserWAIT-7))|(1<<(GrogParserHEXA_BYTE-7))|(1<<(GrogParserREGISTER-7)))) != 0) {
+	for ok := true; ok; ok = (((_la-6)&-(0x1f+1)) == 0 && ((1<<uint((_la-6)))&((1<<(GrogParserLOAD-6))|(1<<(GrogParserCOPY-6))|(1<<(GrogParserINCREMENT-6))|(1<<(GrogParserDECREMENT-6))|(1<<(GrogParserADD-6))|(1<<(GrogParserSUBTRACT-6))|(1<<(GrogParserDIVIDE-6))|(1<<(GrogParserMULTIPLY-6))|(1<<(GrogParserJUMP-6))|(1<<(GrogParserJUMP_IF_EQUAL-6))|(1<<(GrogParserJUMP_IF_NOT_EQUAL-6))|(1<<(GrogParserJUMP_IF_GREATER-6))|(1<<(GrogParserJUMP_IF_NOT_GREATER-6))|(1<<(GrogParserJUMP_IF_GREATER_OR_EQUAL-6))|(1<<(GrogParserJUMP_IF_NOT_GREATER_OR_EQUAL-6))|(1<<(GrogParserJUMP_IF_LESS-6))|(1<<(GrogParserJUMP_IF_NOT_LESS-6))|(1<<(GrogParserJUMP_IF_LESS_OR_EQUAL-6))|(1<<(GrogParserJUMP_IF_NOT_LESS_OR_EQUAL-6))|(1<<(GrogParserNOT-6))|(1<<(GrogParserAND-6))|(1<<(GrogParserOR-6))|(1<<(GrogParserXOR-6))|(1<<(GrogParserINPUT-6))|(1<<(GrogParserOUTPUT-6))|(1<<(GrogParserSTOP-6))|(1<<(GrogParserWAIT-6))|(1<<(GrogParserHEXA_BYTE-6))|(1<<(GrogParserREGISTER-6)))) != 0) {
 		{
-			p.SetState(50)
+			p.SetState(48)
 			p.Instruction()
 		}
 
-		p.SetState(53)
+		p.SetState(51)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(55)
+		p.SetState(53)
 		p.Match(GrogParserEOF)
 	}
 
@@ -488,24 +488,14 @@ func (s *InstructionContext) Jump() IJumpContext {
 	return t.(IJumpContext)
 }
 
-func (s *InstructionContext) Input() IInputContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IInputContext)(nil)).Elem(), 0)
+func (s *InstructionContext) Io() IIoContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*IIoContext)(nil)).Elem(), 0)
 
 	if t == nil {
 		return nil
 	}
 
-	return t.(IInputContext)
-}
-
-func (s *InstructionContext) Output() IOutputContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IOutputContext)(nil)).Elem(), 0)
-
-	if t == nil {
-		return nil
-	}
-
-	return t.(IOutputContext)
+	return t.(IIoContext)
 }
 
 func (s *InstructionContext) Stop() IStopContext {
@@ -568,100 +558,96 @@ func (p *GrogParser) Instruction() (localctx IInstructionContext) {
 		}
 	}()
 
-	p.SetState(70)
+	p.SetState(67)
 	p.GetErrorHandler().Sync(p)
-	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 1, p.GetParserRuleContext()) {
-	case 1:
+
+	switch p.GetTokenStream().LA(1) {
+	case GrogParserINCREMENT:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(57)
+			p.SetState(55)
 			p.Increment()
 		}
 
-	case 2:
+	case GrogParserDECREMENT:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(58)
+			p.SetState(56)
 			p.Decrement()
 		}
 
-	case 3:
+	case GrogParserADD, GrogParserSUBTRACT, GrogParserDIVIDE, GrogParserMULTIPLY:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(59)
+			p.SetState(57)
 			p.ArithmeticOperation()
 		}
 
-	case 4:
+	case GrogParserNOT:
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(60)
+			p.SetState(58)
 			p.UnaryBooleanOperation()
 		}
 
-	case 5:
+	case GrogParserAND, GrogParserOR, GrogParserXOR:
 		p.EnterOuterAlt(localctx, 5)
 		{
-			p.SetState(61)
+			p.SetState(59)
 			p.BinaryBooleanOperation()
 		}
 
-	case 6:
+	case GrogParserLOAD:
 		p.EnterOuterAlt(localctx, 6)
 		{
-			p.SetState(62)
+			p.SetState(60)
 			p.Load()
 		}
 
-	case 7:
+	case GrogParserHEXA_BYTE, GrogParserREGISTER:
 		p.EnterOuterAlt(localctx, 7)
 		{
-			p.SetState(63)
+			p.SetState(61)
 			p.Store()
 		}
 
-	case 8:
+	case GrogParserCOPY:
 		p.EnterOuterAlt(localctx, 8)
 		{
-			p.SetState(64)
+			p.SetState(62)
 			p.CopyValue()
 		}
 
-	case 9:
+	case GrogParserJUMP, GrogParserJUMP_IF_EQUAL, GrogParserJUMP_IF_NOT_EQUAL, GrogParserJUMP_IF_GREATER, GrogParserJUMP_IF_NOT_GREATER, GrogParserJUMP_IF_GREATER_OR_EQUAL, GrogParserJUMP_IF_NOT_GREATER_OR_EQUAL, GrogParserJUMP_IF_LESS, GrogParserJUMP_IF_NOT_LESS, GrogParserJUMP_IF_LESS_OR_EQUAL, GrogParserJUMP_IF_NOT_LESS_OR_EQUAL:
 		p.EnterOuterAlt(localctx, 9)
 		{
-			p.SetState(65)
+			p.SetState(63)
 			p.Jump()
 		}
 
-	case 10:
+	case GrogParserINPUT, GrogParserOUTPUT:
 		p.EnterOuterAlt(localctx, 10)
 		{
-			p.SetState(66)
-			p.Input()
+			p.SetState(64)
+			p.Io()
 		}
 
-	case 11:
+	case GrogParserSTOP:
 		p.EnterOuterAlt(localctx, 11)
 		{
-			p.SetState(67)
-			p.Output()
-		}
-
-	case 12:
-		p.EnterOuterAlt(localctx, 12)
-		{
-			p.SetState(68)
+			p.SetState(65)
 			p.Stop()
 		}
 
-	case 13:
-		p.EnterOuterAlt(localctx, 13)
+	case GrogParserWAIT:
+		p.EnterOuterAlt(localctx, 12)
 		{
-			p.SetState(69)
+			p.SetState(66)
 			p.Wait()
 		}
 
+	default:
+		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
 	}
 
 	return localctx
@@ -826,23 +812,23 @@ func (p *GrogParser) Load() (localctx ILoadContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(72)
+		p.SetState(69)
 		p.Match(GrogParserLOAD)
 	}
 	{
-		p.SetState(73)
+		p.SetState(70)
 
 		var _m = p.Match(GrogParserREGISTER)
 
 		localctx.(*LoadContext).Register = _m
 	}
-	p.SetState(78)
+	p.SetState(75)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
 	case GrogParserHEXA_BYTE:
 		{
-			p.SetState(74)
+			p.SetState(71)
 
 			var _m = p.Match(GrogParserHEXA_BYTE)
 
@@ -851,7 +837,7 @@ func (p *GrogParser) Load() (localctx ILoadContext) {
 
 	case GrogParserABSOLUTE_ADDRESS:
 		{
-			p.SetState(75)
+			p.SetState(72)
 
 			var _m = p.Match(GrogParserABSOLUTE_ADDRESS)
 
@@ -860,7 +846,7 @@ func (p *GrogParser) Load() (localctx ILoadContext) {
 
 	case GrogParserOFFSET_ADDRESS:
 		{
-			p.SetState(76)
+			p.SetState(73)
 
 			var _m = p.Match(GrogParserOFFSET_ADDRESS)
 
@@ -869,7 +855,7 @@ func (p *GrogParser) Load() (localctx ILoadContext) {
 
 	case GrogParserPOINTER_ADDRESS:
 		{
-			p.SetState(77)
+			p.SetState(74)
 
 			var _m = p.Match(GrogParserPOINTER_ADDRESS)
 
@@ -1037,13 +1023,13 @@ func (p *GrogParser) Store() (localctx IStoreContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(82)
+	p.SetState(79)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
 	case GrogParserREGISTER:
 		{
-			p.SetState(80)
+			p.SetState(77)
 
 			var _m = p.Match(GrogParserREGISTER)
 
@@ -1052,7 +1038,7 @@ func (p *GrogParser) Store() (localctx IStoreContext) {
 
 	case GrogParserHEXA_BYTE:
 		{
-			p.SetState(81)
+			p.SetState(78)
 
 			var _m = p.Match(GrogParserHEXA_BYTE)
 
@@ -1063,16 +1049,16 @@ func (p *GrogParser) Store() (localctx IStoreContext) {
 		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
 	}
 	{
-		p.SetState(84)
+		p.SetState(81)
 		p.Match(GrogParserT__0)
 	}
-	p.SetState(88)
+	p.SetState(85)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
 	case GrogParserABSOLUTE_ADDRESS:
 		{
-			p.SetState(85)
+			p.SetState(82)
 
 			var _m = p.Match(GrogParserABSOLUTE_ADDRESS)
 
@@ -1081,7 +1067,7 @@ func (p *GrogParser) Store() (localctx IStoreContext) {
 
 	case GrogParserOFFSET_ADDRESS:
 		{
-			p.SetState(86)
+			p.SetState(83)
 
 			var _m = p.Match(GrogParserOFFSET_ADDRESS)
 
@@ -1090,7 +1076,7 @@ func (p *GrogParser) Store() (localctx IStoreContext) {
 
 	case GrogParserPOINTER_ADDRESS:
 		{
-			p.SetState(87)
+			p.SetState(84)
 
 			var _m = p.Match(GrogParserPOINTER_ADDRESS)
 
@@ -1282,76 +1268,76 @@ func (p *GrogParser) CopyValue() (localctx ICopyValueContext) {
 		}
 	}()
 
-	p.SetState(100)
+	p.SetState(97)
 	p.GetErrorHandler().Sync(p)
 	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 5, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(90)
+			p.SetState(87)
 			p.CopyRegister()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(91)
+			p.SetState(88)
 			p.CopyAbsoluteToAbsolute()
 		}
 
 	case 3:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(92)
+			p.SetState(89)
 			p.CopyOffsetToAbsolute()
 		}
 
 	case 4:
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(93)
+			p.SetState(90)
 			p.CopyPointerToAbsolute()
 		}
 
 	case 5:
 		p.EnterOuterAlt(localctx, 5)
 		{
-			p.SetState(94)
+			p.SetState(91)
 			p.CopyAbsoluteToOffset()
 		}
 
 	case 6:
 		p.EnterOuterAlt(localctx, 6)
 		{
-			p.SetState(95)
+			p.SetState(92)
 			p.CopyOffsetToOffset()
 		}
 
 	case 7:
 		p.EnterOuterAlt(localctx, 7)
 		{
-			p.SetState(96)
+			p.SetState(93)
 			p.CopyPointerToOffset()
 		}
 
 	case 8:
 		p.EnterOuterAlt(localctx, 8)
 		{
-			p.SetState(97)
+			p.SetState(94)
 			p.CopyAbsoluteToPointer()
 		}
 
 	case 9:
 		p.EnterOuterAlt(localctx, 9)
 		{
-			p.SetState(98)
+			p.SetState(95)
 			p.CopyOffsetToPointer()
 		}
 
 	case 10:
 		p.EnterOuterAlt(localctx, 10)
 		{
-			p.SetState(99)
+			p.SetState(96)
 			p.CopyPointerToPointer()
 		}
 
@@ -1474,18 +1460,18 @@ func (p *GrogParser) CopyRegister() (localctx ICopyRegisterContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(102)
+		p.SetState(99)
 		p.Match(GrogParserCOPY)
 	}
 	{
-		p.SetState(103)
+		p.SetState(100)
 
 		var _m = p.Match(GrogParserREGISTER)
 
 		localctx.(*CopyRegisterContext).DestinationRegister = _m
 	}
 	{
-		p.SetState(104)
+		p.SetState(101)
 
 		var _m = p.Match(GrogParserREGISTER)
 
@@ -1609,18 +1595,18 @@ func (p *GrogParser) CopyAbsoluteToAbsolute() (localctx ICopyAbsoluteToAbsoluteC
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(106)
+		p.SetState(103)
 		p.Match(GrogParserCOPY)
 	}
 	{
-		p.SetState(107)
+		p.SetState(104)
 
 		var _m = p.Match(GrogParserABSOLUTE_ADDRESS)
 
 		localctx.(*CopyAbsoluteToAbsoluteContext).Destination = _m
 	}
 	{
-		p.SetState(108)
+		p.SetState(105)
 
 		var _m = p.Match(GrogParserABSOLUTE_ADDRESS)
 
@@ -1744,18 +1730,18 @@ func (p *GrogParser) CopyOffsetToAbsolute() (localctx ICopyOffsetToAbsoluteConte
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(110)
+		p.SetState(107)
 		p.Match(GrogParserCOPY)
 	}
 	{
-		p.SetState(111)
+		p.SetState(108)
 
 		var _m = p.Match(GrogParserABSOLUTE_ADDRESS)
 
 		localctx.(*CopyOffsetToAbsoluteContext).Destination = _m
 	}
 	{
-		p.SetState(112)
+		p.SetState(109)
 
 		var _m = p.Match(GrogParserOFFSET_ADDRESS)
 
@@ -1879,18 +1865,18 @@ func (p *GrogParser) CopyPointerToAbsolute() (localctx ICopyPointerToAbsoluteCon
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(114)
+		p.SetState(111)
 		p.Match(GrogParserCOPY)
 	}
 	{
-		p.SetState(115)
+		p.SetState(112)
 
 		var _m = p.Match(GrogParserABSOLUTE_ADDRESS)
 
 		localctx.(*CopyPointerToAbsoluteContext).Destination = _m
 	}
 	{
-		p.SetState(116)
+		p.SetState(113)
 
 		var _m = p.Match(GrogParserPOINTER_ADDRESS)
 
@@ -2014,18 +2000,18 @@ func (p *GrogParser) CopyAbsoluteToOffset() (localctx ICopyAbsoluteToOffsetConte
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(118)
+		p.SetState(115)
 		p.Match(GrogParserCOPY)
 	}
 	{
-		p.SetState(119)
+		p.SetState(116)
 
 		var _m = p.Match(GrogParserOFFSET_ADDRESS)
 
 		localctx.(*CopyAbsoluteToOffsetContext).Destination = _m
 	}
 	{
-		p.SetState(120)
+		p.SetState(117)
 
 		var _m = p.Match(GrogParserABSOLUTE_ADDRESS)
 
@@ -2149,18 +2135,18 @@ func (p *GrogParser) CopyOffsetToOffset() (localctx ICopyOffsetToOffsetContext) 
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(122)
+		p.SetState(119)
 		p.Match(GrogParserCOPY)
 	}
 	{
-		p.SetState(123)
+		p.SetState(120)
 
 		var _m = p.Match(GrogParserOFFSET_ADDRESS)
 
 		localctx.(*CopyOffsetToOffsetContext).Destination = _m
 	}
 	{
-		p.SetState(124)
+		p.SetState(121)
 
 		var _m = p.Match(GrogParserOFFSET_ADDRESS)
 
@@ -2284,18 +2270,18 @@ func (p *GrogParser) CopyPointerToOffset() (localctx ICopyPointerToOffsetContext
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(126)
+		p.SetState(123)
 		p.Match(GrogParserCOPY)
 	}
 	{
-		p.SetState(127)
+		p.SetState(124)
 
 		var _m = p.Match(GrogParserOFFSET_ADDRESS)
 
 		localctx.(*CopyPointerToOffsetContext).Destination = _m
 	}
 	{
-		p.SetState(128)
+		p.SetState(125)
 
 		var _m = p.Match(GrogParserPOINTER_ADDRESS)
 
@@ -2419,18 +2405,18 @@ func (p *GrogParser) CopyAbsoluteToPointer() (localctx ICopyAbsoluteToPointerCon
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(130)
+		p.SetState(127)
 		p.Match(GrogParserCOPY)
 	}
 	{
-		p.SetState(131)
+		p.SetState(128)
 
 		var _m = p.Match(GrogParserPOINTER_ADDRESS)
 
 		localctx.(*CopyAbsoluteToPointerContext).Destination = _m
 	}
 	{
-		p.SetState(132)
+		p.SetState(129)
 
 		var _m = p.Match(GrogParserABSOLUTE_ADDRESS)
 
@@ -2554,18 +2540,18 @@ func (p *GrogParser) CopyOffsetToPointer() (localctx ICopyOffsetToPointerContext
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(134)
+		p.SetState(131)
 		p.Match(GrogParserCOPY)
 	}
 	{
-		p.SetState(135)
+		p.SetState(132)
 
 		var _m = p.Match(GrogParserPOINTER_ADDRESS)
 
 		localctx.(*CopyOffsetToPointerContext).Destination = _m
 	}
 	{
-		p.SetState(136)
+		p.SetState(133)
 
 		var _m = p.Match(GrogParserOFFSET_ADDRESS)
 
@@ -2689,18 +2675,18 @@ func (p *GrogParser) CopyPointerToPointer() (localctx ICopyPointerToPointerConte
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(138)
+		p.SetState(135)
 		p.Match(GrogParserCOPY)
 	}
 	{
-		p.SetState(139)
+		p.SetState(136)
 
 		var _m = p.Match(GrogParserPOINTER_ADDRESS)
 
 		localctx.(*CopyPointerToPointerContext).Destination = _m
 	}
 	{
-		p.SetState(140)
+		p.SetState(137)
 
 		var _m = p.Match(GrogParserPOINTER_ADDRESS)
 
@@ -2809,11 +2795,11 @@ func (p *GrogParser) Increment() (localctx IIncrementContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(142)
+		p.SetState(139)
 		p.Match(GrogParserINCREMENT)
 	}
 	{
-		p.SetState(143)
+		p.SetState(140)
 
 		var _m = p.Match(GrogParserREGISTER)
 
@@ -2922,11 +2908,11 @@ func (p *GrogParser) Decrement() (localctx IDecrementContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(145)
+		p.SetState(142)
 		p.Match(GrogParserDECREMENT)
 	}
 	{
-		p.SetState(146)
+		p.SetState(143)
 
 		var _m = p.Match(GrogParserREGISTER)
 
@@ -3072,13 +3058,13 @@ func (p *GrogParser) ArithmeticOperation() (localctx IArithmeticOperationContext
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(152)
+	p.SetState(149)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
 	case GrogParserADD:
 		{
-			p.SetState(148)
+			p.SetState(145)
 
 			var _m = p.Match(GrogParserADD)
 
@@ -3087,7 +3073,7 @@ func (p *GrogParser) ArithmeticOperation() (localctx IArithmeticOperationContext
 
 	case GrogParserSUBTRACT:
 		{
-			p.SetState(149)
+			p.SetState(146)
 
 			var _m = p.Match(GrogParserSUBTRACT)
 
@@ -3096,7 +3082,7 @@ func (p *GrogParser) ArithmeticOperation() (localctx IArithmeticOperationContext
 
 	case GrogParserMULTIPLY:
 		{
-			p.SetState(150)
+			p.SetState(147)
 
 			var _m = p.Match(GrogParserMULTIPLY)
 
@@ -3105,7 +3091,7 @@ func (p *GrogParser) ArithmeticOperation() (localctx IArithmeticOperationContext
 
 	case GrogParserDIVIDE:
 		{
-			p.SetState(151)
+			p.SetState(148)
 
 			var _m = p.Match(GrogParserDIVIDE)
 
@@ -3116,14 +3102,14 @@ func (p *GrogParser) ArithmeticOperation() (localctx IArithmeticOperationContext
 		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
 	}
 	{
-		p.SetState(154)
+		p.SetState(151)
 
 		var _m = p.Match(GrogParserREGISTER)
 
 		localctx.(*ArithmeticOperationContext).Destination = _m
 	}
 	{
-		p.SetState(155)
+		p.SetState(152)
 
 		var _m = p.Match(GrogParserREGISTER)
 
@@ -3232,11 +3218,11 @@ func (p *GrogParser) UnaryBooleanOperation() (localctx IUnaryBooleanOperationCon
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(157)
+		p.SetState(154)
 		p.Match(GrogParserNOT)
 	}
 	{
-		p.SetState(158)
+		p.SetState(155)
 
 		var _m = p.Match(GrogParserREGISTER)
 
@@ -3378,13 +3364,13 @@ func (p *GrogParser) BinaryBooleanOperation() (localctx IBinaryBooleanOperationC
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(163)
+	p.SetState(160)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
 	case GrogParserAND:
 		{
-			p.SetState(160)
+			p.SetState(157)
 
 			var _m = p.Match(GrogParserAND)
 
@@ -3393,7 +3379,7 @@ func (p *GrogParser) BinaryBooleanOperation() (localctx IBinaryBooleanOperationC
 
 	case GrogParserOR:
 		{
-			p.SetState(161)
+			p.SetState(158)
 
 			var _m = p.Match(GrogParserOR)
 
@@ -3402,7 +3388,7 @@ func (p *GrogParser) BinaryBooleanOperation() (localctx IBinaryBooleanOperationC
 
 	case GrogParserXOR:
 		{
-			p.SetState(162)
+			p.SetState(159)
 
 			var _m = p.Match(GrogParserXOR)
 
@@ -3413,14 +3399,14 @@ func (p *GrogParser) BinaryBooleanOperation() (localctx IBinaryBooleanOperationC
 		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
 	}
 	{
-		p.SetState(165)
+		p.SetState(162)
 
 		var _m = p.Match(GrogParserREGISTER)
 
 		localctx.(*BinaryBooleanOperationContext).Destination = _m
 	}
 	{
-		p.SetState(166)
+		p.SetState(163)
 
 		var _m = p.Match(GrogParserREGISTER)
 
@@ -3609,13 +3595,13 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(179)
+	p.SetState(176)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
 	case GrogParserJUMP:
 		{
-			p.SetState(168)
+			p.SetState(165)
 
 			var _m = p.Match(GrogParserJUMP)
 
@@ -3624,7 +3610,7 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 
 	case GrogParserJUMP_IF_EQUAL:
 		{
-			p.SetState(169)
+			p.SetState(166)
 
 			var _m = p.Match(GrogParserJUMP_IF_EQUAL)
 
@@ -3633,7 +3619,7 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 
 	case GrogParserJUMP_IF_NOT_EQUAL:
 		{
-			p.SetState(170)
+			p.SetState(167)
 
 			var _m = p.Match(GrogParserJUMP_IF_NOT_EQUAL)
 
@@ -3642,7 +3628,7 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 
 	case GrogParserJUMP_IF_GREATER:
 		{
-			p.SetState(171)
+			p.SetState(168)
 
 			var _m = p.Match(GrogParserJUMP_IF_GREATER)
 
@@ -3651,7 +3637,7 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 
 	case GrogParserJUMP_IF_NOT_GREATER:
 		{
-			p.SetState(172)
+			p.SetState(169)
 
 			var _m = p.Match(GrogParserJUMP_IF_NOT_GREATER)
 
@@ -3660,7 +3646,7 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 
 	case GrogParserJUMP_IF_GREATER_OR_EQUAL:
 		{
-			p.SetState(173)
+			p.SetState(170)
 
 			var _m = p.Match(GrogParserJUMP_IF_GREATER_OR_EQUAL)
 
@@ -3669,7 +3655,7 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 
 	case GrogParserJUMP_IF_NOT_GREATER_OR_EQUAL:
 		{
-			p.SetState(174)
+			p.SetState(171)
 
 			var _m = p.Match(GrogParserJUMP_IF_NOT_GREATER_OR_EQUAL)
 
@@ -3678,7 +3664,7 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 
 	case GrogParserJUMP_IF_LESS:
 		{
-			p.SetState(175)
+			p.SetState(172)
 
 			var _m = p.Match(GrogParserJUMP_IF_LESS)
 
@@ -3687,7 +3673,7 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 
 	case GrogParserJUMP_IF_NOT_LESS:
 		{
-			p.SetState(176)
+			p.SetState(173)
 
 			var _m = p.Match(GrogParserJUMP_IF_NOT_LESS)
 
@@ -3696,7 +3682,7 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 
 	case GrogParserJUMP_IF_LESS_OR_EQUAL:
 		{
-			p.SetState(177)
+			p.SetState(174)
 
 			var _m = p.Match(GrogParserJUMP_IF_LESS_OR_EQUAL)
 
@@ -3705,7 +3691,7 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 
 	case GrogParserJUMP_IF_NOT_LESS_OR_EQUAL:
 		{
-			p.SetState(178)
+			p.SetState(175)
 
 			var _m = p.Match(GrogParserJUMP_IF_NOT_LESS_OR_EQUAL)
 
@@ -3715,13 +3701,13 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 	default:
 		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
 	}
-	p.SetState(184)
+	p.SetState(181)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
 	case GrogParserABSOLUTE_ADDRESS:
 		{
-			p.SetState(181)
+			p.SetState(178)
 
 			var _m = p.Match(GrogParserABSOLUTE_ADDRESS)
 
@@ -3730,7 +3716,7 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 
 	case GrogParserOFFSET_ADDRESS:
 		{
-			p.SetState(182)
+			p.SetState(179)
 
 			var _m = p.Match(GrogParserOFFSET_ADDRESS)
 
@@ -3739,7 +3725,7 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 
 	case GrogParserPOINTER_ADDRESS:
 		{
-			p.SetState(183)
+			p.SetState(180)
 
 			var _m = p.Match(GrogParserPOINTER_ADDRESS)
 
@@ -3753,12 +3739,15 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 	return localctx
 }
 
-// IInputContext is an interface to support dynamic dispatch.
-type IInputContext interface {
+// IIoContext is an interface to support dynamic dispatch.
+type IIoContext interface {
 	antlr.ParserRuleContext
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// GetOperation returns the Operation token.
+	GetOperation() antlr.Token
 
 	// GetDestination returns the Destination token.
 	GetDestination() antlr.Token
@@ -3766,84 +3755,100 @@ type IInputContext interface {
 	// GetSource returns the Source token.
 	GetSource() antlr.Token
 
+	// SetOperation sets the Operation token.
+	SetOperation(antlr.Token)
+
 	// SetDestination sets the Destination token.
 	SetDestination(antlr.Token)
 
 	// SetSource sets the Source token.
 	SetSource(antlr.Token)
 
-	// IsInputContext differentiates from other interfaces.
-	IsInputContext()
+	// IsIoContext differentiates from other interfaces.
+	IsIoContext()
 }
 
-type InputContext struct {
+type IoContext struct {
 	*antlr.BaseParserRuleContext
 	parser      antlr.Parser
+	Operation   antlr.Token
 	Destination antlr.Token
 	Source      antlr.Token
 }
 
-func NewEmptyInputContext() *InputContext {
-	var p = new(InputContext)
+func NewEmptyIoContext() *IoContext {
+	var p = new(IoContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = GrogParserRULE_input
+	p.RuleIndex = GrogParserRULE_io
 	return p
 }
 
-func (*InputContext) IsInputContext() {}
+func (*IoContext) IsIoContext() {}
 
-func NewInputContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *InputContext {
-	var p = new(InputContext)
+func NewIoContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *IoContext {
+	var p = new(IoContext)
 
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = GrogParserRULE_input
+	p.RuleIndex = GrogParserRULE_io
 
 	return p
 }
 
-func (s *InputContext) GetParser() antlr.Parser { return s.parser }
+func (s *IoContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *InputContext) GetDestination() antlr.Token { return s.Destination }
+func (s *IoContext) GetOperation() antlr.Token { return s.Operation }
 
-func (s *InputContext) GetSource() antlr.Token { return s.Source }
+func (s *IoContext) GetDestination() antlr.Token { return s.Destination }
 
-func (s *InputContext) SetDestination(v antlr.Token) { s.Destination = v }
+func (s *IoContext) GetSource() antlr.Token { return s.Source }
 
-func (s *InputContext) SetSource(v antlr.Token) { s.Source = v }
+func (s *IoContext) SetOperation(v antlr.Token) { s.Operation = v }
 
-func (s *InputContext) REGISTER() antlr.TerminalNode {
+func (s *IoContext) SetDestination(v antlr.Token) { s.Destination = v }
+
+func (s *IoContext) SetSource(v antlr.Token) { s.Source = v }
+
+func (s *IoContext) REGISTER() antlr.TerminalNode {
 	return s.GetToken(GrogParserREGISTER, 0)
 }
 
-func (s *InputContext) DEVICE() antlr.TerminalNode {
+func (s *IoContext) DEVICE() antlr.TerminalNode {
 	return s.GetToken(GrogParserDEVICE, 0)
 }
 
-func (s *InputContext) GetRuleContext() antlr.RuleContext {
+func (s *IoContext) INPUT() antlr.TerminalNode {
+	return s.GetToken(GrogParserINPUT, 0)
+}
+
+func (s *IoContext) OUTPUT() antlr.TerminalNode {
+	return s.GetToken(GrogParserOUTPUT, 0)
+}
+
+func (s *IoContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
 
-func (s *InputContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+func (s *IoContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *InputContext) EnterRule(listener antlr.ParseTreeListener) {
+func (s *IoContext) EnterRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(GrogListener); ok {
-		listenerT.EnterInput(s)
+		listenerT.EnterIo(s)
 	}
 }
 
-func (s *InputContext) ExitRule(listener antlr.ParseTreeListener) {
+func (s *IoContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(GrogListener); ok {
-		listenerT.ExitInput(s)
+		listenerT.ExitIo(s)
 	}
 }
 
-func (p *GrogParser) Input() (localctx IInputContext) {
-	localctx = NewInputContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 42, GrogParserRULE_input)
+func (p *GrogParser) Io() (localctx IIoContext) {
+	localctx = NewIoContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 42, GrogParserRULE_io)
 
 	defer func() {
 		p.ExitRule()
@@ -3862,154 +3867,44 @@ func (p *GrogParser) Input() (localctx IInputContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(186)
+	p.SetState(185)
+	p.GetErrorHandler().Sync(p)
 
-		var _m = p.Match(GrogParserREGISTER)
+	switch p.GetTokenStream().LA(1) {
+	case GrogParserINPUT:
+		{
+			p.SetState(183)
 
-		localctx.(*InputContext).Destination = _m
+			var _m = p.Match(GrogParserINPUT)
+
+			localctx.(*IoContext).Operation = _m
+		}
+
+	case GrogParserOUTPUT:
+		{
+			p.SetState(184)
+
+			var _m = p.Match(GrogParserOUTPUT)
+
+			localctx.(*IoContext).Operation = _m
+		}
+
+	default:
+		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
 	}
 	{
 		p.SetState(187)
-		p.Match(GrogParserT__1)
+
+		var _m = p.Match(GrogParserREGISTER)
+
+		localctx.(*IoContext).Destination = _m
 	}
 	{
 		p.SetState(188)
 
 		var _m = p.Match(GrogParserDEVICE)
 
-		localctx.(*InputContext).Source = _m
-	}
-
-	return localctx
-}
-
-// IOutputContext is an interface to support dynamic dispatch.
-type IOutputContext interface {
-	antlr.ParserRuleContext
-
-	// GetParser returns the parser.
-	GetParser() antlr.Parser
-
-	// GetSource returns the Source token.
-	GetSource() antlr.Token
-
-	// GetDestination returns the Destination token.
-	GetDestination() antlr.Token
-
-	// SetSource sets the Source token.
-	SetSource(antlr.Token)
-
-	// SetDestination sets the Destination token.
-	SetDestination(antlr.Token)
-
-	// IsOutputContext differentiates from other interfaces.
-	IsOutputContext()
-}
-
-type OutputContext struct {
-	*antlr.BaseParserRuleContext
-	parser      antlr.Parser
-	Source      antlr.Token
-	Destination antlr.Token
-}
-
-func NewEmptyOutputContext() *OutputContext {
-	var p = new(OutputContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = GrogParserRULE_output
-	return p
-}
-
-func (*OutputContext) IsOutputContext() {}
-
-func NewOutputContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *OutputContext {
-	var p = new(OutputContext)
-
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
-
-	p.parser = parser
-	p.RuleIndex = GrogParserRULE_output
-
-	return p
-}
-
-func (s *OutputContext) GetParser() antlr.Parser { return s.parser }
-
-func (s *OutputContext) GetSource() antlr.Token { return s.Source }
-
-func (s *OutputContext) GetDestination() antlr.Token { return s.Destination }
-
-func (s *OutputContext) SetSource(v antlr.Token) { s.Source = v }
-
-func (s *OutputContext) SetDestination(v antlr.Token) { s.Destination = v }
-
-func (s *OutputContext) REGISTER() antlr.TerminalNode {
-	return s.GetToken(GrogParserREGISTER, 0)
-}
-
-func (s *OutputContext) DEVICE() antlr.TerminalNode {
-	return s.GetToken(GrogParserDEVICE, 0)
-}
-
-func (s *OutputContext) GetRuleContext() antlr.RuleContext {
-	return s
-}
-
-func (s *OutputContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
-	return antlr.TreesStringTree(s, ruleNames, recog)
-}
-
-func (s *OutputContext) EnterRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(GrogListener); ok {
-		listenerT.EnterOutput(s)
-	}
-}
-
-func (s *OutputContext) ExitRule(listener antlr.ParseTreeListener) {
-	if listenerT, ok := listener.(GrogListener); ok {
-		listenerT.ExitOutput(s)
-	}
-}
-
-func (p *GrogParser) Output() (localctx IOutputContext) {
-	localctx = NewOutputContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 44, GrogParserRULE_output)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(190)
-
-		var _m = p.Match(GrogParserREGISTER)
-
-		localctx.(*OutputContext).Source = _m
-	}
-	{
-		p.SetState(191)
-		p.Match(GrogParserT__0)
-	}
-	{
-		p.SetState(192)
-
-		var _m = p.Match(GrogParserDEVICE)
-
-		localctx.(*OutputContext).Destination = _m
+		localctx.(*IoContext).Source = _m
 	}
 
 	return localctx
@@ -4079,7 +3974,7 @@ func (s *StopContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *GrogParser) Stop() (localctx IStopContext) {
 	localctx = NewStopContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 46, GrogParserRULE_stop)
+	p.EnterRule(localctx, 44, GrogParserRULE_stop)
 
 	defer func() {
 		p.ExitRule()
@@ -4099,7 +3994,7 @@ func (p *GrogParser) Stop() (localctx IStopContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(194)
+		p.SetState(190)
 		p.Match(GrogParserSTOP)
 	}
 
@@ -4170,7 +4065,7 @@ func (s *WaitContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *GrogParser) Wait() (localctx IWaitContext) {
 	localctx = NewWaitContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 48, GrogParserRULE_wait)
+	p.EnterRule(localctx, 46, GrogParserRULE_wait)
 
 	defer func() {
 		p.ExitRule()
@@ -4190,7 +4085,7 @@ func (p *GrogParser) Wait() (localctx IWaitContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(196)
+		p.SetState(192)
 		p.Match(GrogParserWAIT)
 	}
 

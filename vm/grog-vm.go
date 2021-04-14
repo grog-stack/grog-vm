@@ -141,8 +141,8 @@ const (
 // Input, output
 
 const (
-	INPUT_REGISTER  byte = 0xB0
-	OUTPUT_REGISTER byte = 0xC0
+	INPUT  byte = 0xB0
+	OUTPUT byte = 0xC0
 )
 
 type Instruction struct {
@@ -362,12 +362,12 @@ func (instruction *Instruction) execute(machine *Machine) uint16 {
 			machine.Jump(machine.ReadAddress(machine.ReadAddressOffset(3)))
 		}
 		return 3
-	} else if instruction.code == INPUT_REGISTER {
+	} else if instruction.code == INPUT {
 		device := machine.ReadNextByte()
 		register := machine.ReadByteOffset(2)
 		machine.Registers[register].Value = machine.Devices[device].Read()
 		return 3
-	} else if instruction.code == OUTPUT_REGISTER {
+	} else if instruction.code == OUTPUT {
 		register := machine.ReadNextByte()
 		device := machine.ReadByteOffset(2)
 		value := machine.Registers[register].Value

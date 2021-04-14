@@ -13,7 +13,7 @@ instruction
     | store
     | copyValue
     | jump
-    | input | output
+    | io
     | stop
     | wait;
 
@@ -108,9 +108,7 @@ jump
       (Address=ABSOLUTE_ADDRESS | Offset=OFFSET_ADDRESS | Pointer=POINTER_ADDRESS)
     ;
 
-input: Destination=REGISTER '<-' Source=DEVICE;
-
-output: Source=REGISTER '->' Destination=DEVICE;
+io: (Operation=INPUT | Operation=OUTPUT) Destination=REGISTER Source=DEVICE;
 
 stop
     : STOP
@@ -150,6 +148,8 @@ NOT: 'not';
 AND: 'and';
 OR: 'or';
 XOR: 'xor';
+INPUT: 'input';
+OUTPUT: 'output';
 STOP: 'stop';
 WAIT: 'wait';
 HEX_DIGIT: [0-9a-fA-F];
