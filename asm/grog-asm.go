@@ -49,37 +49,29 @@ func (l *listener) ExitLoad(c *parser.LoadContext) {
 }
 
 func (l *listener) ExitStore(c *parser.StoreContext) {
-	if c.Value != nil {
-		value := valueByte(c.Value.GetText())
-		if c.Address != nil {
-			l.Output.WriteByte(vm.STORE_BYTE_ADDRESS)
-			l.Output.WriteByte(value)
-			l.Output.Write(absoluteAddressBytes(c.Address.GetText()))
-		} else if c.Offset != nil {
-			l.Output.WriteByte(vm.STORE_BYTE_OFFSET)
-			l.Output.WriteByte(value)
-			l.Output.Write(offsetAddressBytes(c.Offset.GetText()))
-		} else if c.Pointer != nil {
-			l.Output.WriteByte(vm.STORE_BYTE_POINTER)
-			l.Output.WriteByte(value)
-			l.Output.Write(pointerAddressBytes(c.Pointer.GetText()))
-		}
-	} else if c.Register != nil {
-		register := registerByte(c.Register.GetText())
-		if c.Address != nil {
-			l.Output.WriteByte(vm.STORE_REGISTER_ADDRESS)
-			l.Output.WriteByte(register)
-			l.Output.Write(absoluteAddressBytes(c.Address.GetText()))
-		} else if c.Offset != nil {
-			l.Output.WriteByte(vm.STORE_REGISTER_OFFSET)
-			l.Output.WriteByte(register)
-			l.Output.Write(offsetAddressBytes(c.Offset.GetText()))
-		} else if c.Pointer != nil {
-			l.Output.WriteByte(vm.STORE_REGISTER_POINTER)
-			l.Output.WriteByte(register)
-			l.Output.Write(pointerAddressBytes(c.Pointer.GetText()))
-		}
+	operation := byte(0)
+	destination := []byte(nil)
+	if c.Address != nil {
+		operation = vm.STORE_BYTE_ADDRESS
+		destination = absoluteAddressBytes(c.Address.GetText())
+	} else if c.Offset != nil {
+		operation = vm.STORE_BYTE_OFFSET
+		destination = offsetAddressBytes(c.Offset.GetText())
+	} else if c.Pointer != nil {
+		operation = vm.STORE_BYTE_POINTER
+		destination = pointerAddressBytes(c.Pointer.GetText())
 	}
+	value := byte(0)
+	if c.Value != nil {
+		value = valueByte(c.Value.GetText())
+	} else if c.Register != nil {
+		// This is possible because store operations are ordered
+		operation = operation + 3
+		value = registerByte(c.Register.GetText())
+	}
+	l.Output.WriteByte(operation)
+	l.Output.Write(destination)
+	l.Output.WriteByte(value)
 }
 
 func (l *listener) ExitCopyRegister(c *parser.CopyRegisterContext) {

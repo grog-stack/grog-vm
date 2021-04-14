@@ -27,9 +27,9 @@ load
     ;
 
 store
-    : (Register=REGISTER | Value=HEXA_BYTE) 
-      '->' 
-      (Address=ABSOLUTE_ADDRESS | Offset=OFFSET_ADDRESS | Pointer=POINTER_ADDRESS) 
+    : STORE 
+        (Address=ABSOLUTE_ADDRESS | Offset=OFFSET_ADDRESS | Pointer=POINTER_ADDRESS) 
+        (Register=REGISTER | Value=HEXA_BYTE) 
     ;
 
 copyValue
@@ -125,7 +125,7 @@ WS:  [ \t\r\n\u000C]+ -> skip;
 COMMENT:   '/*' .*? '*/' -> skip;
 LINE_COMMENT :   '//' ~[\r\n]* -> skip;
 LOAD: 'load';
-MOVE: 'move';
+STORE: 'store';
 COPY: 'copy';
 INCREMENT: 'increment';
 DECREMENT: 'decrement';
