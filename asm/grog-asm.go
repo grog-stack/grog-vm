@@ -90,52 +90,59 @@ func (l *listener) ExitCopyRegister(c *parser.CopyRegisterContext) {
 	l.Output.WriteByte(source)
 }
 
-/*
 func (l *listener) ExitCopyAbsoluteToAbsolute(c *parser.CopyAbsoluteToAbsoluteContext) {
 	l.Output.WriteByte(vm.COPY_ADDRESS_ADDRESS)
-	l.Output.Write(addressBytes(c.SourceAddress.GetText()))
-	l.Output.Write(addressBytes(c.DestinationAddress.GetText()))
+	l.Output.Write(addressBytes(c.Destination.GetText()))
+	l.Output.Write(addressBytes(c.Source.GetText()))
 }
-func (l *listener) ExitCopyAbsoluteToOffset(c *parser.CopyAbsoluteToOffsetContext) {
-	l.Output.WriteByte(vm.COPY_ADDRESS_OFFSET)
-	l.Output.Write(addressBytes(c.SourceAddress.GetText()))
-	l.Output.Write(offsetAddressBytes(c.DestinationOffset.GetText()))
-}
-func (l *listener) ExitCopyAbsoluteToPointer(c *parser.CopyAbsoluteToPointerContext) {
-	l.Output.WriteByte(vm.COPY_ADDRESS_POINTER)
-	l.Output.Write(addressBytes(c.SourceAddress.GetText()))
-	l.Output.Write(pointerAddressBytes(c.DestinationPointer.GetText()))
-}
+
 func (l *listener) ExitCopyOffsetToAbsolute(c *parser.CopyOffsetToAbsoluteContext) {
-	l.Output.WriteByte(vm.COPY_OFFSET_ADDRESS)
-	l.Output.Write(offsetAddressBytes(c.SourceOffset.GetText()))
-	l.Output.Write(addressBytes(c.DestinationAddress.GetText()))
+	l.Output.WriteByte(vm.COPY_ADDRESS_OFFSET)
+	l.Output.Write(addressBytes(c.Destination.GetText()))
+	l.Output.Write(addressBytes(c.Source.GetText()))
 }
-func (l *listener) ExitCopyOffsetToOffset(c *parser.CopyOffsetToOffsetContext) {
-	l.Output.WriteByte(vm.COPY_OFFSET_OFFSET)
-	l.Output.Write(offsetAddressBytes(c.SourceOffset.GetText()))
-	l.Output.Write(offsetAddressBytes(c.DestinationOffset.GetText()))
-}
-func (l *listener) ExitCopyOffsetToPointer(c *parser.CopyOffsetToPointerContext) {
-	l.Output.WriteByte(vm.COPY_OFFSET_POINTER)
-	l.Output.Write(offsetAddressBytes(c.SourceOffset.GetText()))
-	l.Output.Write(pointerAddressBytes(c.DestinationPointer.GetText()))
-}
+
 func (l *listener) ExitCopyPointerToAbsolute(c *parser.CopyPointerToAbsoluteContext) {
 	l.Output.WriteByte(vm.COPY_POINTER_ADDRESS)
-	l.Output.Write(pointerAddressBytes(c.SourcePointer.GetText()))
-	l.Output.Write(addressBytes(c.DestinationAddress.GetText()))
+	l.Output.Write(addressBytes(c.Destination.GetText()))
+	l.Output.Write(addressBytes(c.Source.GetText()))
 }
+
+func (l *listener) ExitCopyAbsoluteToOffset(c *parser.CopyAbsoluteToOffsetContext) {
+	l.Output.WriteByte(vm.COPY_OFFSET_ADDRESS)
+	l.Output.Write(addressBytes(c.Destination.GetText()))
+	l.Output.Write(addressBytes(c.Source.GetText()))
+}
+
+func (l *listener) ExitCopyOffsetToOffset(c *parser.CopyOffsetToOffsetContext) {
+	l.Output.WriteByte(vm.COPY_OFFSET_OFFSET)
+	l.Output.Write(addressBytes(c.Destination.GetText()))
+	l.Output.Write(addressBytes(c.Source.GetText()))
+}
+
 func (l *listener) ExitCopyPointerToOffset(c *parser.CopyPointerToOffsetContext) {
-	l.Output.WriteByte(vm.COPY_POINTER_OFFSET)
-	l.Output.Write(pointerAddressBytes(c.SourcePointer.GetText()))
-	l.Output.Write(offsetAddressBytes(c.DestinationOffset.GetText()))
+	l.Output.WriteByte(vm.COPY_OFFSET_POINTER)
+	l.Output.Write(addressBytes(c.Destination.GetText()))
+	l.Output.Write(addressBytes(c.Source.GetText()))
 }
+
+func (l *listener) ExitCopyAbsoluteToPointer(c *parser.CopyAbsoluteToPointerContext) {
+	l.Output.WriteByte(vm.COPY_OFFSET_ADDRESS)
+	l.Output.Write(addressBytes(c.Destination.GetText()))
+	l.Output.Write(addressBytes(c.Source.GetText()))
+}
+
+func (l *listener) ExitCopyOffsetToPointer(c *parser.CopyOffsetToPointerContext) {
+	l.Output.WriteByte(vm.COPY_POINTER_OFFSET)
+	l.Output.Write(addressBytes(c.Destination.GetText()))
+	l.Output.Write(addressBytes(c.Source.GetText()))
+}
+
 func (l *listener) ExitCopyPointerToPointer(c *parser.CopyPointerToPointerContext) {
 	l.Output.WriteByte(vm.COPY_POINTER_POINTER)
-	l.Output.Write(pointerAddressBytes(c.SourcePointer.GetText()))
-	l.Output.Write(pointerAddressBytes(c.DestinationPointer.GetText()))
-}*/
+	l.Output.Write(addressBytes(c.Destination.GetText()))
+	l.Output.Write(addressBytes(c.Source.GetText()))
+}
 
 func (l *listener) ExitIncrement(c *parser.IncrementContext) {
 	l.Output.WriteByte(vm.INCREMENT)

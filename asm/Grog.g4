@@ -33,24 +33,52 @@ store
     ;
 
 copyValue
-    : 'copy' 
-     DestinationRegister=REGISTER SourceRegister=REGISTER #CopyRegister
-    /*| (SourceAddress=ABSOLUTE_ADDRESS '->' DestinationAddress=ABSOLUTE_ADDRESS) #CopyAbsoluteToAbsolute
-    | (SourceAddress=ABSOLUTE_ADDRESS '->' DestinationOffset=OFFSET_ADDRESS) #CopyAbsoluteToOffset
-    | (SourceAddress=ABSOLUTE_ADDRESS '->' DestinationPointer=POINTER_ADDRESS) #CopyAbsoluteToPointer
-    | (SourceOffset=OFFSET_ADDRESS '->' DestinationAddress=ABSOLUTE_ADDRESS) #CopyOffsetToAbsolute
-    | (SourceOffset=OFFSET_ADDRESS '->' DestinationOffset=OFFSET_ADDRESS) #CopyOffsetToOffset
-    | (SourceOffset=OFFSET_ADDRESS '->' DestinationPointer=POINTER_ADDRESS) #CopyOffsetToPointer
-    | (SourcePointer=POINTER_ADDRESS '->' DestinationAddress=ABSOLUTE_ADDRESS) #CopyPointerToAbsolute
-    | (SourcePointer=POINTER_ADDRESS '->' DestinationOffset=OFFSET_ADDRESS) #CopyPointerToOffset
-    | (SourcePointer=POINTER_ADDRESS '->' DestinationPointer=POINTER_ADDRESS) #CopyPointerToPointer*/
+    : copyRegister
+    | copyAbsoluteToAbsolute | copyOffsetToAbsolute | copyPointerToAbsolute
+    | copyAbsoluteToOffset | copyOffsetToOffset | copyPointerToOffset
+    | copyAbsoluteToPointer | copyOffsetToPointer | copyPointerToPointer
     ;
 
-copyRightToLeft
-    : (SourceAddress=ABSOLUTE_ADDRESS | SourceOffset=OFFSET_ADDRESS | SourcePointer=POINTER_ADDRESS) 
-      '<->'
-      (SourceAddress=ABSOLUTE_ADDRESS | SourceOffset=OFFSET_ADDRESS | SourcePointer=POINTER_ADDRESS) 
+copyRegister
+    : COPY DestinationRegister=REGISTER SourceRegister=REGISTER
     ;
+
+copyAbsoluteToAbsolute
+    : COPY Destination=ABSOLUTE_ADDRESS Source=ABSOLUTE_ADDRESS
+    ;
+
+copyOffsetToAbsolute
+    : COPY Destination=ABSOLUTE_ADDRESS Source=OFFSET_ADDRESS
+    ;
+
+copyPointerToAbsolute
+    : COPY Destination=ABSOLUTE_ADDRESS Source=POINTER_ADDRESS
+    ;
+
+copyAbsoluteToOffset
+    : COPY Destination=OFFSET_ADDRESS Source=ABSOLUTE_ADDRESS
+    ;
+
+copyOffsetToOffset
+    : COPY Destination=OFFSET_ADDRESS Source=OFFSET_ADDRESS
+    ;
+
+copyPointerToOffset
+    : COPY Destination=OFFSET_ADDRESS Source=POINTER_ADDRESS
+    ;
+
+copyAbsoluteToPointer
+    : COPY Destination=POINTER_ADDRESS Source=ABSOLUTE_ADDRESS
+    ;
+
+copyOffsetToPointer
+    : COPY Destination=POINTER_ADDRESS Source=OFFSET_ADDRESS
+    ;
+
+copyPointerToPointer
+    : COPY Destination=POINTER_ADDRESS Source=POINTER_ADDRESS
+    ;
+
 
 increment
     : INCREMENT Register=REGISTER;
@@ -108,7 +136,6 @@ LINE_COMMENT :   '//' ~[\r\n]* -> skip;
 LOAD: 'load';
 MOVE: 'move';
 COPY: 'copy';
-STORE: '->';
 INCREMENT: 'increment';
 DECREMENT: 'decrement';
 ADD: 'add';

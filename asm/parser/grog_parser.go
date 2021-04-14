@@ -15,83 +15,105 @@ var _ = reflect.Copy
 var _ = strconv.Itoa
 
 var parserATN = []uint16{
-	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 40, 147,
+	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 39, 202,
 	4, 2, 9, 2, 4, 3, 9, 3, 4, 4, 9, 4, 4, 5, 9, 5, 4, 6, 9, 6, 4, 7, 9, 7,
 	4, 8, 9, 8, 4, 9, 9, 9, 4, 10, 9, 10, 4, 11, 9, 11, 4, 12, 9, 12, 4, 13,
-	9, 13, 4, 14, 9, 14, 4, 15, 9, 15, 4, 16, 9, 16, 4, 17, 9, 17, 3, 2, 6,
-	2, 36, 10, 2, 13, 2, 14, 2, 37, 3, 2, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3,
-	3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 5, 3, 55, 10, 3, 3,
-	4, 3, 4, 3, 4, 3, 4, 3, 4, 3, 4, 5, 4, 63, 10, 4, 3, 5, 3, 5, 5, 5, 67,
-	10, 5, 3, 5, 3, 5, 3, 5, 3, 5, 5, 5, 73, 10, 5, 3, 6, 3, 6, 3, 6, 3, 6,
-	3, 7, 3, 7, 3, 7, 5, 7, 82, 10, 7, 3, 7, 3, 7, 3, 7, 3, 7, 5, 7, 88, 10,
-	7, 3, 8, 3, 8, 3, 8, 3, 9, 3, 9, 3, 9, 3, 10, 3, 10, 3, 10, 3, 10, 5, 10,
-	100, 10, 10, 3, 10, 3, 10, 3, 10, 3, 11, 3, 11, 3, 11, 3, 12, 3, 12, 3,
-	12, 5, 12, 111, 10, 12, 3, 12, 3, 12, 3, 12, 3, 13, 3, 13, 3, 13, 3, 13,
-	3, 13, 3, 13, 3, 13, 3, 13, 5, 13, 124, 10, 13, 3, 13, 5, 13, 127, 10,
-	13, 3, 13, 3, 13, 3, 13, 3, 13, 5, 13, 133, 10, 13, 3, 14, 3, 14, 3, 14,
-	3, 14, 3, 15, 3, 15, 3, 15, 3, 15, 3, 16, 3, 16, 3, 17, 3, 17, 3, 17, 2,
-	2, 18, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 2, 2,
-	2, 166, 2, 35, 3, 2, 2, 2, 4, 54, 3, 2, 2, 2, 6, 56, 3, 2, 2, 2, 8, 66,
-	3, 2, 2, 2, 10, 74, 3, 2, 2, 2, 12, 81, 3, 2, 2, 2, 14, 89, 3, 2, 2, 2,
-	16, 92, 3, 2, 2, 2, 18, 99, 3, 2, 2, 2, 20, 104, 3, 2, 2, 2, 22, 110, 3,
-	2, 2, 2, 24, 126, 3, 2, 2, 2, 26, 134, 3, 2, 2, 2, 28, 138, 3, 2, 2, 2,
-	30, 142, 3, 2, 2, 2, 32, 144, 3, 2, 2, 2, 34, 36, 5, 4, 3, 2, 35, 34, 3,
-	2, 2, 2, 36, 37, 3, 2, 2, 2, 37, 35, 3, 2, 2, 2, 37, 38, 3, 2, 2, 2, 38,
-	39, 3, 2, 2, 2, 39, 40, 7, 2, 2, 3, 40, 3, 3, 2, 2, 2, 41, 55, 5, 14, 8,
-	2, 42, 55, 5, 16, 9, 2, 43, 55, 5, 18, 10, 2, 44, 55, 5, 20, 11, 2, 45,
-	55, 5, 22, 12, 2, 46, 55, 5, 6, 4, 2, 47, 55, 5, 8, 5, 2, 48, 55, 5, 10,
-	6, 2, 49, 55, 5, 24, 13, 2, 50, 55, 5, 26, 14, 2, 51, 55, 5, 28, 15, 2,
-	52, 55, 5, 30, 16, 2, 53, 55, 5, 32, 17, 2, 54, 41, 3, 2, 2, 2, 54, 42,
-	3, 2, 2, 2, 54, 43, 3, 2, 2, 2, 54, 44, 3, 2, 2, 2, 54, 45, 3, 2, 2, 2,
-	54, 46, 3, 2, 2, 2, 54, 47, 3, 2, 2, 2, 54, 48, 3, 2, 2, 2, 54, 49, 3,
-	2, 2, 2, 54, 50, 3, 2, 2, 2, 54, 51, 3, 2, 2, 2, 54, 52, 3, 2, 2, 2, 54,
-	53, 3, 2, 2, 2, 55, 5, 3, 2, 2, 2, 56, 57, 7, 9, 2, 2, 57, 62, 7, 36, 2,
-	2, 58, 63, 7, 34, 2, 2, 59, 63, 7, 38, 2, 2, 60, 63, 7, 39, 2, 2, 61, 63,
-	7, 40, 2, 2, 62, 58, 3, 2, 2, 2, 62, 59, 3, 2, 2, 2, 62, 60, 3, 2, 2, 2,
-	62, 61, 3, 2, 2, 2, 63, 7, 3, 2, 2, 2, 64, 67, 7, 36, 2, 2, 65, 67, 7,
-	34, 2, 2, 66, 64, 3, 2, 2, 2, 66, 65, 3, 2, 2, 2, 67, 68, 3, 2, 2, 2, 68,
-	72, 7, 12, 2, 2, 69, 73, 7, 38, 2, 2, 70, 73, 7, 39, 2, 2, 71, 73, 7, 40,
-	2, 2, 72, 69, 3, 2, 2, 2, 72, 70, 3, 2, 2, 2, 72, 71, 3, 2, 2, 2, 73, 9,
-	3, 2, 2, 2, 74, 75, 7, 11, 2, 2, 75, 76, 7, 36, 2, 2, 76, 77, 7, 36, 2,
-	2, 77, 11, 3, 2, 2, 2, 78, 82, 7, 38, 2, 2, 79, 82, 7, 39, 2, 2, 80, 82,
-	7, 40, 2, 2, 81, 78, 3, 2, 2, 2, 81, 79, 3, 2, 2, 2, 81, 80, 3, 2, 2, 2,
-	82, 83, 3, 2, 2, 2, 83, 87, 7, 3, 2, 2, 84, 88, 7, 38, 2, 2, 85, 88, 7,
-	39, 2, 2, 86, 88, 7, 40, 2, 2, 87, 84, 3, 2, 2, 2, 87, 85, 3, 2, 2, 2,
-	87, 86, 3, 2, 2, 2, 88, 13, 3, 2, 2, 2, 89, 90, 7, 13, 2, 2, 90, 91, 7,
-	36, 2, 2, 91, 15, 3, 2, 2, 2, 92, 93, 7, 14, 2, 2, 93, 94, 7, 36, 2, 2,
-	94, 17, 3, 2, 2, 2, 95, 100, 7, 15, 2, 2, 96, 100, 7, 16, 2, 2, 97, 100,
-	7, 18, 2, 2, 98, 100, 7, 17, 2, 2, 99, 95, 3, 2, 2, 2, 99, 96, 3, 2, 2,
-	2, 99, 97, 3, 2, 2, 2, 99, 98, 3, 2, 2, 2, 100, 101, 3, 2, 2, 2, 101, 102,
-	7, 36, 2, 2, 102, 103, 7, 36, 2, 2, 103, 19, 3, 2, 2, 2, 104, 105, 7, 25,
-	2, 2, 105, 106, 7, 36, 2, 2, 106, 21, 3, 2, 2, 2, 107, 111, 7, 26, 2, 2,
-	108, 111, 7, 27, 2, 2, 109, 111, 7, 28, 2, 2, 110, 107, 3, 2, 2, 2, 110,
-	108, 3, 2, 2, 2, 110, 109, 3, 2, 2, 2, 111, 112, 3, 2, 2, 2, 112, 113,
-	7, 36, 2, 2, 113, 114, 7, 36, 2, 2, 114, 23, 3, 2, 2, 2, 115, 116, 7, 32,
-	2, 2, 116, 123, 7, 36, 2, 2, 117, 124, 7, 19, 2, 2, 118, 124, 7, 24, 2,
-	2, 119, 124, 7, 20, 2, 2, 120, 124, 7, 21, 2, 2, 121, 124, 7, 22, 2, 2,
-	122, 124, 7, 23, 2, 2, 123, 117, 3, 2, 2, 2, 123, 118, 3, 2, 2, 2, 123,
-	119, 3, 2, 2, 2, 123, 120, 3, 2, 2, 2, 123, 121, 3, 2, 2, 2, 123, 122,
-	3, 2, 2, 2, 124, 125, 3, 2, 2, 2, 125, 127, 7, 36, 2, 2, 126, 115, 3, 2,
-	2, 2, 126, 127, 3, 2, 2, 2, 127, 128, 3, 2, 2, 2, 128, 132, 7, 31, 2, 2,
-	129, 133, 7, 38, 2, 2, 130, 133, 7, 39, 2, 2, 131, 133, 7, 40, 2, 2, 132,
-	129, 3, 2, 2, 2, 132, 130, 3, 2, 2, 2, 132, 131, 3, 2, 2, 2, 133, 25, 3,
-	2, 2, 2, 134, 135, 7, 36, 2, 2, 135, 136, 7, 4, 2, 2, 136, 137, 7, 37,
-	2, 2, 137, 27, 3, 2, 2, 2, 138, 139, 7, 36, 2, 2, 139, 140, 7, 12, 2, 2,
-	140, 141, 7, 37, 2, 2, 141, 29, 3, 2, 2, 2, 142, 143, 7, 29, 2, 2, 143,
-	31, 3, 2, 2, 2, 144, 145, 7, 30, 2, 2, 145, 33, 3, 2, 2, 2, 14, 37, 54,
-	62, 66, 72, 81, 87, 99, 110, 123, 126, 132,
+	9, 13, 4, 14, 9, 14, 4, 15, 9, 15, 4, 16, 9, 16, 4, 17, 9, 17, 4, 18, 9,
+	18, 4, 19, 9, 19, 4, 20, 9, 20, 4, 21, 9, 21, 4, 22, 9, 22, 4, 23, 9, 23,
+	4, 24, 9, 24, 4, 25, 9, 25, 4, 26, 9, 26, 3, 2, 6, 2, 54, 10, 2, 13, 2,
+	14, 2, 55, 3, 2, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+	3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 5, 3, 73, 10, 3, 3, 4, 3, 4, 3, 4, 3, 4,
+	3, 4, 3, 4, 5, 4, 81, 10, 4, 3, 5, 3, 5, 5, 5, 85, 10, 5, 3, 5, 3, 5, 3,
+	5, 3, 5, 5, 5, 91, 10, 5, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3,
+	6, 3, 6, 3, 6, 5, 6, 103, 10, 6, 3, 7, 3, 7, 3, 7, 3, 7, 3, 8, 3, 8, 3,
+	8, 3, 8, 3, 9, 3, 9, 3, 9, 3, 9, 3, 10, 3, 10, 3, 10, 3, 10, 3, 11, 3,
+	11, 3, 11, 3, 11, 3, 12, 3, 12, 3, 12, 3, 12, 3, 13, 3, 13, 3, 13, 3, 13,
+	3, 14, 3, 14, 3, 14, 3, 14, 3, 15, 3, 15, 3, 15, 3, 15, 3, 16, 3, 16, 3,
+	16, 3, 16, 3, 17, 3, 17, 3, 17, 3, 18, 3, 18, 3, 18, 3, 19, 3, 19, 3, 19,
+	3, 19, 5, 19, 155, 10, 19, 3, 19, 3, 19, 3, 19, 3, 20, 3, 20, 3, 20, 3,
+	21, 3, 21, 3, 21, 5, 21, 166, 10, 21, 3, 21, 3, 21, 3, 21, 3, 22, 3, 22,
+	3, 22, 3, 22, 3, 22, 3, 22, 3, 22, 3, 22, 5, 22, 179, 10, 22, 3, 22, 5,
+	22, 182, 10, 22, 3, 22, 3, 22, 3, 22, 3, 22, 5, 22, 188, 10, 22, 3, 23,
+	3, 23, 3, 23, 3, 23, 3, 24, 3, 24, 3, 24, 3, 24, 3, 25, 3, 25, 3, 26, 3,
+	26, 3, 26, 2, 2, 27, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28,
+	30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 2, 2, 2, 217, 2, 53, 3, 2,
+	2, 2, 4, 72, 3, 2, 2, 2, 6, 74, 3, 2, 2, 2, 8, 84, 3, 2, 2, 2, 10, 102,
+	3, 2, 2, 2, 12, 104, 3, 2, 2, 2, 14, 108, 3, 2, 2, 2, 16, 112, 3, 2, 2,
+	2, 18, 116, 3, 2, 2, 2, 20, 120, 3, 2, 2, 2, 22, 124, 3, 2, 2, 2, 24, 128,
+	3, 2, 2, 2, 26, 132, 3, 2, 2, 2, 28, 136, 3, 2, 2, 2, 30, 140, 3, 2, 2,
+	2, 32, 144, 3, 2, 2, 2, 34, 147, 3, 2, 2, 2, 36, 154, 3, 2, 2, 2, 38, 159,
+	3, 2, 2, 2, 40, 165, 3, 2, 2, 2, 42, 181, 3, 2, 2, 2, 44, 189, 3, 2, 2,
+	2, 46, 193, 3, 2, 2, 2, 48, 197, 3, 2, 2, 2, 50, 199, 3, 2, 2, 2, 52, 54,
+	5, 4, 3, 2, 53, 52, 3, 2, 2, 2, 54, 55, 3, 2, 2, 2, 55, 53, 3, 2, 2, 2,
+	55, 56, 3, 2, 2, 2, 56, 57, 3, 2, 2, 2, 57, 58, 7, 2, 2, 3, 58, 3, 3, 2,
+	2, 2, 59, 73, 5, 32, 17, 2, 60, 73, 5, 34, 18, 2, 61, 73, 5, 36, 19, 2,
+	62, 73, 5, 38, 20, 2, 63, 73, 5, 40, 21, 2, 64, 73, 5, 6, 4, 2, 65, 73,
+	5, 8, 5, 2, 66, 73, 5, 10, 6, 2, 67, 73, 5, 42, 22, 2, 68, 73, 5, 44, 23,
+	2, 69, 73, 5, 46, 24, 2, 70, 73, 5, 48, 25, 2, 71, 73, 5, 50, 26, 2, 72,
+	59, 3, 2, 2, 2, 72, 60, 3, 2, 2, 2, 72, 61, 3, 2, 2, 2, 72, 62, 3, 2, 2,
+	2, 72, 63, 3, 2, 2, 2, 72, 64, 3, 2, 2, 2, 72, 65, 3, 2, 2, 2, 72, 66,
+	3, 2, 2, 2, 72, 67, 3, 2, 2, 2, 72, 68, 3, 2, 2, 2, 72, 69, 3, 2, 2, 2,
+	72, 70, 3, 2, 2, 2, 72, 71, 3, 2, 2, 2, 73, 5, 3, 2, 2, 2, 74, 75, 7, 8,
+	2, 2, 75, 80, 7, 35, 2, 2, 76, 81, 7, 33, 2, 2, 77, 81, 7, 37, 2, 2, 78,
+	81, 7, 38, 2, 2, 79, 81, 7, 39, 2, 2, 80, 76, 3, 2, 2, 2, 80, 77, 3, 2,
+	2, 2, 80, 78, 3, 2, 2, 2, 80, 79, 3, 2, 2, 2, 81, 7, 3, 2, 2, 2, 82, 85,
+	7, 35, 2, 2, 83, 85, 7, 33, 2, 2, 84, 82, 3, 2, 2, 2, 84, 83, 3, 2, 2,
+	2, 85, 86, 3, 2, 2, 2, 86, 90, 7, 11, 2, 2, 87, 91, 7, 37, 2, 2, 88, 91,
+	7, 38, 2, 2, 89, 91, 7, 39, 2, 2, 90, 87, 3, 2, 2, 2, 90, 88, 3, 2, 2,
+	2, 90, 89, 3, 2, 2, 2, 91, 9, 3, 2, 2, 2, 92, 103, 5, 12, 7, 2, 93, 103,
+	5, 14, 8, 2, 94, 103, 5, 16, 9, 2, 95, 103, 5, 18, 10, 2, 96, 103, 5, 20,
+	11, 2, 97, 103, 5, 22, 12, 2, 98, 103, 5, 24, 13, 2, 99, 103, 5, 26, 14,
+	2, 100, 103, 5, 28, 15, 2, 101, 103, 5, 30, 16, 2, 102, 92, 3, 2, 2, 2,
+	102, 93, 3, 2, 2, 2, 102, 94, 3, 2, 2, 2, 102, 95, 3, 2, 2, 2, 102, 96,
+	3, 2, 2, 2, 102, 97, 3, 2, 2, 2, 102, 98, 3, 2, 2, 2, 102, 99, 3, 2, 2,
+	2, 102, 100, 3, 2, 2, 2, 102, 101, 3, 2, 2, 2, 103, 11, 3, 2, 2, 2, 104,
+	105, 7, 10, 2, 2, 105, 106, 7, 35, 2, 2, 106, 107, 7, 35, 2, 2, 107, 13,
+	3, 2, 2, 2, 108, 109, 7, 10, 2, 2, 109, 110, 7, 37, 2, 2, 110, 111, 7,
+	37, 2, 2, 111, 15, 3, 2, 2, 2, 112, 113, 7, 10, 2, 2, 113, 114, 7, 37,
+	2, 2, 114, 115, 7, 38, 2, 2, 115, 17, 3, 2, 2, 2, 116, 117, 7, 10, 2, 2,
+	117, 118, 7, 37, 2, 2, 118, 119, 7, 39, 2, 2, 119, 19, 3, 2, 2, 2, 120,
+	121, 7, 10, 2, 2, 121, 122, 7, 38, 2, 2, 122, 123, 7, 37, 2, 2, 123, 21,
+	3, 2, 2, 2, 124, 125, 7, 10, 2, 2, 125, 126, 7, 38, 2, 2, 126, 127, 7,
+	38, 2, 2, 127, 23, 3, 2, 2, 2, 128, 129, 7, 10, 2, 2, 129, 130, 7, 38,
+	2, 2, 130, 131, 7, 39, 2, 2, 131, 25, 3, 2, 2, 2, 132, 133, 7, 10, 2, 2,
+	133, 134, 7, 39, 2, 2, 134, 135, 7, 37, 2, 2, 135, 27, 3, 2, 2, 2, 136,
+	137, 7, 10, 2, 2, 137, 138, 7, 39, 2, 2, 138, 139, 7, 38, 2, 2, 139, 29,
+	3, 2, 2, 2, 140, 141, 7, 10, 2, 2, 141, 142, 7, 39, 2, 2, 142, 143, 7,
+	39, 2, 2, 143, 31, 3, 2, 2, 2, 144, 145, 7, 12, 2, 2, 145, 146, 7, 35,
+	2, 2, 146, 33, 3, 2, 2, 2, 147, 148, 7, 13, 2, 2, 148, 149, 7, 35, 2, 2,
+	149, 35, 3, 2, 2, 2, 150, 155, 7, 14, 2, 2, 151, 155, 7, 15, 2, 2, 152,
+	155, 7, 17, 2, 2, 153, 155, 7, 16, 2, 2, 154, 150, 3, 2, 2, 2, 154, 151,
+	3, 2, 2, 2, 154, 152, 3, 2, 2, 2, 154, 153, 3, 2, 2, 2, 155, 156, 3, 2,
+	2, 2, 156, 157, 7, 35, 2, 2, 157, 158, 7, 35, 2, 2, 158, 37, 3, 2, 2, 2,
+	159, 160, 7, 24, 2, 2, 160, 161, 7, 35, 2, 2, 161, 39, 3, 2, 2, 2, 162,
+	166, 7, 25, 2, 2, 163, 166, 7, 26, 2, 2, 164, 166, 7, 27, 2, 2, 165, 162,
+	3, 2, 2, 2, 165, 163, 3, 2, 2, 2, 165, 164, 3, 2, 2, 2, 166, 167, 3, 2,
+	2, 2, 167, 168, 7, 35, 2, 2, 168, 169, 7, 35, 2, 2, 169, 41, 3, 2, 2, 2,
+	170, 171, 7, 31, 2, 2, 171, 178, 7, 35, 2, 2, 172, 179, 7, 18, 2, 2, 173,
+	179, 7, 23, 2, 2, 174, 179, 7, 19, 2, 2, 175, 179, 7, 20, 2, 2, 176, 179,
+	7, 21, 2, 2, 177, 179, 7, 22, 2, 2, 178, 172, 3, 2, 2, 2, 178, 173, 3,
+	2, 2, 2, 178, 174, 3, 2, 2, 2, 178, 175, 3, 2, 2, 2, 178, 176, 3, 2, 2,
+	2, 178, 177, 3, 2, 2, 2, 179, 180, 3, 2, 2, 2, 180, 182, 7, 35, 2, 2, 181,
+	170, 3, 2, 2, 2, 181, 182, 3, 2, 2, 2, 182, 183, 3, 2, 2, 2, 183, 187,
+	7, 30, 2, 2, 184, 188, 7, 37, 2, 2, 185, 188, 7, 38, 2, 2, 186, 188, 7,
+	39, 2, 2, 187, 184, 3, 2, 2, 2, 187, 185, 3, 2, 2, 2, 187, 186, 3, 2, 2,
+	2, 188, 43, 3, 2, 2, 2, 189, 190, 7, 35, 2, 2, 190, 191, 7, 3, 2, 2, 191,
+	192, 7, 36, 2, 2, 192, 45, 3, 2, 2, 2, 193, 194, 7, 35, 2, 2, 194, 195,
+	7, 11, 2, 2, 195, 196, 7, 36, 2, 2, 196, 47, 3, 2, 2, 2, 197, 198, 7, 28,
+	2, 2, 198, 49, 3, 2, 2, 2, 199, 200, 7, 29, 2, 2, 200, 51, 3, 2, 2, 2,
+	13, 55, 72, 80, 84, 90, 102, 154, 165, 178, 181, 187,
 }
 var deserializer = antlr.NewATNDeserializer(nil)
 var deserializedATN = deserializer.DeserializeFromUInt16(parserATN)
 
 var literalNames = []string{
-	"", "'<->'", "'<-'", "", "", "", "", "'load'", "'move'", "'copy'", "'->'",
-	"'increment'", "'decrement'", "'add'", "'subtract'", "'divide'", "'multiply'",
-	"'='", "'>'", "'>='", "'<'", "'<='", "'!='", "'not'", "'and'", "'or'",
-	"'xor'", "'STOP'", "'WAIT'", "'JUMP'", "'IF'",
+	"", "'<-'", "", "", "", "", "'load'", "'move'", "'copy'", "'->'", "'increment'",
+	"'decrement'", "'add'", "'subtract'", "'divide'", "'multiply'", "'='",
+	"'>'", "'>='", "'<'", "'<='", "'!='", "'not'", "'and'", "'or'", "'xor'",
+	"'STOP'", "'WAIT'", "'JUMP'", "'IF'",
 }
 var symbolicNames = []string{
-	"", "", "", "WHITESPACE", "WS", "COMMENT", "LINE_COMMENT", "LOAD", "MOVE",
+	"", "", "WHITESPACE", "WS", "COMMENT", "LINE_COMMENT", "LOAD", "MOVE",
 	"COPY", "STORE", "INCREMENT", "DECREMENT", "ADD", "SUBTRACT", "DIVIDE",
 	"MULTIPLY", "EQUAL", "GREATER", "GREATER_OR_EQUAL", "LESS", "LESS_OR_EQUAL",
 	"NOT_EQUAL", "NOT", "AND", "OR", "XOR", "STOP", "WAIT", "JUMP", "IF", "HEX_DIGIT",
@@ -100,9 +122,12 @@ var symbolicNames = []string{
 }
 
 var ruleNames = []string{
-	"program", "instruction", "load", "store", "copyValue", "copyRightToLeft",
-	"increment", "decrement", "arithmeticOperation", "unaryBooleanOperation",
-	"binaryBooleanOperation", "jump", "input", "output", "stop", "wait",
+	"program", "instruction", "load", "store", "copyValue", "copyRegister",
+	"copyAbsoluteToAbsolute", "copyOffsetToAbsolute", "copyPointerToAbsolute",
+	"copyAbsoluteToOffset", "copyOffsetToOffset", "copyPointerToOffset", "copyAbsoluteToPointer",
+	"copyOffsetToPointer", "copyPointerToPointer", "increment", "decrement",
+	"arithmeticOperation", "unaryBooleanOperation", "binaryBooleanOperation",
+	"jump", "input", "output", "stop", "wait",
 }
 var decisionToDFA = make([]*antlr.DFA, len(deserializedATN.DecisionToState))
 
@@ -134,43 +159,42 @@ func NewGrogParser(input antlr.TokenStream) *GrogParser {
 const (
 	GrogParserEOF              = antlr.TokenEOF
 	GrogParserT__0             = 1
-	GrogParserT__1             = 2
-	GrogParserWHITESPACE       = 3
-	GrogParserWS               = 4
-	GrogParserCOMMENT          = 5
-	GrogParserLINE_COMMENT     = 6
-	GrogParserLOAD             = 7
-	GrogParserMOVE             = 8
-	GrogParserCOPY             = 9
-	GrogParserSTORE            = 10
-	GrogParserINCREMENT        = 11
-	GrogParserDECREMENT        = 12
-	GrogParserADD              = 13
-	GrogParserSUBTRACT         = 14
-	GrogParserDIVIDE           = 15
-	GrogParserMULTIPLY         = 16
-	GrogParserEQUAL            = 17
-	GrogParserGREATER          = 18
-	GrogParserGREATER_OR_EQUAL = 19
-	GrogParserLESS             = 20
-	GrogParserLESS_OR_EQUAL    = 21
-	GrogParserNOT_EQUAL        = 22
-	GrogParserNOT              = 23
-	GrogParserAND              = 24
-	GrogParserOR               = 25
-	GrogParserXOR              = 26
-	GrogParserSTOP             = 27
-	GrogParserWAIT             = 28
-	GrogParserJUMP             = 29
-	GrogParserIF               = 30
-	GrogParserHEX_DIGIT        = 31
-	GrogParserHEXA_BYTE        = 32
-	GrogParserWORD             = 33
-	GrogParserREGISTER         = 34
-	GrogParserDEVICE           = 35
-	GrogParserABSOLUTE_ADDRESS = 36
-	GrogParserOFFSET_ADDRESS   = 37
-	GrogParserPOINTER_ADDRESS  = 38
+	GrogParserWHITESPACE       = 2
+	GrogParserWS               = 3
+	GrogParserCOMMENT          = 4
+	GrogParserLINE_COMMENT     = 5
+	GrogParserLOAD             = 6
+	GrogParserMOVE             = 7
+	GrogParserCOPY             = 8
+	GrogParserSTORE            = 9
+	GrogParserINCREMENT        = 10
+	GrogParserDECREMENT        = 11
+	GrogParserADD              = 12
+	GrogParserSUBTRACT         = 13
+	GrogParserDIVIDE           = 14
+	GrogParserMULTIPLY         = 15
+	GrogParserEQUAL            = 16
+	GrogParserGREATER          = 17
+	GrogParserGREATER_OR_EQUAL = 18
+	GrogParserLESS             = 19
+	GrogParserLESS_OR_EQUAL    = 20
+	GrogParserNOT_EQUAL        = 21
+	GrogParserNOT              = 22
+	GrogParserAND              = 23
+	GrogParserOR               = 24
+	GrogParserXOR              = 25
+	GrogParserSTOP             = 26
+	GrogParserWAIT             = 27
+	GrogParserJUMP             = 28
+	GrogParserIF               = 29
+	GrogParserHEX_DIGIT        = 30
+	GrogParserHEXA_BYTE        = 31
+	GrogParserWORD             = 32
+	GrogParserREGISTER         = 33
+	GrogParserDEVICE           = 34
+	GrogParserABSOLUTE_ADDRESS = 35
+	GrogParserOFFSET_ADDRESS   = 36
+	GrogParserPOINTER_ADDRESS  = 37
 )
 
 // GrogParser rules.
@@ -180,17 +204,26 @@ const (
 	GrogParserRULE_load                   = 2
 	GrogParserRULE_store                  = 3
 	GrogParserRULE_copyValue              = 4
-	GrogParserRULE_copyRightToLeft        = 5
-	GrogParserRULE_increment              = 6
-	GrogParserRULE_decrement              = 7
-	GrogParserRULE_arithmeticOperation    = 8
-	GrogParserRULE_unaryBooleanOperation  = 9
-	GrogParserRULE_binaryBooleanOperation = 10
-	GrogParserRULE_jump                   = 11
-	GrogParserRULE_input                  = 12
-	GrogParserRULE_output                 = 13
-	GrogParserRULE_stop                   = 14
-	GrogParserRULE_wait                   = 15
+	GrogParserRULE_copyRegister           = 5
+	GrogParserRULE_copyAbsoluteToAbsolute = 6
+	GrogParserRULE_copyOffsetToAbsolute   = 7
+	GrogParserRULE_copyPointerToAbsolute  = 8
+	GrogParserRULE_copyAbsoluteToOffset   = 9
+	GrogParserRULE_copyOffsetToOffset     = 10
+	GrogParserRULE_copyPointerToOffset    = 11
+	GrogParserRULE_copyAbsoluteToPointer  = 12
+	GrogParserRULE_copyOffsetToPointer    = 13
+	GrogParserRULE_copyPointerToPointer   = 14
+	GrogParserRULE_increment              = 15
+	GrogParserRULE_decrement              = 16
+	GrogParserRULE_arithmeticOperation    = 17
+	GrogParserRULE_unaryBooleanOperation  = 18
+	GrogParserRULE_binaryBooleanOperation = 19
+	GrogParserRULE_jump                   = 20
+	GrogParserRULE_input                  = 21
+	GrogParserRULE_output                 = 22
+	GrogParserRULE_stop                   = 23
+	GrogParserRULE_wait                   = 24
 )
 
 // IProgramContext is an interface to support dynamic dispatch.
@@ -300,22 +333,22 @@ func (p *GrogParser) Program() (localctx IProgramContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(33)
+	p.SetState(51)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for ok := true; ok; ok = (((_la-7)&-(0x1f+1)) == 0 && ((1<<uint((_la-7)))&((1<<(GrogParserLOAD-7))|(1<<(GrogParserCOPY-7))|(1<<(GrogParserINCREMENT-7))|(1<<(GrogParserDECREMENT-7))|(1<<(GrogParserADD-7))|(1<<(GrogParserSUBTRACT-7))|(1<<(GrogParserDIVIDE-7))|(1<<(GrogParserMULTIPLY-7))|(1<<(GrogParserNOT-7))|(1<<(GrogParserAND-7))|(1<<(GrogParserOR-7))|(1<<(GrogParserXOR-7))|(1<<(GrogParserSTOP-7))|(1<<(GrogParserWAIT-7))|(1<<(GrogParserJUMP-7))|(1<<(GrogParserIF-7))|(1<<(GrogParserHEXA_BYTE-7))|(1<<(GrogParserREGISTER-7)))) != 0) {
+	for ok := true; ok; ok = (((_la-6)&-(0x1f+1)) == 0 && ((1<<uint((_la-6)))&((1<<(GrogParserLOAD-6))|(1<<(GrogParserCOPY-6))|(1<<(GrogParserINCREMENT-6))|(1<<(GrogParserDECREMENT-6))|(1<<(GrogParserADD-6))|(1<<(GrogParserSUBTRACT-6))|(1<<(GrogParserDIVIDE-6))|(1<<(GrogParserMULTIPLY-6))|(1<<(GrogParserNOT-6))|(1<<(GrogParserAND-6))|(1<<(GrogParserOR-6))|(1<<(GrogParserXOR-6))|(1<<(GrogParserSTOP-6))|(1<<(GrogParserWAIT-6))|(1<<(GrogParserJUMP-6))|(1<<(GrogParserIF-6))|(1<<(GrogParserHEXA_BYTE-6))|(1<<(GrogParserREGISTER-6)))) != 0) {
 		{
-			p.SetState(32)
+			p.SetState(50)
 			p.Instruction()
 		}
 
-		p.SetState(35)
+		p.SetState(53)
 		p.GetErrorHandler().Sync(p)
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(37)
+		p.SetState(55)
 		p.Match(GrogParserEOF)
 	}
 
@@ -530,97 +563,97 @@ func (p *GrogParser) Instruction() (localctx IInstructionContext) {
 		}
 	}()
 
-	p.SetState(52)
+	p.SetState(70)
 	p.GetErrorHandler().Sync(p)
 	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 1, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(39)
+			p.SetState(57)
 			p.Increment()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(40)
+			p.SetState(58)
 			p.Decrement()
 		}
 
 	case 3:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(41)
+			p.SetState(59)
 			p.ArithmeticOperation()
 		}
 
 	case 4:
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(42)
+			p.SetState(60)
 			p.UnaryBooleanOperation()
 		}
 
 	case 5:
 		p.EnterOuterAlt(localctx, 5)
 		{
-			p.SetState(43)
+			p.SetState(61)
 			p.BinaryBooleanOperation()
 		}
 
 	case 6:
 		p.EnterOuterAlt(localctx, 6)
 		{
-			p.SetState(44)
+			p.SetState(62)
 			p.Load()
 		}
 
 	case 7:
 		p.EnterOuterAlt(localctx, 7)
 		{
-			p.SetState(45)
+			p.SetState(63)
 			p.Store()
 		}
 
 	case 8:
 		p.EnterOuterAlt(localctx, 8)
 		{
-			p.SetState(46)
+			p.SetState(64)
 			p.CopyValue()
 		}
 
 	case 9:
 		p.EnterOuterAlt(localctx, 9)
 		{
-			p.SetState(47)
+			p.SetState(65)
 			p.Jump()
 		}
 
 	case 10:
 		p.EnterOuterAlt(localctx, 10)
 		{
-			p.SetState(48)
+			p.SetState(66)
 			p.Input()
 		}
 
 	case 11:
 		p.EnterOuterAlt(localctx, 11)
 		{
-			p.SetState(49)
+			p.SetState(67)
 			p.Output()
 		}
 
 	case 12:
 		p.EnterOuterAlt(localctx, 12)
 		{
-			p.SetState(50)
+			p.SetState(68)
 			p.Stop()
 		}
 
 	case 13:
 		p.EnterOuterAlt(localctx, 13)
 		{
-			p.SetState(51)
+			p.SetState(69)
 			p.Wait()
 		}
 
@@ -788,23 +821,23 @@ func (p *GrogParser) Load() (localctx ILoadContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(54)
+		p.SetState(72)
 		p.Match(GrogParserLOAD)
 	}
 	{
-		p.SetState(55)
+		p.SetState(73)
 
 		var _m = p.Match(GrogParserREGISTER)
 
 		localctx.(*LoadContext).Register = _m
 	}
-	p.SetState(60)
+	p.SetState(78)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
 	case GrogParserHEXA_BYTE:
 		{
-			p.SetState(56)
+			p.SetState(74)
 
 			var _m = p.Match(GrogParserHEXA_BYTE)
 
@@ -813,7 +846,7 @@ func (p *GrogParser) Load() (localctx ILoadContext) {
 
 	case GrogParserABSOLUTE_ADDRESS:
 		{
-			p.SetState(57)
+			p.SetState(75)
 
 			var _m = p.Match(GrogParserABSOLUTE_ADDRESS)
 
@@ -822,7 +855,7 @@ func (p *GrogParser) Load() (localctx ILoadContext) {
 
 	case GrogParserOFFSET_ADDRESS:
 		{
-			p.SetState(58)
+			p.SetState(76)
 
 			var _m = p.Match(GrogParserOFFSET_ADDRESS)
 
@@ -831,7 +864,7 @@ func (p *GrogParser) Load() (localctx ILoadContext) {
 
 	case GrogParserPOINTER_ADDRESS:
 		{
-			p.SetState(59)
+			p.SetState(77)
 
 			var _m = p.Match(GrogParserPOINTER_ADDRESS)
 
@@ -1003,13 +1036,13 @@ func (p *GrogParser) Store() (localctx IStoreContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(64)
+	p.SetState(82)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
 	case GrogParserREGISTER:
 		{
-			p.SetState(62)
+			p.SetState(80)
 
 			var _m = p.Match(GrogParserREGISTER)
 
@@ -1018,7 +1051,7 @@ func (p *GrogParser) Store() (localctx IStoreContext) {
 
 	case GrogParserHEXA_BYTE:
 		{
-			p.SetState(63)
+			p.SetState(81)
 
 			var _m = p.Match(GrogParserHEXA_BYTE)
 
@@ -1029,16 +1062,16 @@ func (p *GrogParser) Store() (localctx IStoreContext) {
 		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
 	}
 	{
-		p.SetState(66)
+		p.SetState(84)
 		p.Match(GrogParserSTORE)
 	}
-	p.SetState(70)
+	p.SetState(88)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
 	case GrogParserABSOLUTE_ADDRESS:
 		{
-			p.SetState(67)
+			p.SetState(85)
 
 			var _m = p.Match(GrogParserABSOLUTE_ADDRESS)
 
@@ -1047,7 +1080,7 @@ func (p *GrogParser) Store() (localctx IStoreContext) {
 
 	case GrogParserOFFSET_ADDRESS:
 		{
-			p.SetState(68)
+			p.SetState(86)
 
 			var _m = p.Match(GrogParserOFFSET_ADDRESS)
 
@@ -1056,7 +1089,7 @@ func (p *GrogParser) Store() (localctx IStoreContext) {
 
 	case GrogParserPOINTER_ADDRESS:
 		{
-			p.SetState(69)
+			p.SetState(87)
 
 			var _m = p.Match(GrogParserPOINTER_ADDRESS)
 
@@ -1108,8 +1141,104 @@ func NewCopyValueContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 
 func (s *CopyValueContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *CopyValueContext) CopyFrom(ctx *CopyValueContext) {
-	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
+func (s *CopyValueContext) CopyRegister() ICopyRegisterContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*ICopyRegisterContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ICopyRegisterContext)
+}
+
+func (s *CopyValueContext) CopyAbsoluteToAbsolute() ICopyAbsoluteToAbsoluteContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*ICopyAbsoluteToAbsoluteContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ICopyAbsoluteToAbsoluteContext)
+}
+
+func (s *CopyValueContext) CopyOffsetToAbsolute() ICopyOffsetToAbsoluteContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*ICopyOffsetToAbsoluteContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ICopyOffsetToAbsoluteContext)
+}
+
+func (s *CopyValueContext) CopyPointerToAbsolute() ICopyPointerToAbsoluteContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*ICopyPointerToAbsoluteContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ICopyPointerToAbsoluteContext)
+}
+
+func (s *CopyValueContext) CopyAbsoluteToOffset() ICopyAbsoluteToOffsetContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*ICopyAbsoluteToOffsetContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ICopyAbsoluteToOffsetContext)
+}
+
+func (s *CopyValueContext) CopyOffsetToOffset() ICopyOffsetToOffsetContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*ICopyOffsetToOffsetContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ICopyOffsetToOffsetContext)
+}
+
+func (s *CopyValueContext) CopyPointerToOffset() ICopyPointerToOffsetContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*ICopyPointerToOffsetContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ICopyPointerToOffsetContext)
+}
+
+func (s *CopyValueContext) CopyAbsoluteToPointer() ICopyAbsoluteToPointerContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*ICopyAbsoluteToPointerContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ICopyAbsoluteToPointerContext)
+}
+
+func (s *CopyValueContext) CopyOffsetToPointer() ICopyOffsetToPointerContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*ICopyOffsetToPointerContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ICopyOffsetToPointerContext)
+}
+
+func (s *CopyValueContext) CopyPointerToPointer() ICopyPointerToPointerContext {
+	var t = s.GetTypedRuleContext(reflect.TypeOf((*ICopyPointerToPointerContext)(nil)).Elem(), 0)
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ICopyPointerToPointerContext)
 }
 
 func (s *CopyValueContext) GetRuleContext() antlr.RuleContext {
@@ -1120,55 +1249,15 @@ func (s *CopyValueContext) ToStringTree(ruleNames []string, recog antlr.Recogniz
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-type CopyRegisterContext struct {
-	*CopyValueContext
-	DestinationRegister antlr.Token
-	SourceRegister      antlr.Token
-}
-
-func NewCopyRegisterContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *CopyRegisterContext {
-	var p = new(CopyRegisterContext)
-
-	p.CopyValueContext = NewEmptyCopyValueContext()
-	p.parser = parser
-	p.CopyFrom(ctx.(*CopyValueContext))
-
-	return p
-}
-
-func (s *CopyRegisterContext) GetDestinationRegister() antlr.Token { return s.DestinationRegister }
-
-func (s *CopyRegisterContext) GetSourceRegister() antlr.Token { return s.SourceRegister }
-
-func (s *CopyRegisterContext) SetDestinationRegister(v antlr.Token) { s.DestinationRegister = v }
-
-func (s *CopyRegisterContext) SetSourceRegister(v antlr.Token) { s.SourceRegister = v }
-
-func (s *CopyRegisterContext) GetRuleContext() antlr.RuleContext {
-	return s
-}
-
-func (s *CopyRegisterContext) COPY() antlr.TerminalNode {
-	return s.GetToken(GrogParserCOPY, 0)
-}
-
-func (s *CopyRegisterContext) AllREGISTER() []antlr.TerminalNode {
-	return s.GetTokens(GrogParserREGISTER)
-}
-
-func (s *CopyRegisterContext) REGISTER(i int) antlr.TerminalNode {
-	return s.GetToken(GrogParserREGISTER, i)
-}
-
-func (s *CopyRegisterContext) EnterRule(listener antlr.ParseTreeListener) {
+func (s *CopyValueContext) EnterRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(GrogListener); ok {
-		listenerT.EnterCopyRegister(s)
+		listenerT.EnterCopyValue(s)
 	}
 }
 
-func (s *CopyRegisterContext) ExitRule(listener antlr.ParseTreeListener) {
+func (s *CopyValueContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(GrogListener); ok {
-		listenerT.ExitCopyRegister(s)
+		listenerT.ExitCopyValue(s)
 	}
 }
 
@@ -1192,148 +1281,179 @@ func (p *GrogParser) CopyValue() (localctx ICopyValueContext) {
 		}
 	}()
 
-	localctx = NewCopyRegisterContext(p, localctx)
-	p.EnterOuterAlt(localctx, 1)
-	{
-		p.SetState(72)
-		p.Match(GrogParserCOPY)
-	}
-	{
-		p.SetState(73)
+	p.SetState(100)
+	p.GetErrorHandler().Sync(p)
+	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 5, p.GetParserRuleContext()) {
+	case 1:
+		p.EnterOuterAlt(localctx, 1)
+		{
+			p.SetState(90)
+			p.CopyRegister()
+		}
 
-		var _m = p.Match(GrogParserREGISTER)
+	case 2:
+		p.EnterOuterAlt(localctx, 2)
+		{
+			p.SetState(91)
+			p.CopyAbsoluteToAbsolute()
+		}
 
-		localctx.(*CopyRegisterContext).DestinationRegister = _m
-	}
-	{
-		p.SetState(74)
+	case 3:
+		p.EnterOuterAlt(localctx, 3)
+		{
+			p.SetState(92)
+			p.CopyOffsetToAbsolute()
+		}
 
-		var _m = p.Match(GrogParserREGISTER)
+	case 4:
+		p.EnterOuterAlt(localctx, 4)
+		{
+			p.SetState(93)
+			p.CopyPointerToAbsolute()
+		}
 
-		localctx.(*CopyRegisterContext).SourceRegister = _m
+	case 5:
+		p.EnterOuterAlt(localctx, 5)
+		{
+			p.SetState(94)
+			p.CopyAbsoluteToOffset()
+		}
+
+	case 6:
+		p.EnterOuterAlt(localctx, 6)
+		{
+			p.SetState(95)
+			p.CopyOffsetToOffset()
+		}
+
+	case 7:
+		p.EnterOuterAlt(localctx, 7)
+		{
+			p.SetState(96)
+			p.CopyPointerToOffset()
+		}
+
+	case 8:
+		p.EnterOuterAlt(localctx, 8)
+		{
+			p.SetState(97)
+			p.CopyAbsoluteToPointer()
+		}
+
+	case 9:
+		p.EnterOuterAlt(localctx, 9)
+		{
+			p.SetState(98)
+			p.CopyOffsetToPointer()
+		}
+
+	case 10:
+		p.EnterOuterAlt(localctx, 10)
+		{
+			p.SetState(99)
+			p.CopyPointerToPointer()
+		}
+
 	}
 
 	return localctx
 }
 
-// ICopyRightToLeftContext is an interface to support dynamic dispatch.
-type ICopyRightToLeftContext interface {
+// ICopyRegisterContext is an interface to support dynamic dispatch.
+type ICopyRegisterContext interface {
 	antlr.ParserRuleContext
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
-	// GetSourceAddress returns the SourceAddress token.
-	GetSourceAddress() antlr.Token
+	// GetDestinationRegister returns the DestinationRegister token.
+	GetDestinationRegister() antlr.Token
 
-	// GetSourceOffset returns the SourceOffset token.
-	GetSourceOffset() antlr.Token
+	// GetSourceRegister returns the SourceRegister token.
+	GetSourceRegister() antlr.Token
 
-	// GetSourcePointer returns the SourcePointer token.
-	GetSourcePointer() antlr.Token
+	// SetDestinationRegister sets the DestinationRegister token.
+	SetDestinationRegister(antlr.Token)
 
-	// SetSourceAddress sets the SourceAddress token.
-	SetSourceAddress(antlr.Token)
+	// SetSourceRegister sets the SourceRegister token.
+	SetSourceRegister(antlr.Token)
 
-	// SetSourceOffset sets the SourceOffset token.
-	SetSourceOffset(antlr.Token)
-
-	// SetSourcePointer sets the SourcePointer token.
-	SetSourcePointer(antlr.Token)
-
-	// IsCopyRightToLeftContext differentiates from other interfaces.
-	IsCopyRightToLeftContext()
+	// IsCopyRegisterContext differentiates from other interfaces.
+	IsCopyRegisterContext()
 }
 
-type CopyRightToLeftContext struct {
+type CopyRegisterContext struct {
 	*antlr.BaseParserRuleContext
-	parser        antlr.Parser
-	SourceAddress antlr.Token
-	SourceOffset  antlr.Token
-	SourcePointer antlr.Token
+	parser              antlr.Parser
+	DestinationRegister antlr.Token
+	SourceRegister      antlr.Token
 }
 
-func NewEmptyCopyRightToLeftContext() *CopyRightToLeftContext {
-	var p = new(CopyRightToLeftContext)
+func NewEmptyCopyRegisterContext() *CopyRegisterContext {
+	var p = new(CopyRegisterContext)
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
-	p.RuleIndex = GrogParserRULE_copyRightToLeft
+	p.RuleIndex = GrogParserRULE_copyRegister
 	return p
 }
 
-func (*CopyRightToLeftContext) IsCopyRightToLeftContext() {}
+func (*CopyRegisterContext) IsCopyRegisterContext() {}
 
-func NewCopyRightToLeftContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *CopyRightToLeftContext {
-	var p = new(CopyRightToLeftContext)
+func NewCopyRegisterContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *CopyRegisterContext {
+	var p = new(CopyRegisterContext)
 
 	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
 
 	p.parser = parser
-	p.RuleIndex = GrogParserRULE_copyRightToLeft
+	p.RuleIndex = GrogParserRULE_copyRegister
 
 	return p
 }
 
-func (s *CopyRightToLeftContext) GetParser() antlr.Parser { return s.parser }
+func (s *CopyRegisterContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *CopyRightToLeftContext) GetSourceAddress() antlr.Token { return s.SourceAddress }
+func (s *CopyRegisterContext) GetDestinationRegister() antlr.Token { return s.DestinationRegister }
 
-func (s *CopyRightToLeftContext) GetSourceOffset() antlr.Token { return s.SourceOffset }
+func (s *CopyRegisterContext) GetSourceRegister() antlr.Token { return s.SourceRegister }
 
-func (s *CopyRightToLeftContext) GetSourcePointer() antlr.Token { return s.SourcePointer }
+func (s *CopyRegisterContext) SetDestinationRegister(v antlr.Token) { s.DestinationRegister = v }
 
-func (s *CopyRightToLeftContext) SetSourceAddress(v antlr.Token) { s.SourceAddress = v }
+func (s *CopyRegisterContext) SetSourceRegister(v antlr.Token) { s.SourceRegister = v }
 
-func (s *CopyRightToLeftContext) SetSourceOffset(v antlr.Token) { s.SourceOffset = v }
-
-func (s *CopyRightToLeftContext) SetSourcePointer(v antlr.Token) { s.SourcePointer = v }
-
-func (s *CopyRightToLeftContext) AllABSOLUTE_ADDRESS() []antlr.TerminalNode {
-	return s.GetTokens(GrogParserABSOLUTE_ADDRESS)
+func (s *CopyRegisterContext) COPY() antlr.TerminalNode {
+	return s.GetToken(GrogParserCOPY, 0)
 }
 
-func (s *CopyRightToLeftContext) ABSOLUTE_ADDRESS(i int) antlr.TerminalNode {
-	return s.GetToken(GrogParserABSOLUTE_ADDRESS, i)
+func (s *CopyRegisterContext) AllREGISTER() []antlr.TerminalNode {
+	return s.GetTokens(GrogParserREGISTER)
 }
 
-func (s *CopyRightToLeftContext) AllOFFSET_ADDRESS() []antlr.TerminalNode {
-	return s.GetTokens(GrogParserOFFSET_ADDRESS)
+func (s *CopyRegisterContext) REGISTER(i int) antlr.TerminalNode {
+	return s.GetToken(GrogParserREGISTER, i)
 }
 
-func (s *CopyRightToLeftContext) OFFSET_ADDRESS(i int) antlr.TerminalNode {
-	return s.GetToken(GrogParserOFFSET_ADDRESS, i)
-}
-
-func (s *CopyRightToLeftContext) AllPOINTER_ADDRESS() []antlr.TerminalNode {
-	return s.GetTokens(GrogParserPOINTER_ADDRESS)
-}
-
-func (s *CopyRightToLeftContext) POINTER_ADDRESS(i int) antlr.TerminalNode {
-	return s.GetToken(GrogParserPOINTER_ADDRESS, i)
-}
-
-func (s *CopyRightToLeftContext) GetRuleContext() antlr.RuleContext {
+func (s *CopyRegisterContext) GetRuleContext() antlr.RuleContext {
 	return s
 }
 
-func (s *CopyRightToLeftContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+func (s *CopyRegisterContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
 	return antlr.TreesStringTree(s, ruleNames, recog)
 }
 
-func (s *CopyRightToLeftContext) EnterRule(listener antlr.ParseTreeListener) {
+func (s *CopyRegisterContext) EnterRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(GrogListener); ok {
-		listenerT.EnterCopyRightToLeft(s)
+		listenerT.EnterCopyRegister(s)
 	}
 }
 
-func (s *CopyRightToLeftContext) ExitRule(listener antlr.ParseTreeListener) {
+func (s *CopyRegisterContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(GrogListener); ok {
-		listenerT.ExitCopyRightToLeft(s)
+		listenerT.ExitCopyRegister(s)
 	}
 }
 
-func (p *GrogParser) CopyRightToLeft() (localctx ICopyRightToLeftContext) {
-	localctx = NewCopyRightToLeftContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 10, GrogParserRULE_copyRightToLeft)
+func (p *GrogParser) CopyRegister() (localctx ICopyRegisterContext) {
+	localctx = NewCopyRegisterContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 10, GrogParserRULE_copyRegister)
 
 	defer func() {
 		p.ExitRule()
@@ -1352,77 +1472,1238 @@ func (p *GrogParser) CopyRightToLeft() (localctx ICopyRightToLeftContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(79)
-	p.GetErrorHandler().Sync(p)
-
-	switch p.GetTokenStream().LA(1) {
-	case GrogParserABSOLUTE_ADDRESS:
-		{
-			p.SetState(76)
-
-			var _m = p.Match(GrogParserABSOLUTE_ADDRESS)
-
-			localctx.(*CopyRightToLeftContext).SourceAddress = _m
-		}
-
-	case GrogParserOFFSET_ADDRESS:
-		{
-			p.SetState(77)
-
-			var _m = p.Match(GrogParserOFFSET_ADDRESS)
-
-			localctx.(*CopyRightToLeftContext).SourceOffset = _m
-		}
-
-	case GrogParserPOINTER_ADDRESS:
-		{
-			p.SetState(78)
-
-			var _m = p.Match(GrogParserPOINTER_ADDRESS)
-
-			localctx.(*CopyRightToLeftContext).SourcePointer = _m
-		}
-
-	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+	{
+		p.SetState(102)
+		p.Match(GrogParserCOPY)
 	}
 	{
-		p.SetState(81)
-		p.Match(GrogParserT__0)
+		p.SetState(103)
+
+		var _m = p.Match(GrogParserREGISTER)
+
+		localctx.(*CopyRegisterContext).DestinationRegister = _m
 	}
-	p.SetState(85)
-	p.GetErrorHandler().Sync(p)
+	{
+		p.SetState(104)
 
-	switch p.GetTokenStream().LA(1) {
-	case GrogParserABSOLUTE_ADDRESS:
-		{
-			p.SetState(82)
+		var _m = p.Match(GrogParserREGISTER)
 
-			var _m = p.Match(GrogParserABSOLUTE_ADDRESS)
+		localctx.(*CopyRegisterContext).SourceRegister = _m
+	}
 
-			localctx.(*CopyRightToLeftContext).SourceAddress = _m
+	return localctx
+}
+
+// ICopyAbsoluteToAbsoluteContext is an interface to support dynamic dispatch.
+type ICopyAbsoluteToAbsoluteContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// GetDestination returns the Destination token.
+	GetDestination() antlr.Token
+
+	// GetSource returns the Source token.
+	GetSource() antlr.Token
+
+	// SetDestination sets the Destination token.
+	SetDestination(antlr.Token)
+
+	// SetSource sets the Source token.
+	SetSource(antlr.Token)
+
+	// IsCopyAbsoluteToAbsoluteContext differentiates from other interfaces.
+	IsCopyAbsoluteToAbsoluteContext()
+}
+
+type CopyAbsoluteToAbsoluteContext struct {
+	*antlr.BaseParserRuleContext
+	parser      antlr.Parser
+	Destination antlr.Token
+	Source      antlr.Token
+}
+
+func NewEmptyCopyAbsoluteToAbsoluteContext() *CopyAbsoluteToAbsoluteContext {
+	var p = new(CopyAbsoluteToAbsoluteContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = GrogParserRULE_copyAbsoluteToAbsolute
+	return p
+}
+
+func (*CopyAbsoluteToAbsoluteContext) IsCopyAbsoluteToAbsoluteContext() {}
+
+func NewCopyAbsoluteToAbsoluteContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *CopyAbsoluteToAbsoluteContext {
+	var p = new(CopyAbsoluteToAbsoluteContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = GrogParserRULE_copyAbsoluteToAbsolute
+
+	return p
+}
+
+func (s *CopyAbsoluteToAbsoluteContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *CopyAbsoluteToAbsoluteContext) GetDestination() antlr.Token { return s.Destination }
+
+func (s *CopyAbsoluteToAbsoluteContext) GetSource() antlr.Token { return s.Source }
+
+func (s *CopyAbsoluteToAbsoluteContext) SetDestination(v antlr.Token) { s.Destination = v }
+
+func (s *CopyAbsoluteToAbsoluteContext) SetSource(v antlr.Token) { s.Source = v }
+
+func (s *CopyAbsoluteToAbsoluteContext) COPY() antlr.TerminalNode {
+	return s.GetToken(GrogParserCOPY, 0)
+}
+
+func (s *CopyAbsoluteToAbsoluteContext) AllABSOLUTE_ADDRESS() []antlr.TerminalNode {
+	return s.GetTokens(GrogParserABSOLUTE_ADDRESS)
+}
+
+func (s *CopyAbsoluteToAbsoluteContext) ABSOLUTE_ADDRESS(i int) antlr.TerminalNode {
+	return s.GetToken(GrogParserABSOLUTE_ADDRESS, i)
+}
+
+func (s *CopyAbsoluteToAbsoluteContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *CopyAbsoluteToAbsoluteContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *CopyAbsoluteToAbsoluteContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(GrogListener); ok {
+		listenerT.EnterCopyAbsoluteToAbsolute(s)
+	}
+}
+
+func (s *CopyAbsoluteToAbsoluteContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(GrogListener); ok {
+		listenerT.ExitCopyAbsoluteToAbsolute(s)
+	}
+}
+
+func (p *GrogParser) CopyAbsoluteToAbsolute() (localctx ICopyAbsoluteToAbsoluteContext) {
+	localctx = NewCopyAbsoluteToAbsoluteContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 12, GrogParserRULE_copyAbsoluteToAbsolute)
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
 		}
+	}()
 
-	case GrogParserOFFSET_ADDRESS:
-		{
-			p.SetState(83)
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(106)
+		p.Match(GrogParserCOPY)
+	}
+	{
+		p.SetState(107)
 
-			var _m = p.Match(GrogParserOFFSET_ADDRESS)
+		var _m = p.Match(GrogParserABSOLUTE_ADDRESS)
 
-			localctx.(*CopyRightToLeftContext).SourceOffset = _m
+		localctx.(*CopyAbsoluteToAbsoluteContext).Destination = _m
+	}
+	{
+		p.SetState(108)
+
+		var _m = p.Match(GrogParserABSOLUTE_ADDRESS)
+
+		localctx.(*CopyAbsoluteToAbsoluteContext).Source = _m
+	}
+
+	return localctx
+}
+
+// ICopyOffsetToAbsoluteContext is an interface to support dynamic dispatch.
+type ICopyOffsetToAbsoluteContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// GetDestination returns the Destination token.
+	GetDestination() antlr.Token
+
+	// GetSource returns the Source token.
+	GetSource() antlr.Token
+
+	// SetDestination sets the Destination token.
+	SetDestination(antlr.Token)
+
+	// SetSource sets the Source token.
+	SetSource(antlr.Token)
+
+	// IsCopyOffsetToAbsoluteContext differentiates from other interfaces.
+	IsCopyOffsetToAbsoluteContext()
+}
+
+type CopyOffsetToAbsoluteContext struct {
+	*antlr.BaseParserRuleContext
+	parser      antlr.Parser
+	Destination antlr.Token
+	Source      antlr.Token
+}
+
+func NewEmptyCopyOffsetToAbsoluteContext() *CopyOffsetToAbsoluteContext {
+	var p = new(CopyOffsetToAbsoluteContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = GrogParserRULE_copyOffsetToAbsolute
+	return p
+}
+
+func (*CopyOffsetToAbsoluteContext) IsCopyOffsetToAbsoluteContext() {}
+
+func NewCopyOffsetToAbsoluteContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *CopyOffsetToAbsoluteContext {
+	var p = new(CopyOffsetToAbsoluteContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = GrogParserRULE_copyOffsetToAbsolute
+
+	return p
+}
+
+func (s *CopyOffsetToAbsoluteContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *CopyOffsetToAbsoluteContext) GetDestination() antlr.Token { return s.Destination }
+
+func (s *CopyOffsetToAbsoluteContext) GetSource() antlr.Token { return s.Source }
+
+func (s *CopyOffsetToAbsoluteContext) SetDestination(v antlr.Token) { s.Destination = v }
+
+func (s *CopyOffsetToAbsoluteContext) SetSource(v antlr.Token) { s.Source = v }
+
+func (s *CopyOffsetToAbsoluteContext) COPY() antlr.TerminalNode {
+	return s.GetToken(GrogParserCOPY, 0)
+}
+
+func (s *CopyOffsetToAbsoluteContext) ABSOLUTE_ADDRESS() antlr.TerminalNode {
+	return s.GetToken(GrogParserABSOLUTE_ADDRESS, 0)
+}
+
+func (s *CopyOffsetToAbsoluteContext) OFFSET_ADDRESS() antlr.TerminalNode {
+	return s.GetToken(GrogParserOFFSET_ADDRESS, 0)
+}
+
+func (s *CopyOffsetToAbsoluteContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *CopyOffsetToAbsoluteContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *CopyOffsetToAbsoluteContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(GrogListener); ok {
+		listenerT.EnterCopyOffsetToAbsolute(s)
+	}
+}
+
+func (s *CopyOffsetToAbsoluteContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(GrogListener); ok {
+		listenerT.ExitCopyOffsetToAbsolute(s)
+	}
+}
+
+func (p *GrogParser) CopyOffsetToAbsolute() (localctx ICopyOffsetToAbsoluteContext) {
+	localctx = NewCopyOffsetToAbsoluteContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 14, GrogParserRULE_copyOffsetToAbsolute)
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
 		}
+	}()
 
-	case GrogParserPOINTER_ADDRESS:
-		{
-			p.SetState(84)
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(110)
+		p.Match(GrogParserCOPY)
+	}
+	{
+		p.SetState(111)
 
-			var _m = p.Match(GrogParserPOINTER_ADDRESS)
+		var _m = p.Match(GrogParserABSOLUTE_ADDRESS)
 
-			localctx.(*CopyRightToLeftContext).SourcePointer = _m
+		localctx.(*CopyOffsetToAbsoluteContext).Destination = _m
+	}
+	{
+		p.SetState(112)
+
+		var _m = p.Match(GrogParserOFFSET_ADDRESS)
+
+		localctx.(*CopyOffsetToAbsoluteContext).Source = _m
+	}
+
+	return localctx
+}
+
+// ICopyPointerToAbsoluteContext is an interface to support dynamic dispatch.
+type ICopyPointerToAbsoluteContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// GetDestination returns the Destination token.
+	GetDestination() antlr.Token
+
+	// GetSource returns the Source token.
+	GetSource() antlr.Token
+
+	// SetDestination sets the Destination token.
+	SetDestination(antlr.Token)
+
+	// SetSource sets the Source token.
+	SetSource(antlr.Token)
+
+	// IsCopyPointerToAbsoluteContext differentiates from other interfaces.
+	IsCopyPointerToAbsoluteContext()
+}
+
+type CopyPointerToAbsoluteContext struct {
+	*antlr.BaseParserRuleContext
+	parser      antlr.Parser
+	Destination antlr.Token
+	Source      antlr.Token
+}
+
+func NewEmptyCopyPointerToAbsoluteContext() *CopyPointerToAbsoluteContext {
+	var p = new(CopyPointerToAbsoluteContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = GrogParserRULE_copyPointerToAbsolute
+	return p
+}
+
+func (*CopyPointerToAbsoluteContext) IsCopyPointerToAbsoluteContext() {}
+
+func NewCopyPointerToAbsoluteContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *CopyPointerToAbsoluteContext {
+	var p = new(CopyPointerToAbsoluteContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = GrogParserRULE_copyPointerToAbsolute
+
+	return p
+}
+
+func (s *CopyPointerToAbsoluteContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *CopyPointerToAbsoluteContext) GetDestination() antlr.Token { return s.Destination }
+
+func (s *CopyPointerToAbsoluteContext) GetSource() antlr.Token { return s.Source }
+
+func (s *CopyPointerToAbsoluteContext) SetDestination(v antlr.Token) { s.Destination = v }
+
+func (s *CopyPointerToAbsoluteContext) SetSource(v antlr.Token) { s.Source = v }
+
+func (s *CopyPointerToAbsoluteContext) COPY() antlr.TerminalNode {
+	return s.GetToken(GrogParserCOPY, 0)
+}
+
+func (s *CopyPointerToAbsoluteContext) ABSOLUTE_ADDRESS() antlr.TerminalNode {
+	return s.GetToken(GrogParserABSOLUTE_ADDRESS, 0)
+}
+
+func (s *CopyPointerToAbsoluteContext) POINTER_ADDRESS() antlr.TerminalNode {
+	return s.GetToken(GrogParserPOINTER_ADDRESS, 0)
+}
+
+func (s *CopyPointerToAbsoluteContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *CopyPointerToAbsoluteContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *CopyPointerToAbsoluteContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(GrogListener); ok {
+		listenerT.EnterCopyPointerToAbsolute(s)
+	}
+}
+
+func (s *CopyPointerToAbsoluteContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(GrogListener); ok {
+		listenerT.ExitCopyPointerToAbsolute(s)
+	}
+}
+
+func (p *GrogParser) CopyPointerToAbsolute() (localctx ICopyPointerToAbsoluteContext) {
+	localctx = NewCopyPointerToAbsoluteContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 16, GrogParserRULE_copyPointerToAbsolute)
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
 		}
+	}()
 
-	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(114)
+		p.Match(GrogParserCOPY)
+	}
+	{
+		p.SetState(115)
+
+		var _m = p.Match(GrogParserABSOLUTE_ADDRESS)
+
+		localctx.(*CopyPointerToAbsoluteContext).Destination = _m
+	}
+	{
+		p.SetState(116)
+
+		var _m = p.Match(GrogParserPOINTER_ADDRESS)
+
+		localctx.(*CopyPointerToAbsoluteContext).Source = _m
+	}
+
+	return localctx
+}
+
+// ICopyAbsoluteToOffsetContext is an interface to support dynamic dispatch.
+type ICopyAbsoluteToOffsetContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// GetDestination returns the Destination token.
+	GetDestination() antlr.Token
+
+	// GetSource returns the Source token.
+	GetSource() antlr.Token
+
+	// SetDestination sets the Destination token.
+	SetDestination(antlr.Token)
+
+	// SetSource sets the Source token.
+	SetSource(antlr.Token)
+
+	// IsCopyAbsoluteToOffsetContext differentiates from other interfaces.
+	IsCopyAbsoluteToOffsetContext()
+}
+
+type CopyAbsoluteToOffsetContext struct {
+	*antlr.BaseParserRuleContext
+	parser      antlr.Parser
+	Destination antlr.Token
+	Source      antlr.Token
+}
+
+func NewEmptyCopyAbsoluteToOffsetContext() *CopyAbsoluteToOffsetContext {
+	var p = new(CopyAbsoluteToOffsetContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = GrogParserRULE_copyAbsoluteToOffset
+	return p
+}
+
+func (*CopyAbsoluteToOffsetContext) IsCopyAbsoluteToOffsetContext() {}
+
+func NewCopyAbsoluteToOffsetContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *CopyAbsoluteToOffsetContext {
+	var p = new(CopyAbsoluteToOffsetContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = GrogParserRULE_copyAbsoluteToOffset
+
+	return p
+}
+
+func (s *CopyAbsoluteToOffsetContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *CopyAbsoluteToOffsetContext) GetDestination() antlr.Token { return s.Destination }
+
+func (s *CopyAbsoluteToOffsetContext) GetSource() antlr.Token { return s.Source }
+
+func (s *CopyAbsoluteToOffsetContext) SetDestination(v antlr.Token) { s.Destination = v }
+
+func (s *CopyAbsoluteToOffsetContext) SetSource(v antlr.Token) { s.Source = v }
+
+func (s *CopyAbsoluteToOffsetContext) COPY() antlr.TerminalNode {
+	return s.GetToken(GrogParserCOPY, 0)
+}
+
+func (s *CopyAbsoluteToOffsetContext) OFFSET_ADDRESS() antlr.TerminalNode {
+	return s.GetToken(GrogParserOFFSET_ADDRESS, 0)
+}
+
+func (s *CopyAbsoluteToOffsetContext) ABSOLUTE_ADDRESS() antlr.TerminalNode {
+	return s.GetToken(GrogParserABSOLUTE_ADDRESS, 0)
+}
+
+func (s *CopyAbsoluteToOffsetContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *CopyAbsoluteToOffsetContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *CopyAbsoluteToOffsetContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(GrogListener); ok {
+		listenerT.EnterCopyAbsoluteToOffset(s)
+	}
+}
+
+func (s *CopyAbsoluteToOffsetContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(GrogListener); ok {
+		listenerT.ExitCopyAbsoluteToOffset(s)
+	}
+}
+
+func (p *GrogParser) CopyAbsoluteToOffset() (localctx ICopyAbsoluteToOffsetContext) {
+	localctx = NewCopyAbsoluteToOffsetContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 18, GrogParserRULE_copyAbsoluteToOffset)
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(118)
+		p.Match(GrogParserCOPY)
+	}
+	{
+		p.SetState(119)
+
+		var _m = p.Match(GrogParserOFFSET_ADDRESS)
+
+		localctx.(*CopyAbsoluteToOffsetContext).Destination = _m
+	}
+	{
+		p.SetState(120)
+
+		var _m = p.Match(GrogParserABSOLUTE_ADDRESS)
+
+		localctx.(*CopyAbsoluteToOffsetContext).Source = _m
+	}
+
+	return localctx
+}
+
+// ICopyOffsetToOffsetContext is an interface to support dynamic dispatch.
+type ICopyOffsetToOffsetContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// GetDestination returns the Destination token.
+	GetDestination() antlr.Token
+
+	// GetSource returns the Source token.
+	GetSource() antlr.Token
+
+	// SetDestination sets the Destination token.
+	SetDestination(antlr.Token)
+
+	// SetSource sets the Source token.
+	SetSource(antlr.Token)
+
+	// IsCopyOffsetToOffsetContext differentiates from other interfaces.
+	IsCopyOffsetToOffsetContext()
+}
+
+type CopyOffsetToOffsetContext struct {
+	*antlr.BaseParserRuleContext
+	parser      antlr.Parser
+	Destination antlr.Token
+	Source      antlr.Token
+}
+
+func NewEmptyCopyOffsetToOffsetContext() *CopyOffsetToOffsetContext {
+	var p = new(CopyOffsetToOffsetContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = GrogParserRULE_copyOffsetToOffset
+	return p
+}
+
+func (*CopyOffsetToOffsetContext) IsCopyOffsetToOffsetContext() {}
+
+func NewCopyOffsetToOffsetContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *CopyOffsetToOffsetContext {
+	var p = new(CopyOffsetToOffsetContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = GrogParserRULE_copyOffsetToOffset
+
+	return p
+}
+
+func (s *CopyOffsetToOffsetContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *CopyOffsetToOffsetContext) GetDestination() antlr.Token { return s.Destination }
+
+func (s *CopyOffsetToOffsetContext) GetSource() antlr.Token { return s.Source }
+
+func (s *CopyOffsetToOffsetContext) SetDestination(v antlr.Token) { s.Destination = v }
+
+func (s *CopyOffsetToOffsetContext) SetSource(v antlr.Token) { s.Source = v }
+
+func (s *CopyOffsetToOffsetContext) COPY() antlr.TerminalNode {
+	return s.GetToken(GrogParserCOPY, 0)
+}
+
+func (s *CopyOffsetToOffsetContext) AllOFFSET_ADDRESS() []antlr.TerminalNode {
+	return s.GetTokens(GrogParserOFFSET_ADDRESS)
+}
+
+func (s *CopyOffsetToOffsetContext) OFFSET_ADDRESS(i int) antlr.TerminalNode {
+	return s.GetToken(GrogParserOFFSET_ADDRESS, i)
+}
+
+func (s *CopyOffsetToOffsetContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *CopyOffsetToOffsetContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *CopyOffsetToOffsetContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(GrogListener); ok {
+		listenerT.EnterCopyOffsetToOffset(s)
+	}
+}
+
+func (s *CopyOffsetToOffsetContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(GrogListener); ok {
+		listenerT.ExitCopyOffsetToOffset(s)
+	}
+}
+
+func (p *GrogParser) CopyOffsetToOffset() (localctx ICopyOffsetToOffsetContext) {
+	localctx = NewCopyOffsetToOffsetContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 20, GrogParserRULE_copyOffsetToOffset)
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(122)
+		p.Match(GrogParserCOPY)
+	}
+	{
+		p.SetState(123)
+
+		var _m = p.Match(GrogParserOFFSET_ADDRESS)
+
+		localctx.(*CopyOffsetToOffsetContext).Destination = _m
+	}
+	{
+		p.SetState(124)
+
+		var _m = p.Match(GrogParserOFFSET_ADDRESS)
+
+		localctx.(*CopyOffsetToOffsetContext).Source = _m
+	}
+
+	return localctx
+}
+
+// ICopyPointerToOffsetContext is an interface to support dynamic dispatch.
+type ICopyPointerToOffsetContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// GetDestination returns the Destination token.
+	GetDestination() antlr.Token
+
+	// GetSource returns the Source token.
+	GetSource() antlr.Token
+
+	// SetDestination sets the Destination token.
+	SetDestination(antlr.Token)
+
+	// SetSource sets the Source token.
+	SetSource(antlr.Token)
+
+	// IsCopyPointerToOffsetContext differentiates from other interfaces.
+	IsCopyPointerToOffsetContext()
+}
+
+type CopyPointerToOffsetContext struct {
+	*antlr.BaseParserRuleContext
+	parser      antlr.Parser
+	Destination antlr.Token
+	Source      antlr.Token
+}
+
+func NewEmptyCopyPointerToOffsetContext() *CopyPointerToOffsetContext {
+	var p = new(CopyPointerToOffsetContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = GrogParserRULE_copyPointerToOffset
+	return p
+}
+
+func (*CopyPointerToOffsetContext) IsCopyPointerToOffsetContext() {}
+
+func NewCopyPointerToOffsetContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *CopyPointerToOffsetContext {
+	var p = new(CopyPointerToOffsetContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = GrogParserRULE_copyPointerToOffset
+
+	return p
+}
+
+func (s *CopyPointerToOffsetContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *CopyPointerToOffsetContext) GetDestination() antlr.Token { return s.Destination }
+
+func (s *CopyPointerToOffsetContext) GetSource() antlr.Token { return s.Source }
+
+func (s *CopyPointerToOffsetContext) SetDestination(v antlr.Token) { s.Destination = v }
+
+func (s *CopyPointerToOffsetContext) SetSource(v antlr.Token) { s.Source = v }
+
+func (s *CopyPointerToOffsetContext) COPY() antlr.TerminalNode {
+	return s.GetToken(GrogParserCOPY, 0)
+}
+
+func (s *CopyPointerToOffsetContext) OFFSET_ADDRESS() antlr.TerminalNode {
+	return s.GetToken(GrogParserOFFSET_ADDRESS, 0)
+}
+
+func (s *CopyPointerToOffsetContext) POINTER_ADDRESS() antlr.TerminalNode {
+	return s.GetToken(GrogParserPOINTER_ADDRESS, 0)
+}
+
+func (s *CopyPointerToOffsetContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *CopyPointerToOffsetContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *CopyPointerToOffsetContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(GrogListener); ok {
+		listenerT.EnterCopyPointerToOffset(s)
+	}
+}
+
+func (s *CopyPointerToOffsetContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(GrogListener); ok {
+		listenerT.ExitCopyPointerToOffset(s)
+	}
+}
+
+func (p *GrogParser) CopyPointerToOffset() (localctx ICopyPointerToOffsetContext) {
+	localctx = NewCopyPointerToOffsetContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 22, GrogParserRULE_copyPointerToOffset)
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(126)
+		p.Match(GrogParserCOPY)
+	}
+	{
+		p.SetState(127)
+
+		var _m = p.Match(GrogParserOFFSET_ADDRESS)
+
+		localctx.(*CopyPointerToOffsetContext).Destination = _m
+	}
+	{
+		p.SetState(128)
+
+		var _m = p.Match(GrogParserPOINTER_ADDRESS)
+
+		localctx.(*CopyPointerToOffsetContext).Source = _m
+	}
+
+	return localctx
+}
+
+// ICopyAbsoluteToPointerContext is an interface to support dynamic dispatch.
+type ICopyAbsoluteToPointerContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// GetDestination returns the Destination token.
+	GetDestination() antlr.Token
+
+	// GetSource returns the Source token.
+	GetSource() antlr.Token
+
+	// SetDestination sets the Destination token.
+	SetDestination(antlr.Token)
+
+	// SetSource sets the Source token.
+	SetSource(antlr.Token)
+
+	// IsCopyAbsoluteToPointerContext differentiates from other interfaces.
+	IsCopyAbsoluteToPointerContext()
+}
+
+type CopyAbsoluteToPointerContext struct {
+	*antlr.BaseParserRuleContext
+	parser      antlr.Parser
+	Destination antlr.Token
+	Source      antlr.Token
+}
+
+func NewEmptyCopyAbsoluteToPointerContext() *CopyAbsoluteToPointerContext {
+	var p = new(CopyAbsoluteToPointerContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = GrogParserRULE_copyAbsoluteToPointer
+	return p
+}
+
+func (*CopyAbsoluteToPointerContext) IsCopyAbsoluteToPointerContext() {}
+
+func NewCopyAbsoluteToPointerContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *CopyAbsoluteToPointerContext {
+	var p = new(CopyAbsoluteToPointerContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = GrogParserRULE_copyAbsoluteToPointer
+
+	return p
+}
+
+func (s *CopyAbsoluteToPointerContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *CopyAbsoluteToPointerContext) GetDestination() antlr.Token { return s.Destination }
+
+func (s *CopyAbsoluteToPointerContext) GetSource() antlr.Token { return s.Source }
+
+func (s *CopyAbsoluteToPointerContext) SetDestination(v antlr.Token) { s.Destination = v }
+
+func (s *CopyAbsoluteToPointerContext) SetSource(v antlr.Token) { s.Source = v }
+
+func (s *CopyAbsoluteToPointerContext) COPY() antlr.TerminalNode {
+	return s.GetToken(GrogParserCOPY, 0)
+}
+
+func (s *CopyAbsoluteToPointerContext) POINTER_ADDRESS() antlr.TerminalNode {
+	return s.GetToken(GrogParserPOINTER_ADDRESS, 0)
+}
+
+func (s *CopyAbsoluteToPointerContext) ABSOLUTE_ADDRESS() antlr.TerminalNode {
+	return s.GetToken(GrogParserABSOLUTE_ADDRESS, 0)
+}
+
+func (s *CopyAbsoluteToPointerContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *CopyAbsoluteToPointerContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *CopyAbsoluteToPointerContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(GrogListener); ok {
+		listenerT.EnterCopyAbsoluteToPointer(s)
+	}
+}
+
+func (s *CopyAbsoluteToPointerContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(GrogListener); ok {
+		listenerT.ExitCopyAbsoluteToPointer(s)
+	}
+}
+
+func (p *GrogParser) CopyAbsoluteToPointer() (localctx ICopyAbsoluteToPointerContext) {
+	localctx = NewCopyAbsoluteToPointerContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 24, GrogParserRULE_copyAbsoluteToPointer)
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(130)
+		p.Match(GrogParserCOPY)
+	}
+	{
+		p.SetState(131)
+
+		var _m = p.Match(GrogParserPOINTER_ADDRESS)
+
+		localctx.(*CopyAbsoluteToPointerContext).Destination = _m
+	}
+	{
+		p.SetState(132)
+
+		var _m = p.Match(GrogParserABSOLUTE_ADDRESS)
+
+		localctx.(*CopyAbsoluteToPointerContext).Source = _m
+	}
+
+	return localctx
+}
+
+// ICopyOffsetToPointerContext is an interface to support dynamic dispatch.
+type ICopyOffsetToPointerContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// GetDestination returns the Destination token.
+	GetDestination() antlr.Token
+
+	// GetSource returns the Source token.
+	GetSource() antlr.Token
+
+	// SetDestination sets the Destination token.
+	SetDestination(antlr.Token)
+
+	// SetSource sets the Source token.
+	SetSource(antlr.Token)
+
+	// IsCopyOffsetToPointerContext differentiates from other interfaces.
+	IsCopyOffsetToPointerContext()
+}
+
+type CopyOffsetToPointerContext struct {
+	*antlr.BaseParserRuleContext
+	parser      antlr.Parser
+	Destination antlr.Token
+	Source      antlr.Token
+}
+
+func NewEmptyCopyOffsetToPointerContext() *CopyOffsetToPointerContext {
+	var p = new(CopyOffsetToPointerContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = GrogParserRULE_copyOffsetToPointer
+	return p
+}
+
+func (*CopyOffsetToPointerContext) IsCopyOffsetToPointerContext() {}
+
+func NewCopyOffsetToPointerContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *CopyOffsetToPointerContext {
+	var p = new(CopyOffsetToPointerContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = GrogParserRULE_copyOffsetToPointer
+
+	return p
+}
+
+func (s *CopyOffsetToPointerContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *CopyOffsetToPointerContext) GetDestination() antlr.Token { return s.Destination }
+
+func (s *CopyOffsetToPointerContext) GetSource() antlr.Token { return s.Source }
+
+func (s *CopyOffsetToPointerContext) SetDestination(v antlr.Token) { s.Destination = v }
+
+func (s *CopyOffsetToPointerContext) SetSource(v antlr.Token) { s.Source = v }
+
+func (s *CopyOffsetToPointerContext) COPY() antlr.TerminalNode {
+	return s.GetToken(GrogParserCOPY, 0)
+}
+
+func (s *CopyOffsetToPointerContext) POINTER_ADDRESS() antlr.TerminalNode {
+	return s.GetToken(GrogParserPOINTER_ADDRESS, 0)
+}
+
+func (s *CopyOffsetToPointerContext) OFFSET_ADDRESS() antlr.TerminalNode {
+	return s.GetToken(GrogParserOFFSET_ADDRESS, 0)
+}
+
+func (s *CopyOffsetToPointerContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *CopyOffsetToPointerContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *CopyOffsetToPointerContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(GrogListener); ok {
+		listenerT.EnterCopyOffsetToPointer(s)
+	}
+}
+
+func (s *CopyOffsetToPointerContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(GrogListener); ok {
+		listenerT.ExitCopyOffsetToPointer(s)
+	}
+}
+
+func (p *GrogParser) CopyOffsetToPointer() (localctx ICopyOffsetToPointerContext) {
+	localctx = NewCopyOffsetToPointerContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 26, GrogParserRULE_copyOffsetToPointer)
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(134)
+		p.Match(GrogParserCOPY)
+	}
+	{
+		p.SetState(135)
+
+		var _m = p.Match(GrogParserPOINTER_ADDRESS)
+
+		localctx.(*CopyOffsetToPointerContext).Destination = _m
+	}
+	{
+		p.SetState(136)
+
+		var _m = p.Match(GrogParserOFFSET_ADDRESS)
+
+		localctx.(*CopyOffsetToPointerContext).Source = _m
+	}
+
+	return localctx
+}
+
+// ICopyPointerToPointerContext is an interface to support dynamic dispatch.
+type ICopyPointerToPointerContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// GetDestination returns the Destination token.
+	GetDestination() antlr.Token
+
+	// GetSource returns the Source token.
+	GetSource() antlr.Token
+
+	// SetDestination sets the Destination token.
+	SetDestination(antlr.Token)
+
+	// SetSource sets the Source token.
+	SetSource(antlr.Token)
+
+	// IsCopyPointerToPointerContext differentiates from other interfaces.
+	IsCopyPointerToPointerContext()
+}
+
+type CopyPointerToPointerContext struct {
+	*antlr.BaseParserRuleContext
+	parser      antlr.Parser
+	Destination antlr.Token
+	Source      antlr.Token
+}
+
+func NewEmptyCopyPointerToPointerContext() *CopyPointerToPointerContext {
+	var p = new(CopyPointerToPointerContext)
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(nil, -1)
+	p.RuleIndex = GrogParserRULE_copyPointerToPointer
+	return p
+}
+
+func (*CopyPointerToPointerContext) IsCopyPointerToPointerContext() {}
+
+func NewCopyPointerToPointerContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *CopyPointerToPointerContext {
+	var p = new(CopyPointerToPointerContext)
+
+	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = GrogParserRULE_copyPointerToPointer
+
+	return p
+}
+
+func (s *CopyPointerToPointerContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *CopyPointerToPointerContext) GetDestination() antlr.Token { return s.Destination }
+
+func (s *CopyPointerToPointerContext) GetSource() antlr.Token { return s.Source }
+
+func (s *CopyPointerToPointerContext) SetDestination(v antlr.Token) { s.Destination = v }
+
+func (s *CopyPointerToPointerContext) SetSource(v antlr.Token) { s.Source = v }
+
+func (s *CopyPointerToPointerContext) COPY() antlr.TerminalNode {
+	return s.GetToken(GrogParserCOPY, 0)
+}
+
+func (s *CopyPointerToPointerContext) AllPOINTER_ADDRESS() []antlr.TerminalNode {
+	return s.GetTokens(GrogParserPOINTER_ADDRESS)
+}
+
+func (s *CopyPointerToPointerContext) POINTER_ADDRESS(i int) antlr.TerminalNode {
+	return s.GetToken(GrogParserPOINTER_ADDRESS, i)
+}
+
+func (s *CopyPointerToPointerContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *CopyPointerToPointerContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *CopyPointerToPointerContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(GrogListener); ok {
+		listenerT.EnterCopyPointerToPointer(s)
+	}
+}
+
+func (s *CopyPointerToPointerContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(GrogListener); ok {
+		listenerT.ExitCopyPointerToPointer(s)
+	}
+}
+
+func (p *GrogParser) CopyPointerToPointer() (localctx ICopyPointerToPointerContext) {
+	localctx = NewCopyPointerToPointerContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 28, GrogParserRULE_copyPointerToPointer)
+
+	defer func() {
+		p.ExitRule()
+	}()
+
+	defer func() {
+		if err := recover(); err != nil {
+			if v, ok := err.(antlr.RecognitionException); ok {
+				localctx.SetException(v)
+				p.GetErrorHandler().ReportError(p, v)
+				p.GetErrorHandler().Recover(p, v)
+			} else {
+				panic(err)
+			}
+		}
+	}()
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(138)
+		p.Match(GrogParserCOPY)
+	}
+	{
+		p.SetState(139)
+
+		var _m = p.Match(GrogParserPOINTER_ADDRESS)
+
+		localctx.(*CopyPointerToPointerContext).Destination = _m
+	}
+	{
+		p.SetState(140)
+
+		var _m = p.Match(GrogParserPOINTER_ADDRESS)
+
+		localctx.(*CopyPointerToPointerContext).Source = _m
 	}
 
 	return localctx
@@ -1507,7 +2788,7 @@ func (s *IncrementContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *GrogParser) Increment() (localctx IIncrementContext) {
 	localctx = NewIncrementContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 12, GrogParserRULE_increment)
+	p.EnterRule(localctx, 30, GrogParserRULE_increment)
 
 	defer func() {
 		p.ExitRule()
@@ -1527,11 +2808,11 @@ func (p *GrogParser) Increment() (localctx IIncrementContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(87)
+		p.SetState(142)
 		p.Match(GrogParserINCREMENT)
 	}
 	{
-		p.SetState(88)
+		p.SetState(143)
 
 		var _m = p.Match(GrogParserREGISTER)
 
@@ -1620,7 +2901,7 @@ func (s *DecrementContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *GrogParser) Decrement() (localctx IDecrementContext) {
 	localctx = NewDecrementContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 14, GrogParserRULE_decrement)
+	p.EnterRule(localctx, 32, GrogParserRULE_decrement)
 
 	defer func() {
 		p.ExitRule()
@@ -1640,11 +2921,11 @@ func (p *GrogParser) Decrement() (localctx IDecrementContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(90)
+		p.SetState(145)
 		p.Match(GrogParserDECREMENT)
 	}
 	{
-		p.SetState(91)
+		p.SetState(146)
 
 		var _m = p.Match(GrogParserREGISTER)
 
@@ -1771,7 +3052,7 @@ func (s *ArithmeticOperationContext) ExitRule(listener antlr.ParseTreeListener) 
 
 func (p *GrogParser) ArithmeticOperation() (localctx IArithmeticOperationContext) {
 	localctx = NewArithmeticOperationContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 16, GrogParserRULE_arithmeticOperation)
+	p.EnterRule(localctx, 34, GrogParserRULE_arithmeticOperation)
 
 	defer func() {
 		p.ExitRule()
@@ -1790,13 +3071,13 @@ func (p *GrogParser) ArithmeticOperation() (localctx IArithmeticOperationContext
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(97)
+	p.SetState(152)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
 	case GrogParserADD:
 		{
-			p.SetState(93)
+			p.SetState(148)
 
 			var _m = p.Match(GrogParserADD)
 
@@ -1805,7 +3086,7 @@ func (p *GrogParser) ArithmeticOperation() (localctx IArithmeticOperationContext
 
 	case GrogParserSUBTRACT:
 		{
-			p.SetState(94)
+			p.SetState(149)
 
 			var _m = p.Match(GrogParserSUBTRACT)
 
@@ -1814,7 +3095,7 @@ func (p *GrogParser) ArithmeticOperation() (localctx IArithmeticOperationContext
 
 	case GrogParserMULTIPLY:
 		{
-			p.SetState(95)
+			p.SetState(150)
 
 			var _m = p.Match(GrogParserMULTIPLY)
 
@@ -1823,7 +3104,7 @@ func (p *GrogParser) ArithmeticOperation() (localctx IArithmeticOperationContext
 
 	case GrogParserDIVIDE:
 		{
-			p.SetState(96)
+			p.SetState(151)
 
 			var _m = p.Match(GrogParserDIVIDE)
 
@@ -1834,14 +3115,14 @@ func (p *GrogParser) ArithmeticOperation() (localctx IArithmeticOperationContext
 		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
 	}
 	{
-		p.SetState(99)
+		p.SetState(154)
 
 		var _m = p.Match(GrogParserREGISTER)
 
 		localctx.(*ArithmeticOperationContext).Destination = _m
 	}
 	{
-		p.SetState(100)
+		p.SetState(155)
 
 		var _m = p.Match(GrogParserREGISTER)
 
@@ -1930,7 +3211,7 @@ func (s *UnaryBooleanOperationContext) ExitRule(listener antlr.ParseTreeListener
 
 func (p *GrogParser) UnaryBooleanOperation() (localctx IUnaryBooleanOperationContext) {
 	localctx = NewUnaryBooleanOperationContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 18, GrogParserRULE_unaryBooleanOperation)
+	p.EnterRule(localctx, 36, GrogParserRULE_unaryBooleanOperation)
 
 	defer func() {
 		p.ExitRule()
@@ -1950,11 +3231,11 @@ func (p *GrogParser) UnaryBooleanOperation() (localctx IUnaryBooleanOperationCon
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(102)
+		p.SetState(157)
 		p.Match(GrogParserNOT)
 	}
 	{
-		p.SetState(103)
+		p.SetState(158)
 
 		var _m = p.Match(GrogParserREGISTER)
 
@@ -2077,7 +3358,7 @@ func (s *BinaryBooleanOperationContext) ExitRule(listener antlr.ParseTreeListene
 
 func (p *GrogParser) BinaryBooleanOperation() (localctx IBinaryBooleanOperationContext) {
 	localctx = NewBinaryBooleanOperationContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 20, GrogParserRULE_binaryBooleanOperation)
+	p.EnterRule(localctx, 38, GrogParserRULE_binaryBooleanOperation)
 
 	defer func() {
 		p.ExitRule()
@@ -2096,13 +3377,13 @@ func (p *GrogParser) BinaryBooleanOperation() (localctx IBinaryBooleanOperationC
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(108)
+	p.SetState(163)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
 	case GrogParserAND:
 		{
-			p.SetState(105)
+			p.SetState(160)
 
 			var _m = p.Match(GrogParserAND)
 
@@ -2111,7 +3392,7 @@ func (p *GrogParser) BinaryBooleanOperation() (localctx IBinaryBooleanOperationC
 
 	case GrogParserOR:
 		{
-			p.SetState(106)
+			p.SetState(161)
 
 			var _m = p.Match(GrogParserOR)
 
@@ -2120,7 +3401,7 @@ func (p *GrogParser) BinaryBooleanOperation() (localctx IBinaryBooleanOperationC
 
 	case GrogParserXOR:
 		{
-			p.SetState(107)
+			p.SetState(162)
 
 			var _m = p.Match(GrogParserXOR)
 
@@ -2131,14 +3412,14 @@ func (p *GrogParser) BinaryBooleanOperation() (localctx IBinaryBooleanOperationC
 		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
 	}
 	{
-		p.SetState(110)
+		p.SetState(165)
 
 		var _m = p.Match(GrogParserREGISTER)
 
 		localctx.(*BinaryBooleanOperationContext).Destination = _m
 	}
 	{
-		p.SetState(111)
+		p.SetState(166)
 
 		var _m = p.Match(GrogParserREGISTER)
 
@@ -2326,7 +3607,7 @@ func (s *JumpContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *GrogParser) Jump() (localctx IJumpContext) {
 	localctx = NewJumpContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 22, GrogParserRULE_jump)
+	p.EnterRule(localctx, 40, GrogParserRULE_jump)
 	var _la int
 
 	defer func() {
@@ -2346,29 +3627,29 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 	}()
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(124)
+	p.SetState(179)
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
 	if _la == GrogParserIF {
 		{
-			p.SetState(113)
+			p.SetState(168)
 			p.Match(GrogParserIF)
 		}
 		{
-			p.SetState(114)
+			p.SetState(169)
 
 			var _m = p.Match(GrogParserREGISTER)
 
 			localctx.(*JumpContext).Left = _m
 		}
-		p.SetState(121)
+		p.SetState(176)
 		p.GetErrorHandler().Sync(p)
 
 		switch p.GetTokenStream().LA(1) {
 		case GrogParserEQUAL:
 			{
-				p.SetState(115)
+				p.SetState(170)
 
 				var _m = p.Match(GrogParserEQUAL)
 
@@ -2377,7 +3658,7 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 
 		case GrogParserNOT_EQUAL:
 			{
-				p.SetState(116)
+				p.SetState(171)
 
 				var _m = p.Match(GrogParserNOT_EQUAL)
 
@@ -2386,7 +3667,7 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 
 		case GrogParserGREATER:
 			{
-				p.SetState(117)
+				p.SetState(172)
 
 				var _m = p.Match(GrogParserGREATER)
 
@@ -2395,7 +3676,7 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 
 		case GrogParserGREATER_OR_EQUAL:
 			{
-				p.SetState(118)
+				p.SetState(173)
 
 				var _m = p.Match(GrogParserGREATER_OR_EQUAL)
 
@@ -2404,7 +3685,7 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 
 		case GrogParserLESS:
 			{
-				p.SetState(119)
+				p.SetState(174)
 
 				var _m = p.Match(GrogParserLESS)
 
@@ -2413,7 +3694,7 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 
 		case GrogParserLESS_OR_EQUAL:
 			{
-				p.SetState(120)
+				p.SetState(175)
 
 				var _m = p.Match(GrogParserLESS_OR_EQUAL)
 
@@ -2424,7 +3705,7 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 			panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
 		}
 		{
-			p.SetState(123)
+			p.SetState(178)
 
 			var _m = p.Match(GrogParserREGISTER)
 
@@ -2433,16 +3714,16 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 
 	}
 	{
-		p.SetState(126)
+		p.SetState(181)
 		p.Match(GrogParserJUMP)
 	}
-	p.SetState(130)
+	p.SetState(185)
 	p.GetErrorHandler().Sync(p)
 
 	switch p.GetTokenStream().LA(1) {
 	case GrogParserABSOLUTE_ADDRESS:
 		{
-			p.SetState(127)
+			p.SetState(182)
 
 			var _m = p.Match(GrogParserABSOLUTE_ADDRESS)
 
@@ -2451,7 +3732,7 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 
 	case GrogParserOFFSET_ADDRESS:
 		{
-			p.SetState(128)
+			p.SetState(183)
 
 			var _m = p.Match(GrogParserOFFSET_ADDRESS)
 
@@ -2460,7 +3741,7 @@ func (p *GrogParser) Jump() (localctx IJumpContext) {
 
 	case GrogParserPOINTER_ADDRESS:
 		{
-			p.SetState(129)
+			p.SetState(184)
 
 			var _m = p.Match(GrogParserPOINTER_ADDRESS)
 
@@ -2564,7 +3845,7 @@ func (s *InputContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *GrogParser) Input() (localctx IInputContext) {
 	localctx = NewInputContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 24, GrogParserRULE_input)
+	p.EnterRule(localctx, 42, GrogParserRULE_input)
 
 	defer func() {
 		p.ExitRule()
@@ -2584,18 +3865,18 @@ func (p *GrogParser) Input() (localctx IInputContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(132)
+		p.SetState(187)
 
 		var _m = p.Match(GrogParserREGISTER)
 
 		localctx.(*InputContext).Destination = _m
 	}
 	{
-		p.SetState(133)
-		p.Match(GrogParserT__1)
+		p.SetState(188)
+		p.Match(GrogParserT__0)
 	}
 	{
-		p.SetState(134)
+		p.SetState(189)
 
 		var _m = p.Match(GrogParserDEVICE)
 
@@ -2699,7 +3980,7 @@ func (s *OutputContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *GrogParser) Output() (localctx IOutputContext) {
 	localctx = NewOutputContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 26, GrogParserRULE_output)
+	p.EnterRule(localctx, 44, GrogParserRULE_output)
 
 	defer func() {
 		p.ExitRule()
@@ -2719,18 +4000,18 @@ func (p *GrogParser) Output() (localctx IOutputContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(136)
+		p.SetState(191)
 
 		var _m = p.Match(GrogParserREGISTER)
 
 		localctx.(*OutputContext).Source = _m
 	}
 	{
-		p.SetState(137)
+		p.SetState(192)
 		p.Match(GrogParserSTORE)
 	}
 	{
-		p.SetState(138)
+		p.SetState(193)
 
 		var _m = p.Match(GrogParserDEVICE)
 
@@ -2804,7 +4085,7 @@ func (s *StopContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *GrogParser) Stop() (localctx IStopContext) {
 	localctx = NewStopContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 28, GrogParserRULE_stop)
+	p.EnterRule(localctx, 46, GrogParserRULE_stop)
 
 	defer func() {
 		p.ExitRule()
@@ -2824,7 +4105,7 @@ func (p *GrogParser) Stop() (localctx IStopContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(140)
+		p.SetState(195)
 		p.Match(GrogParserSTOP)
 	}
 
@@ -2895,7 +4176,7 @@ func (s *WaitContext) ExitRule(listener antlr.ParseTreeListener) {
 
 func (p *GrogParser) Wait() (localctx IWaitContext) {
 	localctx = NewWaitContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 30, GrogParserRULE_wait)
+	p.EnterRule(localctx, 48, GrogParserRULE_wait)
 
 	defer func() {
 		p.ExitRule()
@@ -2915,7 +4196,7 @@ func (p *GrogParser) Wait() (localctx IWaitContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(142)
+		p.SetState(197)
 		p.Match(GrogParserWAIT)
 	}
 
