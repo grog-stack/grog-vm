@@ -222,6 +222,31 @@ func (l *listener) ExitConstant(c *parser.ConstantContext) {
 	l.Contants[name] = valueByte(c.GetByteValue().GetText())
 }
 
+func (l *listener) ExitCompare(c *parser.CompareContext) {
+	register := registerByte(c.DestinationRegister.GetText())
+	if c.SourceRegister != nil {
+		l.Output.WriteByte(vm.COMPARE_REGISTER_REGISTER)
+		l.Output.WriteByte(register)
+		l.Output.WriteByte(registerByte(c.SourceRegister.GetText()))
+	} else if c.SourceValue != nil {
+		l.Output.WriteByte(vm.COMPARE_REGISTER_VALUE)
+		l.Output.WriteByte(register)
+		l.Output.WriteByte(valueByte(c.SourceValue.GetText()))
+	} else if c.SourceMemoryAbsolute != nil {
+		l.Output.WriteByte(vm.COMPARE_REGISTER_ABSOLUTE)
+		l.Output.WriteByte(register)
+		l.Output.Write(addressBytes(c.SourceMemoryAbsolute.GetText()))
+	} else if c.SourceMemoryOffset != nil {
+		l.Output.WriteByte(vm.COMPARE_REGISTER_OFFSET)
+		l.Output.WriteByte(register)
+		l.Output.Write(offsetAddressBytes(c.SourceMemoryOffset.GetText()))
+	} else if c.SourceMemoryPointer != nil {
+		l.Output.WriteByte(vm.COMPARE_REGISTER_POINTER)
+		l.Output.WriteByte(register)
+		l.Output.Write(pointerAddressBytes(c.SourceMemoryPointer.GetText()))
+	}
+}
+
 func absoluteAddressBytes(value string) []byte {
 	return prefixedAddressBytes(value, "@")
 }
@@ -257,7 +282,14 @@ func valueByte(value string) byte {
 
 func addressBytes(address string) []byte {
 	addressBytes, _ := hex.DecodeString(address)
-	return addressBytes
+	return reversed(addressBytes) // we reverse it because we use big-endian format
+}
+
+func reversed(array []byte) []byte {
+	for i, j := 0, len(array)-1; i < j; i, j = i+1, j-1 {
+		array[i], array[j] = array[j], array[i]
+	}
+	return array
 }
 
 func main() {

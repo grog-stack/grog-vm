@@ -26,7 +26,10 @@ type Machine struct {
 }
 
 type Flags struct {
-	Zero bool
+	Zero    bool
+	Equal   bool
+	Greater bool
+	Less    bool
 }
 
 type Device interface {
@@ -143,6 +146,16 @@ const (
 const (
 	INPUT  byte = 0xB0
 	OUTPUT byte = 0xC0
+)
+
+// Comparison
+
+const (
+	COMPARE_REGISTER_REGISTER = 0xD0
+	COMPARE_REGISTER_VALUE    = 0xD1
+	COMPARE_REGISTER_ABSOLUTE = 0xD2
+	COMPARE_REGISTER_OFFSET   = 0xD3
+	COMPARE_REGISTER_POINTER  = 0xD4
 )
 
 type Instruction struct {
@@ -333,35 +346,131 @@ func (instruction *Instruction) execute(machine *Machine) uint16 {
 		machine.Jump(machine.ReadAddressFromNextPointer())
 		return 0
 	} else if instruction.code == JUMP_EQUAL_ADDRESS {
-		if machine.Flags.Zero {
+		if machine.Flags.Equal {
 			machine.Jump(machine.ReadAddressOffset(1))
+			return 0
+		} else {
+			return 3
 		}
-		return 3
 	} else if instruction.code == JUMP_EQUAL_OFFSET {
-		if machine.Flags.Zero {
+		if machine.Flags.Equal {
 			machine.Jump(machine.ReadAddressOffset(machine.ReadAddressOffset(1)))
+			return 0
+		} else {
+			return 3
 		}
-		return 3
 	} else if instruction.code == JUMP_EQUAL_POINTER {
-		if machine.Flags.Zero {
+		if machine.Flags.Equal {
 			machine.Jump(machine.ReadAddress(machine.ReadAddressOffset(3)))
+			return 0
+		} else {
+			return 3
 		}
-		return 3
 	} else if instruction.code == JUMP_NOT_EQUAL_ADDRESS {
-		if !machine.Flags.Zero {
+		if !machine.Flags.Equal {
 			machine.Jump(machine.ReadAddressOffset(1))
+			return 0
+		} else {
+			return 3
 		}
-		return 3
 	} else if instruction.code == JUMP_NOT_EQUAL_OFFSET {
-		if !machine.Flags.Zero {
+		if !machine.Flags.Equal {
 			machine.Jump(machine.ReadAddressOffset(machine.ReadAddressOffset(1)))
+			return 0
+		} else {
+			return 3
 		}
-		return 3
 	} else if instruction.code == JUMP_NOT_EQUAL_POINTER {
-		if !machine.Flags.Zero {
+		if !machine.Flags.Equal {
 			machine.Jump(machine.ReadAddress(machine.ReadAddressOffset(3)))
+			return 0
+		} else {
+			return 3
 		}
-		return 3
+	} else if instruction.code == JUMP_GREATER_ADDRESS {
+		if machine.Flags.Greater {
+			machine.Jump(machine.ReadAddressOffset(1))
+			return 0
+		} else {
+			return 3
+		}
+	} else if instruction.code == JUMP_GREATER_OFFSET {
+		if machine.Flags.Greater {
+			machine.Jump(machine.ReadAddressOffset(machine.ReadAddressOffset(1)))
+			return 0
+		} else {
+			return 3
+		}
+	} else if instruction.code == JUMP_GREATER_POINTER {
+		if machine.Flags.Greater {
+			machine.Jump(machine.ReadAddress(machine.ReadAddressOffset(3)))
+			return 0
+		} else {
+			return 3
+		}
+	} else if instruction.code == JUMP_GREATER_EQUAL_ADDRESS {
+		if machine.Flags.Greater || machine.Flags.Equal {
+			machine.Jump(machine.ReadAddressOffset(1))
+			return 0
+		} else {
+			return 3
+		}
+	} else if instruction.code == JUMP_GREATER_EQUAL_OFFSET {
+		if machine.Flags.Greater || machine.Flags.Equal {
+			machine.Jump(machine.ReadAddressOffset(machine.ReadAddressOffset(1)))
+			return 0
+		} else {
+			return 3
+		}
+	} else if instruction.code == JUMP_GREATER_EQUAL_POINTER {
+		if machine.Flags.Greater || machine.Flags.Equal {
+			machine.Jump(machine.ReadAddress(machine.ReadAddressOffset(3)))
+			return 0
+		} else {
+			return 3
+		}
+	} else if instruction.code == JUMP_LESS_ADDRESS {
+		if machine.Flags.Less {
+			machine.Jump(machine.ReadAddressOffset(1))
+			return 0
+		} else {
+			return 3
+		}
+	} else if instruction.code == JUMP_LESS_OFFSET {
+		if machine.Flags.Less {
+			machine.Jump(machine.ReadAddressOffset(machine.ReadAddressOffset(1)))
+			return 0
+		} else {
+			return 3
+		}
+	} else if instruction.code == JUMP_LESS_POINTER {
+		if machine.Flags.Less {
+			machine.Jump(machine.ReadAddress(machine.ReadAddressOffset(3)))
+			return 0
+		} else {
+			return 3
+		}
+	} else if instruction.code == JUMP_LESS_EQUAL_ADDRESS {
+		if machine.Flags.Less || machine.Flags.Equal {
+			machine.Jump(machine.ReadAddressOffset(1))
+			return 0
+		} else {
+			return 3
+		}
+	} else if instruction.code == JUMP_LESS_EQUAL_OFFSET {
+		if machine.Flags.Less || machine.Flags.Equal {
+			machine.Jump(machine.ReadAddressOffset(machine.ReadAddressOffset(1)))
+			return 0
+		} else {
+			return 3
+		}
+	} else if instruction.code == JUMP_LESS_EQUAL_POINTER {
+		if machine.Flags.Less || machine.Flags.Equal {
+			machine.Jump(machine.ReadAddress(machine.ReadAddressOffset(3)))
+			return 0
+		} else {
+			return 3
+		}
 	} else if instruction.code == INPUT {
 		device := machine.ReadNextByte()
 		register := machine.ReadByteOffset(2)
@@ -374,11 +483,37 @@ func (instruction *Instruction) execute(machine *Machine) uint16 {
 		fmt.Printf("Sending value %X into device %X\n", value, device)
 		machine.Devices[device].Write(value)
 		return 3
+	} else if instruction.code == COMPARE_REGISTER_REGISTER || instruction.code == COMPARE_REGISTER_VALUE || instruction.code == COMPARE_REGISTER_ABSOLUTE || instruction.code == COMPARE_REGISTER_OFFSET || instruction.code == COMPARE_REGISTER_POINTER {
+		destination := machine.Registers[machine.ReadNextByte()].Value
+		switch instruction.code {
+		case COMPARE_REGISTER_REGISTER:
+			machine.compare(destination, machine.Registers[machine.ReadByteOffset(2)].Value)
+			return 3
+		case COMPARE_REGISTER_VALUE:
+			machine.compare(destination, machine.ReadByteOffset(2))
+			return 3
+		case COMPARE_REGISTER_ABSOLUTE:
+			machine.compare(destination, machine.Memory[machine.ReadAddressOffset(2)])
+			return 4
+		case COMPARE_REGISTER_OFFSET:
+			machine.compare(destination, machine.Memory[machine.ReadAddressOffset(machine.ReadAddressOffset(2))])
+			return 4
+		case COMPARE_REGISTER_POINTER:
+			machine.compare(destination, machine.Memory[machine.ReadAddress(machine.ReadAddressOffset(2))])
+			return 4
+		}
+		return 3
 	}
 
 	fmt.Printf("Invalid instruction code: %X. Halting.", instruction.code)
 	machine.Stop()
 	return 0
+}
+
+func (m *Machine) compare(destination byte, source byte) {
+	m.Flags.Equal = destination == source
+	m.Flags.Greater = source > destination
+	m.Flags.Less = source < destination
 }
 
 func (instruction *Instruction) extractRegister() byte {

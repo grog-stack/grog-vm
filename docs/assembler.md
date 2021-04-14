@@ -102,6 +102,16 @@ All arithmetic operations have the same format:
 
 __destination__ and __source__ are always a register.
 
+## Comparing numbers
+
+* `compare` __register__ __register__
+* `compare` __register__ __value__
+* `compare` __register__ __absolute address__
+* `compare` __register__ __offset address__
+* `compare` __register__ __pointer address__
+
+The `compare` operation affects the `equals`, `greater`, and `less` flags.
+
 ## Boolean operations
 
 All boolean operations have the same format:
@@ -127,15 +137,12 @@ All jumps have the same format:
 * `je` __destination__: jump if equals
 * `jne` __destination__: jump if not equals
 * `jg` __destination__: jump if greater 
-* `jng` __destination__: jump if not greater
 * `jge` __destination__: jump if greater or equal
-* `jnge` __destination__: jump if greater or equal
 * `jl` __destination__: jump if less 
-* `jnl` __destination__: jump if not less
 * `jle` __destination__: jump if less or equal
-* `jnle` __destination__: jump if not less or equal
 
-All jumps check the flags in order to evaluate the result of a previous operation.
+All jumps check the flags `equals`, `greater`, and `less`, in order to evaluate the 
+result of a previous operation.
 
 ## Input and output
 

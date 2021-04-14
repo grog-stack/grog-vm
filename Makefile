@@ -20,3 +20,4 @@ grog-asm: grog-parser
 	./grog-asmc ./asm/boolean.asm
 	./grog-asmc ./asm/arithmetic.asm
 	./grog-asmc ./asm/constants.asm
+	./grog-asmc ./asm/compare.asm

@@ -13,6 +13,7 @@ instruction
     : increment | decrement
     | arithmeticOperation
     | unaryBooleanOperation | binaryBooleanOperation
+    | compare
     | load
     | store
     | copyValue
@@ -20,6 +21,17 @@ instruction
     | io
     | stop
     | wait;
+
+compare
+    : COMPARE 
+    (
+        DestinationRegister=REGISTER SourceRegister=REGISTER 
+        | DestinationRegister=REGISTER SourceValue=HEXA_BYTE 
+        | DestinationRegister=REGISTER SourceMemoryAbsolute=ABSOLUTE_ADDRESS 
+        | DestinationRegister=REGISTER SourceMemoryOffset=OFFSET_ADDRESS
+        | DestinationRegister=REGISTER SourceMemoryPointer=POINTER_ADDRESS
+    )
+    ;
 
 load
     : LOAD Register=REGISTER (
@@ -139,17 +151,14 @@ ADD: 'add';
 SUBTRACT: 'subtract';
 DIVIDE: 'divide';
 MULTIPLY: 'multiply';
+COMPARE: 'compare';
 JUMP: 'jump';
 JUMP_IF_EQUAL: 'je';
 JUMP_IF_NOT_EQUAL: 'jne';
 JUMP_IF_GREATER: 'jg';
-JUMP_IF_NOT_GREATER: 'jng';
 JUMP_IF_GREATER_OR_EQUAL: 'jge';
-JUMP_IF_NOT_GREATER_OR_EQUAL: 'jnge';
 JUMP_IF_LESS: 'jl';
-JUMP_IF_NOT_LESS: 'jnl';
 JUMP_IF_LESS_OR_EQUAL: 'jle';
-JUMP_IF_NOT_LESS_OR_EQUAL: 'jnle';
 NOT: 'not';
 AND: 'and';
 OR: 'or';

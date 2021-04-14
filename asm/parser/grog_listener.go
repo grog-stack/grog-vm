@@ -16,6 +16,9 @@ type GrogListener interface {
 	// EnterInstruction is called when entering the instruction production.
 	EnterInstruction(c *InstructionContext)
 
+	// EnterCompare is called when entering the compare production.
+	EnterCompare(c *CompareContext)
+
 	// EnterLoad is called when entering the load production.
 	EnterLoad(c *LoadContext)
 
@@ -90,6 +93,9 @@ type GrogListener interface {
 
 	// ExitInstruction is called when exiting the instruction production.
 	ExitInstruction(c *InstructionContext)
+
+	// ExitCompare is called when exiting the compare production.
+	ExitCompare(c *CompareContext)
 
 	// ExitLoad is called when exiting the load production.
 	ExitLoad(c *LoadContext)

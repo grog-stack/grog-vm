@@ -38,6 +38,12 @@ func (s *BaseGrogListener) EnterInstruction(ctx *InstructionContext) {}
 // ExitInstruction is called when production instruction is exited.
 func (s *BaseGrogListener) ExitInstruction(ctx *InstructionContext) {}
 
+// EnterCompare is called when production compare is entered.
+func (s *BaseGrogListener) EnterCompare(ctx *CompareContext) {}
+
+// ExitCompare is called when production compare is exited.
+func (s *BaseGrogListener) ExitCompare(ctx *CompareContext) {}
+
 // EnterLoad is called when production load is entered.
 func (s *BaseGrogListener) EnterLoad(ctx *LoadContext) {}
 
