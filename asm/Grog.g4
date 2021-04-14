@@ -151,7 +151,7 @@ AND: 'and';
 OR: 'or';
 XOR: 'xor';
 STOP: 'stop';
-WAIT: 'WAIT';
+WAIT: 'wait';
 HEX_DIGIT: [0-9a-fA-F];
 HEXA_BYTE: HEX_DIGIT HEX_DIGIT; 
 WORD: HEXA_BYTE HEXA_BYTE; 
