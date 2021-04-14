@@ -333,149 +333,35 @@ func (instruction *Instruction) execute(machine *Machine) uint16 {
 		machine.Jump(machine.ReadAddressFromNextPointer())
 		return 0
 	} else if instruction.code == JUMP_EQUAL_ADDRESS {
-		left := &machine.Registers[machine.ReadByteOffset(1)]
-		right := &machine.Registers[machine.ReadByteOffset(2)]
-		if left.Value == right.Value {
-			machine.Jump(machine.ReadAddressOffset(3))
-			return 0
+		if machine.Flags.Zero {
+			machine.Jump(machine.ReadAddressOffset(1))
 		}
-		return 5
+		return 3
 	} else if instruction.code == JUMP_EQUAL_OFFSET {
-		left := &machine.Registers[machine.ReadByteOffset(1)]
-		right := &machine.Registers[machine.ReadByteOffset(2)]
-		if left.Value == right.Value {
-			machine.Jump(machine.ReadAddressOffset(machine.ReadAddressOffset(3)))
-			return 0
+		if machine.Flags.Zero {
+			machine.Jump(machine.ReadAddressOffset(machine.ReadAddressOffset(1)))
 		}
-		return 5
+		return 3
 	} else if instruction.code == JUMP_EQUAL_POINTER {
-		left := &machine.Registers[machine.ReadByteOffset(1)]
-		right := &machine.Registers[machine.ReadByteOffset(2)]
-		if left.Value == right.Value {
+		if machine.Flags.Zero {
 			machine.Jump(machine.ReadAddress(machine.ReadAddressOffset(3)))
-			return 0
 		}
-		return 5
+		return 3
 	} else if instruction.code == JUMP_NOT_EQUAL_ADDRESS {
-		left := &machine.Registers[machine.ReadByteOffset(1)]
-		right := &machine.Registers[machine.ReadByteOffset(2)]
-		if left.Value != right.Value {
-			machine.Jump(machine.ReadAddressOffset(3))
-			return 0
+		if !machine.Flags.Zero {
+			machine.Jump(machine.ReadAddressOffset(1))
 		}
-		return 5
+		return 3
 	} else if instruction.code == JUMP_NOT_EQUAL_OFFSET {
-		left := &machine.Registers[machine.ReadByteOffset(1)]
-		right := &machine.Registers[machine.ReadByteOffset(2)]
-		if left.Value != right.Value {
-			machine.Jump(machine.ReadAddressOffset(machine.ReadAddressOffset(3)))
-			return 0
+		if !machine.Flags.Zero {
+			machine.Jump(machine.ReadAddressOffset(machine.ReadAddressOffset(1)))
 		}
-		return 5
+		return 3
 	} else if instruction.code == JUMP_NOT_EQUAL_POINTER {
-		left := &machine.Registers[machine.ReadByteOffset(1)]
-		right := &machine.Registers[machine.ReadByteOffset(2)]
-		if left.Value != right.Value {
+		if !machine.Flags.Zero {
 			machine.Jump(machine.ReadAddress(machine.ReadAddressOffset(3)))
-			return 0
 		}
-		return 5
-	} else if instruction.code == JUMP_GREATER_ADDRESS {
-		left := &machine.Registers[machine.ReadByteOffset(1)]
-		right := &machine.Registers[machine.ReadByteOffset(2)]
-		if left.Value > right.Value {
-			machine.Jump(machine.ReadAddressOffset(3))
-			return 0
-		}
-		return 5
-	} else if instruction.code == JUMP_GREATER_OFFSET {
-		left := &machine.Registers[machine.ReadByteOffset(1)]
-		right := &machine.Registers[machine.ReadByteOffset(2)]
-		if left.Value > right.Value {
-			machine.Jump(machine.ReadAddressOffset(machine.ReadAddressOffset(3)))
-			return 0
-		}
-		return 5
-	} else if instruction.code == JUMP_GREATER_POINTER {
-		left := &machine.Registers[machine.ReadByteOffset(1)]
-		right := &machine.Registers[machine.ReadByteOffset(2)]
-		if left.Value > right.Value {
-			machine.Jump(machine.ReadAddress(machine.ReadAddressOffset(3)))
-			return 0
-		}
-		return 5
-	} else if instruction.code == JUMP_GREATER_EQUAL_ADDRESS {
-		left := &machine.Registers[machine.ReadByteOffset(1)]
-		right := &machine.Registers[machine.ReadByteOffset(2)]
-		if left.Value >= right.Value {
-			machine.Jump(machine.ReadAddressOffset(3))
-			return 0
-		}
-		return 5
-	} else if instruction.code == JUMP_GREATER_EQUAL_OFFSET {
-		left := &machine.Registers[machine.ReadByteOffset(1)]
-		right := &machine.Registers[machine.ReadByteOffset(2)]
-		if left.Value >= right.Value {
-			machine.Jump(machine.ReadAddressOffset(machine.ReadAddressOffset(3)))
-			return 0
-		}
-		return 5
-	} else if instruction.code == JUMP_GREATER_EQUAL_POINTER {
-		left := &machine.Registers[machine.ReadByteOffset(1)]
-		right := &machine.Registers[machine.ReadByteOffset(2)]
-		if left.Value >= right.Value {
-			machine.Jump(machine.ReadAddress(machine.ReadAddressOffset(3)))
-			return 0
-		}
-		return 5
-	} else if instruction.code == JUMP_LESS_ADDRESS {
-		left := &machine.Registers[machine.ReadByteOffset(1)]
-		right := &machine.Registers[machine.ReadByteOffset(2)]
-		if left.Value < right.Value {
-			machine.Jump(machine.ReadAddressOffset(3))
-			return 0
-		}
-		return 5
-	} else if instruction.code == JUMP_LESS_OFFSET {
-		left := &machine.Registers[machine.ReadByteOffset(1)]
-		right := &machine.Registers[machine.ReadByteOffset(2)]
-		if left.Value < right.Value {
-			machine.Jump(machine.ReadAddressOffset(machine.ReadAddressOffset(3)))
-			return 0
-		}
-		return 5
-	} else if instruction.code == JUMP_LESS_POINTER {
-		left := &machine.Registers[machine.ReadByteOffset(1)]
-		right := &machine.Registers[machine.ReadByteOffset(2)]
-		if left.Value < right.Value {
-			machine.Jump(machine.ReadAddress(machine.ReadAddressOffset(3)))
-			return 0
-		}
-		return 5
-	} else if instruction.code == JUMP_LESS_EQUAL_ADDRESS {
-		left := &machine.Registers[machine.ReadByteOffset(1)]
-		right := &machine.Registers[machine.ReadByteOffset(2)]
-		if left.Value <= right.Value {
-			machine.Jump(machine.ReadAddressOffset(3))
-			return 0
-		}
-		return 5
-	} else if instruction.code == JUMP_LESS_EQUAL_OFFSET {
-		left := &machine.Registers[machine.ReadByteOffset(1)]
-		right := &machine.Registers[machine.ReadByteOffset(2)]
-		if left.Value <= right.Value {
-			machine.Jump(machine.ReadAddressOffset(machine.ReadAddressOffset(3)))
-			return 0
-		}
-		return 5
-	} else if instruction.code == JUMP_LESS_EQUAL_POINTER {
-		left := &machine.Registers[machine.ReadByteOffset(1)]
-		right := &machine.Registers[machine.ReadByteOffset(2)]
-		if left.Value <= right.Value {
-			machine.Jump(machine.ReadAddress(machine.ReadAddressOffset(3)))
-			return 0
-		}
-		return 5
+		return 3
 	} else if instruction.code == INPUT_REGISTER {
 		device := machine.ReadNextByte()
 		register := machine.ReadByteOffset(2)

@@ -100,20 +100,13 @@ binaryBooleanOperation
     ;
 
 jump
-    : (
-        IF Left=REGISTER 
-        (
-            Operator=EQUAL 
-            | Operator=NOT_EQUAL 
-            | Operator=GREATER 
-            | Operator=GREATER_OR_EQUAL 
-            | Operator=LESS
-            | Operator=LESS_OR_EQUAL
-        ) 
-        Right=REGISTER
-      )?
-      JUMP 
-      (Address=ABSOLUTE_ADDRESS | Offset=OFFSET_ADDRESS | Pointer=POINTER_ADDRESS);
+    :(Operator=JUMP | Operator=JUMP_IF_EQUAL | Operator=JUMP_IF_NOT_EQUAL
+     | Operator=JUMP_IF_GREATER | Operator=JUMP_IF_NOT_GREATER
+     | Operator=JUMP_IF_GREATER_OR_EQUAL | Operator=JUMP_IF_NOT_GREATER_OR_EQUAL
+     | Operator=JUMP_IF_LESS | Operator=JUMP_IF_NOT_LESS
+     | Operator=JUMP_IF_LESS_OR_EQUAL | Operator=JUMP_IF_NOT_LESS_OR_EQUAL)
+      (Address=ABSOLUTE_ADDRESS | Offset=OFFSET_ADDRESS | Pointer=POINTER_ADDRESS)
+    ;
 
 input: Destination=REGISTER '<-' Source=DEVICE;
 
@@ -142,6 +135,17 @@ ADD: 'add';
 SUBTRACT: 'subtract';
 DIVIDE: 'divide';
 MULTIPLY: 'multiply';
+JUMP: 'jump';
+JUMP_IF_EQUAL: 'je';
+JUMP_IF_NOT_EQUAL: 'jne';
+JUMP_IF_GREATER: 'jg';
+JUMP_IF_NOT_GREATER: 'jng';
+JUMP_IF_GREATER_OR_EQUAL: 'jge';
+JUMP_IF_NOT_GREATER_OR_EQUAL: 'jnge';
+JUMP_IF_LESS: 'jl';
+JUMP_IF_NOT_LESS: 'jnl';
+JUMP_IF_LESS_OR_EQUAL: 'jle';
+JUMP_IF_NOT_LESS_OR_EQUAL: 'jnle';
 EQUAL: '=';
 GREATER: '>';
 GREATER_OR_EQUAL: '>=';
@@ -154,7 +158,6 @@ OR: 'or';
 XOR: 'xor';
 STOP: 'STOP';
 WAIT: 'WAIT';
-JUMP: 'JUMP';
 IF: 'IF';
 HEX_DIGIT: [0-9a-fA-F];
 HEXA_BYTE: HEX_DIGIT HEX_DIGIT; 

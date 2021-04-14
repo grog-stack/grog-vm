@@ -172,96 +172,26 @@ func (l *listener) ExitUnaryBooleanOperation(c *parser.UnaryBooleanOperationCont
 }
 
 func (l *listener) ExitJump(c *parser.JumpContext) {
-	if c.Left != nil && c.Right != nil {
-		left := registerByte(c.Left.GetText())
-		right := registerByte(c.Right.GetText())
-		var operation byte = 0
-		var destination []byte = nil
-		if c.Address != nil {
-			destination = absoluteAddressBytes(c.Address.GetText())
-		} else if c.Offset != nil {
-			destination = offsetAddressBytes(c.Offset.GetText())
-		} else if c.Pointer != nil {
-			destination = pointerAddressBytes(c.Pointer.GetText())
-		}
-		switch c.Operator.GetText() {
-		case "=":
-			if c.Address != nil {
-				operation = vm.JUMP_EQUAL_ADDRESS
-			} else if c.Offset != nil {
-				operation = vm.JUMP_EQUAL_OFFSET
-			} else if c.Pointer != nil {
-				operation = vm.JUMP_EQUAL_POINTER
-			}
-		case "!=":
-			{
-				if c.Address != nil {
-					operation = vm.JUMP_NOT_EQUAL_ADDRESS
-				} else if c.Offset != nil {
-					operation = vm.JUMP_NOT_EQUAL_OFFSET
-				} else if c.Pointer != nil {
-					operation = vm.JUMP_NOT_EQUAL_POINTER
-				}
-			}
-		case ">":
-			{
-				if c.Address != nil {
-					operation = vm.JUMP_GREATER_ADDRESS
-				} else if c.Offset != nil {
-					operation = vm.JUMP_GREATER_OFFSET
-				} else if c.Pointer != nil {
-					operation = vm.JUMP_GREATER_POINTER
-				}
-			}
-		case ">=":
-			{
-				if c.Address != nil {
-					operation = vm.JUMP_GREATER_EQUAL_ADDRESS
-				} else if c.Offset != nil {
-					operation = vm.JUMP_GREATER_EQUAL_OFFSET
-				} else if c.Pointer != nil {
-					operation = vm.JUMP_GREATER_EQUAL_POINTER
-				}
-			}
-		case "<":
-			{
-				if c.Address != nil {
-					operation = vm.JUMP_LESS_ADDRESS
-				} else if c.Offset != nil {
-					operation = vm.JUMP_LESS_OFFSET
-				} else if c.Pointer != nil {
-					operation = vm.JUMP_LESS_POINTER
-				}
-			}
-		case "<=":
-			{
-				if c.Address != nil {
-					operation = vm.JUMP_LESS_EQUAL_ADDRESS
-				} else if c.Offset != nil {
-					operation = vm.JUMP_LESS_EQUAL_OFFSET
-				} else if c.Pointer != nil {
-					operation = vm.JUMP_LESS_EQUAL_POINTER
-				}
-			}
-		}
-		l.Output.WriteByte(operation)
-		l.Output.WriteByte(left)
-		l.Output.WriteByte(right)
-		l.Output.Write(destination)
-	} else {
-		if c.Address != nil {
-			l.Output.WriteByte(vm.JUMP_ADDRESS)
-			l.Output.Write(addressBytes(c.Address.GetText()))
-		} else if c.Offset != nil {
-			l.Output.WriteByte(vm.JUMP_OFFSET)
-			l.Output.Write(addressBytes(c.Offset.GetText()))
-		} else if c.Pointer != nil {
-			l.Output.WriteByte(vm.JUMP_POINTER)
-			l.Output.Write(addressBytes(c.Pointer.GetText()))
-		} else {
-			panic("Unsupported jump.")
-		}
+	// Since all jump operations codes are sequential, we can calculate the opcodes
+	operation := vm.JUMP_ADDRESS
+	switch c.Operator.GetText() {
+	case "je":
+		operation = vm.JUMP_EQUAL_ADDRESS
+	case "jne":
+		operation = vm.JUMP_NOT_EQUAL_ADDRESS
 	}
+	var destination []byte = nil
+	if c.Address != nil {
+		destination = absoluteAddressBytes(c.Address.GetText())
+	} else if c.Offset != nil {
+		operation = operation + 1
+		destination = offsetAddressBytes(c.Offset.GetText())
+	} else if c.Pointer != nil {
+		operation = operation + 2
+		destination = pointerAddressBytes(c.Pointer.GetText())
+	}
+	l.Output.WriteByte(operation)
+	l.Output.Write(destination)
 }
 
 func (l *listener) ExitInput(c *parser.InputContext) {
