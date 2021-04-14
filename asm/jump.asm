@@ -54,3 +54,5 @@ jle *aa00
 jnle @aa00
 jnle #aa00
 jnle *aa00
+
+stop

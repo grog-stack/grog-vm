@@ -15,7 +15,7 @@ var _ = reflect.Copy
 var _ = strconv.Itoa
 
 var parserATN = []uint16{
-	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 49, 201,
+	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 43, 201,
 	4, 2, 9, 2, 4, 3, 9, 3, 4, 4, 9, 4, 4, 5, 9, 5, 4, 6, 9, 6, 4, 7, 9, 7,
 	4, 8, 9, 8, 4, 9, 9, 9, 4, 10, 9, 10, 4, 11, 9, 11, 4, 12, 9, 12, 4, 13,
 	9, 13, 4, 14, 9, 14, 4, 15, 9, 15, 4, 16, 9, 16, 4, 17, 9, 17, 4, 18, 9,
@@ -54,12 +54,12 @@ var parserATN = []uint16{
 	63, 3, 2, 2, 2, 72, 64, 3, 2, 2, 2, 72, 65, 3, 2, 2, 2, 72, 66, 3, 2, 2,
 	2, 72, 67, 3, 2, 2, 2, 72, 68, 3, 2, 2, 2, 72, 69, 3, 2, 2, 2, 72, 70,
 	3, 2, 2, 2, 72, 71, 3, 2, 2, 2, 73, 5, 3, 2, 2, 2, 74, 75, 7, 9, 2, 2,
-	75, 80, 7, 45, 2, 2, 76, 81, 7, 43, 2, 2, 77, 81, 7, 47, 2, 2, 78, 81,
-	7, 48, 2, 2, 79, 81, 7, 49, 2, 2, 80, 76, 3, 2, 2, 2, 80, 77, 3, 2, 2,
+	75, 80, 7, 39, 2, 2, 76, 81, 7, 37, 2, 2, 77, 81, 7, 41, 2, 2, 78, 81,
+	7, 42, 2, 2, 79, 81, 7, 43, 2, 2, 80, 76, 3, 2, 2, 2, 80, 77, 3, 2, 2,
 	2, 80, 78, 3, 2, 2, 2, 80, 79, 3, 2, 2, 2, 81, 7, 3, 2, 2, 2, 82, 85, 7,
-	45, 2, 2, 83, 85, 7, 43, 2, 2, 84, 82, 3, 2, 2, 2, 84, 83, 3, 2, 2, 2,
-	85, 86, 3, 2, 2, 2, 86, 90, 7, 3, 2, 2, 87, 91, 7, 47, 2, 2, 88, 91, 7,
-	48, 2, 2, 89, 91, 7, 49, 2, 2, 90, 87, 3, 2, 2, 2, 90, 88, 3, 2, 2, 2,
+	39, 2, 2, 83, 85, 7, 37, 2, 2, 84, 82, 3, 2, 2, 2, 84, 83, 3, 2, 2, 2,
+	85, 86, 3, 2, 2, 2, 86, 90, 7, 3, 2, 2, 87, 91, 7, 41, 2, 2, 88, 91, 7,
+	42, 2, 2, 89, 91, 7, 43, 2, 2, 90, 87, 3, 2, 2, 2, 90, 88, 3, 2, 2, 2,
 	90, 89, 3, 2, 2, 2, 91, 9, 3, 2, 2, 2, 92, 103, 5, 12, 7, 2, 93, 103, 5,
 	14, 8, 2, 94, 103, 5, 16, 9, 2, 95, 103, 5, 18, 10, 2, 96, 103, 5, 20,
 	11, 2, 97, 103, 5, 22, 12, 2, 98, 103, 5, 24, 13, 2, 99, 103, 5, 26, 14,
@@ -67,28 +67,28 @@ var parserATN = []uint16{
 	102, 93, 3, 2, 2, 2, 102, 94, 3, 2, 2, 2, 102, 95, 3, 2, 2, 2, 102, 96,
 	3, 2, 2, 2, 102, 97, 3, 2, 2, 2, 102, 98, 3, 2, 2, 2, 102, 99, 3, 2, 2,
 	2, 102, 100, 3, 2, 2, 2, 102, 101, 3, 2, 2, 2, 103, 11, 3, 2, 2, 2, 104,
-	105, 7, 11, 2, 2, 105, 106, 7, 45, 2, 2, 106, 107, 7, 45, 2, 2, 107, 13,
-	3, 2, 2, 2, 108, 109, 7, 11, 2, 2, 109, 110, 7, 47, 2, 2, 110, 111, 7,
-	47, 2, 2, 111, 15, 3, 2, 2, 2, 112, 113, 7, 11, 2, 2, 113, 114, 7, 47,
-	2, 2, 114, 115, 7, 48, 2, 2, 115, 17, 3, 2, 2, 2, 116, 117, 7, 11, 2, 2,
-	117, 118, 7, 47, 2, 2, 118, 119, 7, 49, 2, 2, 119, 19, 3, 2, 2, 2, 120,
-	121, 7, 11, 2, 2, 121, 122, 7, 48, 2, 2, 122, 123, 7, 47, 2, 2, 123, 21,
-	3, 2, 2, 2, 124, 125, 7, 11, 2, 2, 125, 126, 7, 48, 2, 2, 126, 127, 7,
-	48, 2, 2, 127, 23, 3, 2, 2, 2, 128, 129, 7, 11, 2, 2, 129, 130, 7, 48,
-	2, 2, 130, 131, 7, 49, 2, 2, 131, 25, 3, 2, 2, 2, 132, 133, 7, 11, 2, 2,
-	133, 134, 7, 49, 2, 2, 134, 135, 7, 47, 2, 2, 135, 27, 3, 2, 2, 2, 136,
-	137, 7, 11, 2, 2, 137, 138, 7, 49, 2, 2, 138, 139, 7, 48, 2, 2, 139, 29,
-	3, 2, 2, 2, 140, 141, 7, 11, 2, 2, 141, 142, 7, 49, 2, 2, 142, 143, 7,
-	49, 2, 2, 143, 31, 3, 2, 2, 2, 144, 145, 7, 12, 2, 2, 145, 146, 7, 45,
-	2, 2, 146, 33, 3, 2, 2, 2, 147, 148, 7, 13, 2, 2, 148, 149, 7, 45, 2, 2,
+	105, 7, 11, 2, 2, 105, 106, 7, 39, 2, 2, 106, 107, 7, 39, 2, 2, 107, 13,
+	3, 2, 2, 2, 108, 109, 7, 11, 2, 2, 109, 110, 7, 41, 2, 2, 110, 111, 7,
+	41, 2, 2, 111, 15, 3, 2, 2, 2, 112, 113, 7, 11, 2, 2, 113, 114, 7, 41,
+	2, 2, 114, 115, 7, 42, 2, 2, 115, 17, 3, 2, 2, 2, 116, 117, 7, 11, 2, 2,
+	117, 118, 7, 41, 2, 2, 118, 119, 7, 43, 2, 2, 119, 19, 3, 2, 2, 2, 120,
+	121, 7, 11, 2, 2, 121, 122, 7, 42, 2, 2, 122, 123, 7, 41, 2, 2, 123, 21,
+	3, 2, 2, 2, 124, 125, 7, 11, 2, 2, 125, 126, 7, 42, 2, 2, 126, 127, 7,
+	42, 2, 2, 127, 23, 3, 2, 2, 2, 128, 129, 7, 11, 2, 2, 129, 130, 7, 42,
+	2, 2, 130, 131, 7, 43, 2, 2, 131, 25, 3, 2, 2, 2, 132, 133, 7, 11, 2, 2,
+	133, 134, 7, 43, 2, 2, 134, 135, 7, 41, 2, 2, 135, 27, 3, 2, 2, 2, 136,
+	137, 7, 11, 2, 2, 137, 138, 7, 43, 2, 2, 138, 139, 7, 42, 2, 2, 139, 29,
+	3, 2, 2, 2, 140, 141, 7, 11, 2, 2, 141, 142, 7, 43, 2, 2, 142, 143, 7,
+	43, 2, 2, 143, 31, 3, 2, 2, 2, 144, 145, 7, 12, 2, 2, 145, 146, 7, 39,
+	2, 2, 146, 33, 3, 2, 2, 2, 147, 148, 7, 13, 2, 2, 148, 149, 7, 39, 2, 2,
 	149, 35, 3, 2, 2, 2, 150, 155, 7, 14, 2, 2, 151, 155, 7, 15, 2, 2, 152,
 	155, 7, 17, 2, 2, 153, 155, 7, 16, 2, 2, 154, 150, 3, 2, 2, 2, 154, 151,
 	3, 2, 2, 2, 154, 152, 3, 2, 2, 2, 154, 153, 3, 2, 2, 2, 155, 156, 3, 2,
-	2, 2, 156, 157, 7, 45, 2, 2, 157, 158, 7, 45, 2, 2, 158, 37, 3, 2, 2, 2,
-	159, 160, 7, 35, 2, 2, 160, 161, 7, 45, 2, 2, 161, 39, 3, 2, 2, 2, 162,
-	166, 7, 36, 2, 2, 163, 166, 7, 37, 2, 2, 164, 166, 7, 38, 2, 2, 165, 162,
+	2, 2, 156, 157, 7, 39, 2, 2, 157, 158, 7, 39, 2, 2, 158, 37, 3, 2, 2, 2,
+	159, 160, 7, 29, 2, 2, 160, 161, 7, 39, 2, 2, 161, 39, 3, 2, 2, 2, 162,
+	166, 7, 30, 2, 2, 163, 166, 7, 31, 2, 2, 164, 166, 7, 32, 2, 2, 165, 162,
 	3, 2, 2, 2, 165, 163, 3, 2, 2, 2, 165, 164, 3, 2, 2, 2, 166, 167, 3, 2,
-	2, 2, 167, 168, 7, 45, 2, 2, 168, 169, 7, 45, 2, 2, 169, 41, 3, 2, 2, 2,
+	2, 2, 167, 168, 7, 39, 2, 2, 168, 169, 7, 39, 2, 2, 169, 41, 3, 2, 2, 2,
 	170, 182, 7, 18, 2, 2, 171, 182, 7, 19, 2, 2, 172, 182, 7, 20, 2, 2, 173,
 	182, 7, 21, 2, 2, 174, 182, 7, 22, 2, 2, 175, 182, 7, 23, 2, 2, 176, 182,
 	7, 24, 2, 2, 177, 182, 7, 25, 2, 2, 178, 182, 7, 26, 2, 2, 179, 182, 7,
@@ -96,12 +96,12 @@ var parserATN = []uint16{
 	2, 2, 181, 172, 3, 2, 2, 2, 181, 173, 3, 2, 2, 2, 181, 174, 3, 2, 2, 2,
 	181, 175, 3, 2, 2, 2, 181, 176, 3, 2, 2, 2, 181, 177, 3, 2, 2, 2, 181,
 	178, 3, 2, 2, 2, 181, 179, 3, 2, 2, 2, 181, 180, 3, 2, 2, 2, 182, 186,
-	3, 2, 2, 2, 183, 187, 7, 47, 2, 2, 184, 187, 7, 48, 2, 2, 185, 187, 7,
-	49, 2, 2, 186, 183, 3, 2, 2, 2, 186, 184, 3, 2, 2, 2, 186, 185, 3, 2, 2,
-	2, 187, 43, 3, 2, 2, 2, 188, 189, 7, 45, 2, 2, 189, 190, 7, 4, 2, 2, 190,
-	191, 7, 46, 2, 2, 191, 45, 3, 2, 2, 2, 192, 193, 7, 45, 2, 2, 193, 194,
-	7, 3, 2, 2, 194, 195, 7, 46, 2, 2, 195, 47, 3, 2, 2, 2, 196, 197, 7, 39,
-	2, 2, 197, 49, 3, 2, 2, 2, 198, 199, 7, 40, 2, 2, 199, 51, 3, 2, 2, 2,
+	3, 2, 2, 2, 183, 187, 7, 41, 2, 2, 184, 187, 7, 42, 2, 2, 185, 187, 7,
+	43, 2, 2, 186, 183, 3, 2, 2, 2, 186, 184, 3, 2, 2, 2, 186, 185, 3, 2, 2,
+	2, 187, 43, 3, 2, 2, 2, 188, 189, 7, 39, 2, 2, 189, 190, 7, 4, 2, 2, 190,
+	191, 7, 40, 2, 2, 191, 45, 3, 2, 2, 2, 192, 193, 7, 39, 2, 2, 193, 194,
+	7, 3, 2, 2, 194, 195, 7, 40, 2, 2, 195, 47, 3, 2, 2, 2, 196, 197, 7, 33,
+	2, 2, 197, 49, 3, 2, 2, 2, 198, 199, 7, 34, 2, 2, 199, 51, 3, 2, 2, 2,
 	12, 55, 72, 80, 84, 90, 102, 154, 165, 181, 186,
 }
 var deserializer = antlr.NewATNDeserializer(nil)
@@ -111,8 +111,7 @@ var literalNames = []string{
 	"", "'->'", "'<-'", "", "", "", "", "'load'", "'move'", "'copy'", "'increment'",
 	"'decrement'", "'add'", "'subtract'", "'divide'", "'multiply'", "'jump'",
 	"'je'", "'jne'", "'jg'", "'jng'", "'jge'", "'jnge'", "'jl'", "'jnl'", "'jle'",
-	"'jnle'", "'='", "'>'", "'>='", "'<'", "'<='", "'!='", "'not'", "'and'",
-	"'or'", "'xor'", "'STOP'", "'WAIT'", "'IF'",
+	"'jnle'", "'not'", "'and'", "'or'", "'xor'", "'stop'", "'WAIT'", "'IF'",
 }
 var symbolicNames = []string{
 	"", "", "", "WHITESPACE", "WS", "COMMENT", "LINE_COMMENT", "LOAD", "MOVE",
@@ -120,7 +119,6 @@ var symbolicNames = []string{
 	"JUMP", "JUMP_IF_EQUAL", "JUMP_IF_NOT_EQUAL", "JUMP_IF_GREATER", "JUMP_IF_NOT_GREATER",
 	"JUMP_IF_GREATER_OR_EQUAL", "JUMP_IF_NOT_GREATER_OR_EQUAL", "JUMP_IF_LESS",
 	"JUMP_IF_NOT_LESS", "JUMP_IF_LESS_OR_EQUAL", "JUMP_IF_NOT_LESS_OR_EQUAL",
-	"EQUAL", "GREATER", "GREATER_OR_EQUAL", "LESS", "LESS_OR_EQUAL", "NOT_EQUAL",
 	"NOT", "AND", "OR", "XOR", "STOP", "WAIT", "IF", "HEX_DIGIT", "HEXA_BYTE",
 	"WORD", "REGISTER", "DEVICE", "ABSOLUTE_ADDRESS", "OFFSET_ADDRESS", "POINTER_ADDRESS",
 }
@@ -188,27 +186,21 @@ const (
 	GrogParserJUMP_IF_NOT_LESS             = 24
 	GrogParserJUMP_IF_LESS_OR_EQUAL        = 25
 	GrogParserJUMP_IF_NOT_LESS_OR_EQUAL    = 26
-	GrogParserEQUAL                        = 27
-	GrogParserGREATER                      = 28
-	GrogParserGREATER_OR_EQUAL             = 29
-	GrogParserLESS                         = 30
-	GrogParserLESS_OR_EQUAL                = 31
-	GrogParserNOT_EQUAL                    = 32
-	GrogParserNOT                          = 33
-	GrogParserAND                          = 34
-	GrogParserOR                           = 35
-	GrogParserXOR                          = 36
-	GrogParserSTOP                         = 37
-	GrogParserWAIT                         = 38
-	GrogParserIF                           = 39
-	GrogParserHEX_DIGIT                    = 40
-	GrogParserHEXA_BYTE                    = 41
-	GrogParserWORD                         = 42
-	GrogParserREGISTER                     = 43
-	GrogParserDEVICE                       = 44
-	GrogParserABSOLUTE_ADDRESS             = 45
-	GrogParserOFFSET_ADDRESS               = 46
-	GrogParserPOINTER_ADDRESS              = 47
+	GrogParserNOT                          = 27
+	GrogParserAND                          = 28
+	GrogParserOR                           = 29
+	GrogParserXOR                          = 30
+	GrogParserSTOP                         = 31
+	GrogParserWAIT                         = 32
+	GrogParserIF                           = 33
+	GrogParserHEX_DIGIT                    = 34
+	GrogParserHEXA_BYTE                    = 35
+	GrogParserWORD                         = 36
+	GrogParserREGISTER                     = 37
+	GrogParserDEVICE                       = 38
+	GrogParserABSOLUTE_ADDRESS             = 39
+	GrogParserOFFSET_ADDRESS               = 40
+	GrogParserPOINTER_ADDRESS              = 41
 )
 
 // GrogParser rules.
@@ -351,7 +343,7 @@ func (p *GrogParser) Program() (localctx IProgramContext) {
 	p.GetErrorHandler().Sync(p)
 	_la = p.GetTokenStream().LA(1)
 
-	for ok := true; ok; ok = (((_la)&-(0x1f+1)) == 0 && ((1<<uint(_la))&((1<<GrogParserLOAD)|(1<<GrogParserCOPY)|(1<<GrogParserINCREMENT)|(1<<GrogParserDECREMENT)|(1<<GrogParserADD)|(1<<GrogParserSUBTRACT)|(1<<GrogParserDIVIDE)|(1<<GrogParserMULTIPLY)|(1<<GrogParserJUMP)|(1<<GrogParserJUMP_IF_EQUAL)|(1<<GrogParserJUMP_IF_NOT_EQUAL)|(1<<GrogParserJUMP_IF_GREATER)|(1<<GrogParserJUMP_IF_NOT_GREATER)|(1<<GrogParserJUMP_IF_GREATER_OR_EQUAL)|(1<<GrogParserJUMP_IF_NOT_GREATER_OR_EQUAL)|(1<<GrogParserJUMP_IF_LESS)|(1<<GrogParserJUMP_IF_NOT_LESS)|(1<<GrogParserJUMP_IF_LESS_OR_EQUAL)|(1<<GrogParserJUMP_IF_NOT_LESS_OR_EQUAL))) != 0) || (((_la-33)&-(0x1f+1)) == 0 && ((1<<uint((_la-33)))&((1<<(GrogParserNOT-33))|(1<<(GrogParserAND-33))|(1<<(GrogParserOR-33))|(1<<(GrogParserXOR-33))|(1<<(GrogParserSTOP-33))|(1<<(GrogParserWAIT-33))|(1<<(GrogParserHEXA_BYTE-33))|(1<<(GrogParserREGISTER-33)))) != 0) {
+	for ok := true; ok; ok = (((_la-7)&-(0x1f+1)) == 0 && ((1<<uint((_la-7)))&((1<<(GrogParserLOAD-7))|(1<<(GrogParserCOPY-7))|(1<<(GrogParserINCREMENT-7))|(1<<(GrogParserDECREMENT-7))|(1<<(GrogParserADD-7))|(1<<(GrogParserSUBTRACT-7))|(1<<(GrogParserDIVIDE-7))|(1<<(GrogParserMULTIPLY-7))|(1<<(GrogParserJUMP-7))|(1<<(GrogParserJUMP_IF_EQUAL-7))|(1<<(GrogParserJUMP_IF_NOT_EQUAL-7))|(1<<(GrogParserJUMP_IF_GREATER-7))|(1<<(GrogParserJUMP_IF_NOT_GREATER-7))|(1<<(GrogParserJUMP_IF_GREATER_OR_EQUAL-7))|(1<<(GrogParserJUMP_IF_NOT_GREATER_OR_EQUAL-7))|(1<<(GrogParserJUMP_IF_LESS-7))|(1<<(GrogParserJUMP_IF_NOT_LESS-7))|(1<<(GrogParserJUMP_IF_LESS_OR_EQUAL-7))|(1<<(GrogParserJUMP_IF_NOT_LESS_OR_EQUAL-7))|(1<<(GrogParserNOT-7))|(1<<(GrogParserAND-7))|(1<<(GrogParserOR-7))|(1<<(GrogParserXOR-7))|(1<<(GrogParserSTOP-7))|(1<<(GrogParserWAIT-7))|(1<<(GrogParserHEXA_BYTE-7))|(1<<(GrogParserREGISTER-7)))) != 0) {
 		{
 			p.SetState(50)
 			p.Instruction()

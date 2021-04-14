@@ -9,5 +9,5 @@ load R5 01
 load R6 11
 xor R5 R6
 not R1
-STOP
+stop
 

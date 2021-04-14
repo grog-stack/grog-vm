@@ -11,4 +11,4 @@ multiply R1 R2
 load R1 0C
 load R2 04
 divide R1 R2
-STOP
+stop

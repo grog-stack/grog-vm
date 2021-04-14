@@ -10,4 +10,4 @@ copy #0001 *0002 // offset <- pointer
 copy *0001 @0002 // pointer <- absolute
 copy *0001 #0002 // pointer <- offset
 copy *0001 *0002 // pointer <- pointer
-STOP
+stop
