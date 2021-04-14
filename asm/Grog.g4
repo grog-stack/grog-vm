@@ -2,8 +2,12 @@ grammar Grog;
 
 // Rules
 program 
-    : instruction+ EOF 
+    : (CONSTANTS LCBRACE constant+ RCBRACE)? instruction+ EOF 
     ; 
+
+constant
+    : name=IDENTIFIER EQUAL byteValue=HEXA_BYTE
+    ;
 
 instruction
     : increment | decrement
@@ -22,7 +26,8 @@ load
         Value=HEXA_BYTE | 
         Address=ABSOLUTE_ADDRESS | 
         Offset=OFFSET_ADDRESS | 
-        Pointer=POINTER_ADDRESS
+        Pointer=POINTER_ADDRESS |
+        Constant=IDENTIFIER
     ) 
     ;
 
@@ -124,6 +129,7 @@ WHITESPACE: [ \r\n\t]+ -> skip;
 WS:  [ \t\r\n\u000C]+ -> skip;
 COMMENT:   '/*' .*? '*/' -> skip;
 LINE_COMMENT :   '//' ~[\r\n]* -> skip;
+CONSTANTS: 'constants';
 LOAD: 'load';
 STORE: 'store';
 COPY: 'copy';
@@ -152,12 +158,19 @@ INPUT: 'input';
 OUTPUT: 'output';
 STOP: 'stop';
 WAIT: 'wait';
-HEX_DIGIT: [0-9a-fA-F];
-HEXA_BYTE: HEX_DIGIT HEX_DIGIT; 
-WORD: HEXA_BYTE HEXA_BYTE; 
+EQUAL: '=';
+LCBRACE: '{';
+RCBRACE: '}';
 REGISTER: 'R' HEX_DIGIT;
 DEVICE: 'D' HEXA_BYTE;
+IDENTIFIER: LETTER (LETTER | DIGIT)*;
+HEX_DIGIT: [0-9a-fA-F];
+HEXA_BYTE: HEX_DIGIT HEX_DIGIT;
+WORD: HEXA_BYTE HEXA_BYTE; 
 ABSOLUTE_ADDRESS: '@'WORD;
 OFFSET_ADDRESS: '#'WORD;
 POINTER_ADDRESS: '*'WORD;
+
+fragment LETTER: [a-zA-Z_];
+fragment DIGIT: [0-9];
 

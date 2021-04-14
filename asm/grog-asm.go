@@ -28,7 +28,8 @@ var booleanOperators = map[string]byte{
 
 type listener struct {
 	*parser.BaseGrogListener
-	Output *bufio.Writer
+	Output   *bufio.Writer
+	Contants map[string]byte
 }
 
 func (l *listener) ExitLoad(c *parser.LoadContext) {
@@ -44,6 +45,11 @@ func (l *listener) ExitLoad(c *parser.LoadContext) {
 	} else if c.Pointer != nil {
 		l.Output.WriteByte(vm.LOAD_POINTER)
 		l.Output.Write(pointerAddressBytes(c.Pointer.GetText()))
+	} else if c.Constant != nil {
+		l.Output.WriteByte(vm.LOAD_BYTE)
+		value := l.Contants[c.Constant.GetText()]
+		l.Output.WriteByte(value)
+
 	}
 	l.Output.WriteByte(registerByte(c.Register.GetText()))
 }
@@ -207,6 +213,15 @@ func (l *listener) ExitWait(c *parser.WaitContext) {
 	l.Output.WriteByte(vm.WAIT)
 }
 
+func (l *listener) ExitConstant(c *parser.ConstantContext) {
+	name := c.GetName().GetText()
+	_, exists := l.Contants[name]
+	if exists {
+		panic("Constant " + name + " already defined.")
+	}
+	l.Contants[name] = valueByte(c.GetByteValue().GetText())
+}
+
 func absoluteAddressBytes(value string) []byte {
 	return prefixedAddressBytes(value, "@")
 }
@@ -262,7 +277,10 @@ func main() {
 		panic(err)
 	}
 	defer outputFile.Close()
-	listener := listener{Output: bufio.NewWriter(outputFile)}
+	listener := listener{
+		Output:   bufio.NewWriter(outputFile),
+		Contants: make(map[string]byte),
+	}
 	antlr.ParseTreeWalkerDefault.Walk(&listener, parser.Program())
 	listener.Output.Flush()
 }

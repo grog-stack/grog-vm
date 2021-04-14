@@ -37,6 +37,20 @@ offset is always the Program Counter:
 Pointers to memory addresses are prefixed with `*`. For example: `*a2f1`. When a pointer
 is used, the machine searches for the actual memory location in the memory location specified by the pointer.
 
+### Constants
+
+You can define simple constants at the begining of your program, and then use them 
+wherever you need:
+
+    constants (
+        a = 01
+        b = 02
+    )
+
+    load R1 a // Load the value of the 'a' constant into R1
+
+Obviously, constants cannot be redefined.
+
 ### Load values into registers
 
 Load values into registers with the `load` operation. 
@@ -131,6 +145,8 @@ a unique code.
 
     input R0 D1 // Reads a byte from device 01 into register R1
     output D2 R1 // Writes a byte from register R1 to device D2
+
+##
 
 ### Comments
 

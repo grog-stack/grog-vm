@@ -10,6 +10,9 @@ type GrogListener interface {
 	// EnterProgram is called when entering the program production.
 	EnterProgram(c *ProgramContext)
 
+	// EnterConstant is called when entering the constant production.
+	EnterConstant(c *ConstantContext)
+
 	// EnterInstruction is called when entering the instruction production.
 	EnterInstruction(c *InstructionContext)
 
@@ -81,6 +84,9 @@ type GrogListener interface {
 
 	// ExitProgram is called when exiting the program production.
 	ExitProgram(c *ProgramContext)
+
+	// ExitConstant is called when exiting the constant production.
+	ExitConstant(c *ConstantContext)
 
 	// ExitInstruction is called when exiting the instruction production.
 	ExitInstruction(c *InstructionContext)

@@ -19,3 +19,4 @@ grog-asm: grog-parser
 	./grog-asmc ./asm/copy-register.asm
 	./grog-asmc ./asm/boolean.asm
 	./grog-asmc ./asm/arithmetic.asm
+	./grog-asmc ./asm/constants.asm

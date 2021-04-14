@@ -26,6 +26,12 @@ func (s *BaseGrogListener) EnterProgram(ctx *ProgramContext) {}
 // ExitProgram is called when production program is exited.
 func (s *BaseGrogListener) ExitProgram(ctx *ProgramContext) {}
 
+// EnterConstant is called when production constant is entered.
+func (s *BaseGrogListener) EnterConstant(ctx *ConstantContext) {}
+
+// ExitConstant is called when production constant is exited.
+func (s *BaseGrogListener) ExitConstant(ctx *ConstantContext) {}
+
 // EnterInstruction is called when production instruction is entered.
 func (s *BaseGrogListener) EnterInstruction(ctx *InstructionContext) {}
 
