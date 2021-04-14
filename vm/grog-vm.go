@@ -54,13 +54,12 @@ When the source and target of the operation are the same type (for instance, reg
 we call it COPY. When the target is a register, we call it LOAD. When the target is a memory location,
  we call it STORE.
 
-The following table shows all allowed combinations. (Rows are sources, columns are destinations.)
+The following table shows all allowed combinations. (Rows are destinations, columns are sources.)
 
-         | byte | register | address | pointer |
-byte     |    - | LOAD     | STORE   | STORE   |
-register |    - | COPY     | STORE   | STORE   |
-address  |    - | LOAD     | COPY    | COPY    |
-pointer  |    - | LOAD     | COPY    | COPY    |
+         | byte  | register | memory |
+register | LOAD  | COPY     | LOAD   |
+memory   | STORE | STORE    | COPY   |
+
 */
 
 const (
@@ -214,8 +213,8 @@ func (instruction *Instruction) execute(machine *Machine) uint16 {
 		)
 		return 4
 	} else if instruction.code == COPY_REGISTER {
-		source := &machine.Registers[machine.ReadByteOffset(1)]
-		destination := &machine.Registers[machine.ReadByteOffset(2)]
+		destination := &machine.Registers[machine.ReadByteOffset(1)]
+		source := &machine.Registers[machine.ReadByteOffset(2)]
 		destination.Value = source.Value
 		return 3
 	} else if instruction.code == COPY_ADDRESS_ADDRESS {
@@ -321,9 +320,8 @@ func (instruction *Instruction) execute(machine *Machine) uint16 {
 		destination.Value = left.Value ^ right.Value
 		return 4
 	} else if instruction.code == NOT {
-		operand := &machine.Registers[machine.ReadByteOffset(1)]
 		destination := &machine.Registers[machine.ReadByteOffset(2)]
-		destination.Value = ^operand.Value
+		destination.Value = ^destination.Value
 		return 3
 	} else if instruction.code == JUMP_ADDRESS {
 		machine.Jump(machine.ReadNextAddress())

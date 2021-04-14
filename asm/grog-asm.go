@@ -83,10 +83,14 @@ func (l *listener) ExitStore(c *parser.StoreContext) {
 }
 
 func (l *listener) ExitCopyRegister(c *parser.CopyRegisterContext) {
+	destination := registerByte(c.DestinationRegister.GetText())
+	source := registerByte(c.SourceRegister.GetText())
 	l.Output.WriteByte(vm.COPY_REGISTER)
-	l.Output.WriteByte(registerByte(c.SourceRegister.GetText()))
-	l.Output.WriteByte(registerByte(c.DestinationRegister.GetText()))
+	l.Output.WriteByte(destination)
+	l.Output.WriteByte(source)
 }
+
+/*
 func (l *listener) ExitCopyAbsoluteToAbsolute(c *parser.CopyAbsoluteToAbsoluteContext) {
 	l.Output.WriteByte(vm.COPY_ADDRESS_ADDRESS)
 	l.Output.Write(addressBytes(c.SourceAddress.GetText()))
@@ -131,7 +135,7 @@ func (l *listener) ExitCopyPointerToPointer(c *parser.CopyPointerToPointerContex
 	l.Output.WriteByte(vm.COPY_POINTER_POINTER)
 	l.Output.Write(pointerAddressBytes(c.SourcePointer.GetText()))
 	l.Output.Write(pointerAddressBytes(c.DestinationPointer.GetText()))
-}
+}*/
 
 func (l *listener) ExitIncrement(c *parser.IncrementContext) {
 	l.Output.WriteByte(vm.INCREMENT)

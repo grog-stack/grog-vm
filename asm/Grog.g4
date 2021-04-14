@@ -9,7 +9,9 @@ instruction
     : increment | decrement
     | arithmeticOperation
     | unaryBooleanOperation | binaryBooleanOperation
-    | copyValue | load | store
+    | load
+    | store
+    | copyValue
     | jump
     | input | output
     | stop
@@ -31,8 +33,9 @@ store
     ;
 
 copyValue
-    : (SourceRegister=REGISTER '->' DestinationRegister=REGISTER) #CopyRegister
-    | (SourceAddress=ABSOLUTE_ADDRESS '->' DestinationAddress=ABSOLUTE_ADDRESS) #CopyAbsoluteToAbsolute
+    : 'copy' 
+     DestinationRegister=REGISTER SourceRegister=REGISTER #CopyRegister
+    /*| (SourceAddress=ABSOLUTE_ADDRESS '->' DestinationAddress=ABSOLUTE_ADDRESS) #CopyAbsoluteToAbsolute
     | (SourceAddress=ABSOLUTE_ADDRESS '->' DestinationOffset=OFFSET_ADDRESS) #CopyAbsoluteToOffset
     | (SourceAddress=ABSOLUTE_ADDRESS '->' DestinationPointer=POINTER_ADDRESS) #CopyAbsoluteToPointer
     | (SourceOffset=OFFSET_ADDRESS '->' DestinationAddress=ABSOLUTE_ADDRESS) #CopyOffsetToAbsolute
@@ -40,7 +43,7 @@ copyValue
     | (SourceOffset=OFFSET_ADDRESS '->' DestinationPointer=POINTER_ADDRESS) #CopyOffsetToPointer
     | (SourcePointer=POINTER_ADDRESS '->' DestinationAddress=ABSOLUTE_ADDRESS) #CopyPointerToAbsolute
     | (SourcePointer=POINTER_ADDRESS '->' DestinationOffset=OFFSET_ADDRESS) #CopyPointerToOffset
-    | (SourcePointer=POINTER_ADDRESS '->' DestinationPointer=POINTER_ADDRESS) #CopyPointerToPointer
+    | (SourcePointer=POINTER_ADDRESS '->' DestinationPointer=POINTER_ADDRESS) #CopyPointerToPointer*/
     ;
 
 copyRightToLeft
@@ -103,6 +106,8 @@ WS:  [ \t\r\n\u000C]+ -> skip;
 COMMENT:   '/*' .*? '*/' -> skip;
 LINE_COMMENT :   '//' ~[\r\n]* -> skip;
 LOAD: 'load';
+MOVE: 'move';
+COPY: 'copy';
 STORE: '->';
 INCREMENT: 'increment';
 DECREMENT: 'decrement';

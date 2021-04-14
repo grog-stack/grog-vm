@@ -22,33 +22,6 @@ type GrogListener interface {
 	// EnterCopyRegister is called when entering the CopyRegister production.
 	EnterCopyRegister(c *CopyRegisterContext)
 
-	// EnterCopyAbsoluteToAbsolute is called when entering the CopyAbsoluteToAbsolute production.
-	EnterCopyAbsoluteToAbsolute(c *CopyAbsoluteToAbsoluteContext)
-
-	// EnterCopyAbsoluteToOffset is called when entering the CopyAbsoluteToOffset production.
-	EnterCopyAbsoluteToOffset(c *CopyAbsoluteToOffsetContext)
-
-	// EnterCopyAbsoluteToPointer is called when entering the CopyAbsoluteToPointer production.
-	EnterCopyAbsoluteToPointer(c *CopyAbsoluteToPointerContext)
-
-	// EnterCopyOffsetToAbsolute is called when entering the CopyOffsetToAbsolute production.
-	EnterCopyOffsetToAbsolute(c *CopyOffsetToAbsoluteContext)
-
-	// EnterCopyOffsetToOffset is called when entering the CopyOffsetToOffset production.
-	EnterCopyOffsetToOffset(c *CopyOffsetToOffsetContext)
-
-	// EnterCopyOffsetToPointer is called when entering the CopyOffsetToPointer production.
-	EnterCopyOffsetToPointer(c *CopyOffsetToPointerContext)
-
-	// EnterCopyPointerToAbsolute is called when entering the CopyPointerToAbsolute production.
-	EnterCopyPointerToAbsolute(c *CopyPointerToAbsoluteContext)
-
-	// EnterCopyPointerToOffset is called when entering the CopyPointerToOffset production.
-	EnterCopyPointerToOffset(c *CopyPointerToOffsetContext)
-
-	// EnterCopyPointerToPointer is called when entering the CopyPointerToPointer production.
-	EnterCopyPointerToPointer(c *CopyPointerToPointerContext)
-
 	// EnterCopyRightToLeft is called when entering the copyRightToLeft production.
 	EnterCopyRightToLeft(c *CopyRightToLeftContext)
 
@@ -96,33 +69,6 @@ type GrogListener interface {
 
 	// ExitCopyRegister is called when exiting the CopyRegister production.
 	ExitCopyRegister(c *CopyRegisterContext)
-
-	// ExitCopyAbsoluteToAbsolute is called when exiting the CopyAbsoluteToAbsolute production.
-	ExitCopyAbsoluteToAbsolute(c *CopyAbsoluteToAbsoluteContext)
-
-	// ExitCopyAbsoluteToOffset is called when exiting the CopyAbsoluteToOffset production.
-	ExitCopyAbsoluteToOffset(c *CopyAbsoluteToOffsetContext)
-
-	// ExitCopyAbsoluteToPointer is called when exiting the CopyAbsoluteToPointer production.
-	ExitCopyAbsoluteToPointer(c *CopyAbsoluteToPointerContext)
-
-	// ExitCopyOffsetToAbsolute is called when exiting the CopyOffsetToAbsolute production.
-	ExitCopyOffsetToAbsolute(c *CopyOffsetToAbsoluteContext)
-
-	// ExitCopyOffsetToOffset is called when exiting the CopyOffsetToOffset production.
-	ExitCopyOffsetToOffset(c *CopyOffsetToOffsetContext)
-
-	// ExitCopyOffsetToPointer is called when exiting the CopyOffsetToPointer production.
-	ExitCopyOffsetToPointer(c *CopyOffsetToPointerContext)
-
-	// ExitCopyPointerToAbsolute is called when exiting the CopyPointerToAbsolute production.
-	ExitCopyPointerToAbsolute(c *CopyPointerToAbsoluteContext)
-
-	// ExitCopyPointerToOffset is called when exiting the CopyPointerToOffset production.
-	ExitCopyPointerToOffset(c *CopyPointerToOffsetContext)
-
-	// ExitCopyPointerToPointer is called when exiting the CopyPointerToPointer production.
-	ExitCopyPointerToPointer(c *CopyPointerToPointerContext)
 
 	// ExitCopyRightToLeft is called when exiting the copyRightToLeft production.
 	ExitCopyRightToLeft(c *CopyRightToLeftContext)

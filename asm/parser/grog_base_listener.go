@@ -50,60 +50,6 @@ func (s *BaseGrogListener) EnterCopyRegister(ctx *CopyRegisterContext) {}
 // ExitCopyRegister is called when production CopyRegister is exited.
 func (s *BaseGrogListener) ExitCopyRegister(ctx *CopyRegisterContext) {}
 
-// EnterCopyAbsoluteToAbsolute is called when production CopyAbsoluteToAbsolute is entered.
-func (s *BaseGrogListener) EnterCopyAbsoluteToAbsolute(ctx *CopyAbsoluteToAbsoluteContext) {}
-
-// ExitCopyAbsoluteToAbsolute is called when production CopyAbsoluteToAbsolute is exited.
-func (s *BaseGrogListener) ExitCopyAbsoluteToAbsolute(ctx *CopyAbsoluteToAbsoluteContext) {}
-
-// EnterCopyAbsoluteToOffset is called when production CopyAbsoluteToOffset is entered.
-func (s *BaseGrogListener) EnterCopyAbsoluteToOffset(ctx *CopyAbsoluteToOffsetContext) {}
-
-// ExitCopyAbsoluteToOffset is called when production CopyAbsoluteToOffset is exited.
-func (s *BaseGrogListener) ExitCopyAbsoluteToOffset(ctx *CopyAbsoluteToOffsetContext) {}
-
-// EnterCopyAbsoluteToPointer is called when production CopyAbsoluteToPointer is entered.
-func (s *BaseGrogListener) EnterCopyAbsoluteToPointer(ctx *CopyAbsoluteToPointerContext) {}
-
-// ExitCopyAbsoluteToPointer is called when production CopyAbsoluteToPointer is exited.
-func (s *BaseGrogListener) ExitCopyAbsoluteToPointer(ctx *CopyAbsoluteToPointerContext) {}
-
-// EnterCopyOffsetToAbsolute is called when production CopyOffsetToAbsolute is entered.
-func (s *BaseGrogListener) EnterCopyOffsetToAbsolute(ctx *CopyOffsetToAbsoluteContext) {}
-
-// ExitCopyOffsetToAbsolute is called when production CopyOffsetToAbsolute is exited.
-func (s *BaseGrogListener) ExitCopyOffsetToAbsolute(ctx *CopyOffsetToAbsoluteContext) {}
-
-// EnterCopyOffsetToOffset is called when production CopyOffsetToOffset is entered.
-func (s *BaseGrogListener) EnterCopyOffsetToOffset(ctx *CopyOffsetToOffsetContext) {}
-
-// ExitCopyOffsetToOffset is called when production CopyOffsetToOffset is exited.
-func (s *BaseGrogListener) ExitCopyOffsetToOffset(ctx *CopyOffsetToOffsetContext) {}
-
-// EnterCopyOffsetToPointer is called when production CopyOffsetToPointer is entered.
-func (s *BaseGrogListener) EnterCopyOffsetToPointer(ctx *CopyOffsetToPointerContext) {}
-
-// ExitCopyOffsetToPointer is called when production CopyOffsetToPointer is exited.
-func (s *BaseGrogListener) ExitCopyOffsetToPointer(ctx *CopyOffsetToPointerContext) {}
-
-// EnterCopyPointerToAbsolute is called when production CopyPointerToAbsolute is entered.
-func (s *BaseGrogListener) EnterCopyPointerToAbsolute(ctx *CopyPointerToAbsoluteContext) {}
-
-// ExitCopyPointerToAbsolute is called when production CopyPointerToAbsolute is exited.
-func (s *BaseGrogListener) ExitCopyPointerToAbsolute(ctx *CopyPointerToAbsoluteContext) {}
-
-// EnterCopyPointerToOffset is called when production CopyPointerToOffset is entered.
-func (s *BaseGrogListener) EnterCopyPointerToOffset(ctx *CopyPointerToOffsetContext) {}
-
-// ExitCopyPointerToOffset is called when production CopyPointerToOffset is exited.
-func (s *BaseGrogListener) ExitCopyPointerToOffset(ctx *CopyPointerToOffsetContext) {}
-
-// EnterCopyPointerToPointer is called when production CopyPointerToPointer is entered.
-func (s *BaseGrogListener) EnterCopyPointerToPointer(ctx *CopyPointerToPointerContext) {}
-
-// ExitCopyPointerToPointer is called when production CopyPointerToPointer is exited.
-func (s *BaseGrogListener) ExitCopyPointerToPointer(ctx *CopyPointerToPointerContext) {}
-
 // EnterCopyRightToLeft is called when production copyRightToLeft is entered.
 func (s *BaseGrogListener) EnterCopyRightToLeft(ctx *CopyRightToLeftContext) {}
 
